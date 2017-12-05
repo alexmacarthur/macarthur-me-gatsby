@@ -1,0 +1,29 @@
+* {
+  box-sizing: border-box;
+}
+
+#___gatsby {
+  background: linear-gradient(63deg, lighten($gray, 79%) 35.3%, white 35.3%);
+
+  & > div {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+  }
+}
+
+main {
+  padding: 3rem 2rem;
+  flex: 1;
+
+  & > div {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+}
+
+article {
+  h1 {
+
+  }
+}

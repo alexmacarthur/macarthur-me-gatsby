@@ -1,0 +1,54 @@
+@import '../../../assets/scss/base/variables.scss';
+@import '../../../assets/scss/base/mixins.scss';
+
+.Card {
+  position: relative;
+  padding: 2rem;
+  max-width: 600px;
+  margin: 0 auto;
+
+  & + &:not(.Card--inGrid) {
+    margin-top: 3rem;
+
+    &:before {
+      content: '';
+      display: block;
+      background: $gray--medium;
+      height: 1px;
+      width: 100%;
+      position: absolute;
+      top: -2rem;
+    }
+  }
+
+  small {
+    word-break: break-word;
+    line-height: normal;
+  }
+}
+
+.Card-title {
+  margin-bottom: .5rem;
+}
+
+.Card-fillLink {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  z-index: 1;
+}
+
+.Card--inGrid {
+  border: 3px solid $gray--mediumLight;
+  border-radius: $border-radius;
+
+  &:hover {
+    border-color: $salmon;
+
+    * {
+      color: $salmon;
+    }
+  }
+}

@@ -1,0 +1,218 @@
+@import '../../../assets/scss/base/variables.scss';
+@import '../../../assets/scss/base/mixins.scss';
+
+.Nav {
+  position: relative;
+  list-style: none;
+  margin-top: 1.5rem;
+  display: inline-block;
+  padding: 0;
+  width: 100%;
+}
+
+.Nav--top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0 auto 2rem;
+  padding: 3rem;
+
+  &:after {
+    content: '';
+    display: block;
+    position: absolute;
+    bottom: 0;
+    background: $gray--mediumLight;
+    height: 1px;
+    width: calc(100% - 3rem);
+    left: 1.5rem;
+    border-radius: 3px;
+  }
+}
+
+.Nav-list {
+  transition: all .15s ease-in-out;
+  padding: 0;
+  margin: 0;
+  background: rgba($gray, .95);
+
+  .Hero & {
+    background: none;
+  }
+
+  .Nav--top & {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    z-index: -1;
+    opacity: 0;
+
+    @include media($medium-screen) {
+      z-index: 1;
+      opacity: 1;
+      flex-direction: row;
+      justify-content: flex-end;
+      position: relative;
+      background: none;
+    }
+  }
+
+  .is-open & {
+    z-index: 2;
+    opacity: 1;
+  }
+}
+
+.Nav-toggle,
+.Nav-close {
+  transition: all .15s ease-in-out;
+  right: 3rem;
+
+  .Nav--top & {
+    position: absolute;
+  }
+
+  .Hero & {
+    display: none;
+  }
+
+  @include media($medium-screen) {
+    display: none;
+  }
+}
+
+.Nav-toggle {
+  z-index: 1;
+  opacity: 1;
+
+  .is-open & {
+    z-index: -1;
+    opacity: 0;
+  }
+
+  .Hero & {
+    display: none;
+  }
+}
+
+.Nav-close {
+  cursor: pointer;
+  z-index: -1;
+  opacity: 0;
+
+  .is-open & {
+    z-index: 2;
+    opacity: 1;
+  }
+
+  svg {
+    width: 40px;
+    height: 40px;
+  }
+
+  path {
+    fill: transparent;
+    stroke: $white;
+    stroke-linecap: round;
+    stroke-width: 5;
+  }
+}
+
+.Nav-logo {
+  font-family: $header-font-family;
+  font-size: $base-font-size-large;
+  font-weight: bold;
+  text-transform: uppercase;
+
+  span {
+    font-weight: normal;
+    font-size: inherit;
+  }
+}
+
+.Nav-item {
+  display: block;
+  font-size: $base-font-size-large;
+  font-family: $header-font-family;
+  text-transform: uppercase;
+
+  @include media($medium-screen) {
+    font-size: $medium-font-size
+  }
+
+  .Nav--top & {
+    font-size: 2rem;
+  }
+
+  & + & {
+    margin-top: 2.5rem;
+
+    @include media($medium-screen) {
+      margin-top: 3.5rem;
+    }
+
+    .Nav--top & {
+      @include media($medium-screen) {
+        margin: 0 0 0 2rem;
+      }
+    }
+  }
+
+  a {
+    position: relative;
+    color: $white;
+    display: inline-block;
+
+    &:hover {
+      color: $white;
+    }
+
+    @include media($medium-screen) {
+      color: $gray;
+
+      &:hover {
+        color: $salmon;
+      }
+    }
+
+    .Hero & {
+      color: $gray;
+      --bar-color: $gray;
+
+      &:after {
+        content: '';
+        display: block;
+        width: 100%;
+        border-radius: 3px;
+        background: var(--bar-color);
+        position: absolute;
+        height: 3px;
+        bottom: -5px;
+
+        @include media($medium-screen) {
+          height: 4px;
+          bottom: -10px;
+        }
+      }
+
+      &:hover {
+        color: $salmon;
+        --bar-color: $salmon;
+      }
+    }
+
+    .Nav--top & {
+      font-size: $medium-font-size;
+
+      @include media($medium-screen) {
+        font-size: $base-font-size-large;
+      }
+    }
+  }
+}

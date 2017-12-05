@@ -1,0 +1,95 @@
+@import 'variables.scss';
+
+html {
+  font-size: 62.5%;
+}
+
+body {
+  font-family: $base-font-family;
+  color: var(--gray);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: $header-font-family;
+  margin: 0;
+  line-height: 1;
+  font-size: $base-font-size;
+}
+
+h1 {
+  font-size: $medium-font-size;
+  margin-bottom: 3rem;
+  text-align: center;
+
+  @include media($medium-screen) {
+    font-size: $large-font-size;
+  }
+
+}
+
+h2 {
+  font-size: $medium-font-size;
+}
+
+h3 {
+  font-weight: normal;
+  font-size: $medium-font-size;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+
+  &:hover {
+    color: $salmon;
+  }
+}
+
+p {
+  a {
+    color: $salmon;
+    border-bottom: 2px solid $salmon;
+    display: inline-block;
+
+    &:hover {
+      color: $salmon--dark;
+      border-color: $salmon--dark;
+    }
+  }
+}
+
+p,
+span,
+small,
+date,
+li {
+  font-size: $base-font-size;
+  line-height: $base-line-height;
+}
+
+small {
+  font-family: $header-font-family;
+}
+
+button {
+  text-transform: uppercase;
+  font-size: $base-font-size;
+  font-weight: bold;
+  text-transform: uppercase;
+  cursor: pointer;
+  border: 1px solid $gray;
+  border-radius: 5px;
+  padding: 1rem 1rem .75rem 1rem;
+  font-weight: 100;
+  background: none;
+
+  &:hover {
+    color: $salmon;
+    border-color: $salmon;
+  }
+}

@@ -1,0 +1,40 @@
+input,
+textarea {
+  font-family: $header-font-family;
+  padding: .75rem;
+  border-radius: 3px;
+  border: 1px solid $gray--mediumLight;
+  width: 100%;
+  font-size: $base-font-size-large;
+}
+
+textarea {
+  min-height: 150px;
+}
+
+form {
+  .message {
+    margin-top: 3rem;
+    display: block;
+    width: 100%;
+    padding: 1rem;
+    color: white;
+    background: $green;
+    border-radius: 3px;
+    font-family: $header-font-family;
+
+    &.is-error {
+      background: $salmon;
+    }
+  }
+}
+
+label {
+  font-family: $header-font-family;
+  font-size: $base-font-size-large;
+
+  input,
+  textarea {
+    margin-top: .25rem;
+  }
+}

@@ -1,0 +1,30 @@
+//-- Colors
+:root {
+  --gray: #2f2f2f;
+}
+
+$white: #ffffff;
+$gray: #2f2f2f;
+$gray--medium: lighten($gray, 50%);
+$gray--mediumLight: lighten($gray, 70%);
+$gray--light: lighten($gray, 80%);
+$salmon: #FA8072;
+$salmon--dark: darken($salmon, 25%);
+$green: #4ECDC4;
+
+$base-font-family: 'Merriweather', serif;
+$header-font-family: 'Nunito', sans-serif;
+
+$base-line-height: 2.5rem;
+
+$mobile-screen: 400px;
+$small-screen: 600px;
+$medium-screen: 900px;
+$large-screen: 1200px;
+
+$base-font-size: 1.6rem;
+$base-font-size-large: 2rem;
+$medium-font-size: 3rem;
+$large-font-size: 6rem;
+
+$border-radius: 5px;

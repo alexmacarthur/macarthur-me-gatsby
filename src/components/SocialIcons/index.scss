@@ -1,0 +1,28 @@
+@import '../../../assets/scss/base/variables.scss';
+@import '../../../assets/scss/base/mixins.scss';
+
+.SocialIcons {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.SocialIcons-icon {
+  display: inline;
+
+  & + & {
+    margin-left: .5rem;
+  }
+
+  svg {
+    max-width: 30px;
+    height: auto;
+    fill: $gray;
+  }
+
+  &:hover {
+    svg {
+      fill: $salmon;
+    }
+  }
+}

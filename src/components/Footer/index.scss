@@ -1,0 +1,11 @@
+@import '../../../assets/scss/base/variables.scss';
+@import '../../../assets/scss/base/mixins.scss';
+
+.Footer {
+  text-align: center;
+  padding: 1rem 0;
+}
+
+.Footer-copyright {
+  font-family: $header-font-family;
+}
