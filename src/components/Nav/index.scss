@@ -4,7 +4,7 @@
 .Nav {
   position: relative;
   list-style: none;
-  margin-top: 1.5rem;
+  margin-top: 2rem;
   display: inline-block;
   padding: 0;
   width: 100%;
@@ -31,7 +31,7 @@
 }
 
 .Nav-list {
-  transition: all .15s ease-in-out;
+  transition: all .05s ease-in-out;
   padding: 0;
   margin: 0;
   background: rgba($gray, .95);
@@ -71,7 +71,7 @@
 
 .Nav-toggle,
 .Nav-close {
-  transition: all .15s ease-in-out;
+  transition: all .05s ease-in-out;
   right: 3rem;
 
   .Nav--top & {
@@ -154,7 +154,7 @@
     margin-top: 2.5rem;
 
     @include media($medium-screen) {
-      margin-top: 3.5rem;
+      margin-top: 4rem;
     }
 
     .Nav--top & {
