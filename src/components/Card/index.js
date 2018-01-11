@@ -30,9 +30,9 @@ class Card extends React.Component {
           <a title="" className="Card-fillLink" href={this.props.path}></a>
         }
 
-        <h3 className="Card-title">
+        <h4 className="Card-title">
           { link }
-        </h3>
+        </h4>
         <small>{this.props.date}</small>
         <p
           className="Card-content"

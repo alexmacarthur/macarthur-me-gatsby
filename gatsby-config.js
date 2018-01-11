@@ -24,6 +24,21 @@ module.exports = {
         title: "WP Vue",
         description: "A simple blog template built with Vue JS, powered by the WordPress REST API.",
         url: "https://wp.netlify.com"
+      },
+      {
+        title: "Sahlstrom's",
+        description: "A custom WordPress site design and built for an HVAC company in Minnesota.",
+        url: "http://www.sahlstromsheating.com"
+      },
+      {
+        title: "Lavish Salon & Spa",
+        description: "A simple, static website designed, built, &amp; optimized for a local salon and spa using Jekyll.",
+        url: "http://www.lavishsalonspamn.com"
+      },
+      {
+        title: "Lifewall",
+        description: "Custom e-commerce website designed, built, and optimized for a startup large format printing company using Magento.",
+        url: "http://www.yourlifewall.com"
       }
     ]
   },
@@ -64,7 +79,7 @@ module.exports = {
     {
       resolve: `gatsby-plugin-google-analytics`,
       options: {
-        //trackingId: `ADD YOUR TRACKING ID HERE`,
+        trackingId: `UA-69526831-1`
       },
     },
     `gatsby-plugin-offline`,

@@ -36,7 +36,7 @@ class Nav extends React.Component {
 
   componentDidMount() {
     window.closeNav = () => {
-      this.openNav();
+      this.closeNav();
     }
   }
 

@@ -192,7 +192,7 @@
         border-radius: 3px;
         background: var(--bar-color);
         position: absolute;
-        height: 3px;
+        height: 2px;
         bottom: -5px;
 
         @include media($medium-screen) {

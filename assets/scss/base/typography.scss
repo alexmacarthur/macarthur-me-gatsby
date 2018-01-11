@@ -36,9 +36,13 @@ h2 {
   font-size: $medium-font-size;
 }
 
-h3 {
+h3, h4, h5, h6 {
   font-weight: normal;
   font-size: $medium-font-size;
+}
+
+h4 {
+  font-size: $base-font-size-large;
 }
 
 a {
@@ -74,6 +78,8 @@ li {
 
 small {
   font-family: $header-font-family;
+  font-size: $small-font-size;
+  color: $gray--medium;
 }
 
 button {

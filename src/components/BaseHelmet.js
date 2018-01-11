@@ -6,9 +6,6 @@ import config from '../../gatsby-config.js';
 
 class BaseHelmet extends React.Component {
   render() {
-
-
-
     return (
         <Helmet>
           <meta name="viewport" content="width=device-width" />
