@@ -1,6 +1,7 @@
 module.exports = {
   pathPrefix: "/posts",
   siteMetadata: {
+    url: "https://macarthur.me",
     title: "Alex MacArthur / Nashville Web Developer",
     author: "Alex MacArthur",
     description: "I'm a front end web developer in Nashville, spending most of my time in the WordPress and JavaScript spaces.",
@@ -84,6 +85,7 @@ module.exports = {
     },
     `gatsby-plugin-offline`,
     `gatsby-plugin-react-helmet`,
-    `gatsby-plugin-netlify`
+    `gatsby-plugin-netlify`,
+    `gatsby-plugin-remove-trailing-slashes`
   ]
 }

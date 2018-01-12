@@ -1,7 +1,7 @@
 import React from 'react'
 import Helmet from 'react-helmet'
 
-import openGraph from '../../assets/img/open-graph.jpg';
+import openGraph from '../../static/open-graph.jpg';
 import config from '../../gatsby-config.js';
 
 class BaseHelmet extends React.Component {
