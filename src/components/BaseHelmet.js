@@ -1,7 +1,6 @@
 import React from 'react'
 import Helmet from 'react-helmet'
 
-import openGraph from '../../static/open-graph.jpg';
 import config from '../../gatsby-config.js';
 
 class BaseHelmet extends React.Component {
@@ -14,8 +13,11 @@ class BaseHelmet extends React.Component {
           <meta name="description" content={config.siteMetadata.description} />
           <meta name="keywords" content="freelance, web development, web developer, WordPress, javascript" />
           <meta name="author" content={config.siteMetadata.author} />
+          <meta property="fb:admins" content="502371334" /> 
+          <meta property="og:type" content="website" /> 
           <meta property="og:title" content={config.siteMetadata.title} />
-          <meta property="og:image" content={openGraph} />
+          <meta property="og:description" content={config.siteMetadata.description} />
+          <meta property="og:image" content="https://raw.githubusercontent.com/alexmacarthur/macarthur.me/127ca1d9/static/open-graph.jpg" />
           <meta property="og:url" content="https://macarthur.me" />
 
           <script type="application/ld+json">
