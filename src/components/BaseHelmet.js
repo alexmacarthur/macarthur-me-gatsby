@@ -32,8 +32,8 @@ class BaseHelmet extends React.Component {
                 },
                   "image" : "https://media.licdn.com/mpr/mpr/shrinknp_400_400/AAEAAQAAAAAAAASZAAAAJGI5NDJiMTg5LWI3YmYtNDg1OC1hNjE1LTg1ZmMzNzFjYmJhMQ.jpg",
                 "email": "alex@macarthur.me",
-                "description": "Alex MacArthur is a freelance web developer in Nashville, available for hire!",
-                "name": "Alex MacArthur | Web Developer in Nashville",
+                "description": ""I'm a front-end web developer in Nashville, spending most of my time in WordPress and JavaScript. Hire me for your next project!",
+                "name": "Alex MacArthur / Nashville Web Developer",
                 "sameAs" : [ "http://www.twitter.com/amacarthur", "https://www.linkedin.com/in/alexmacarthur", "https://github.com/alexmacarthur"],
                 "telephone" : "507-476-1414",
                 "priceRange" : "$500 - $10000"
