@@ -4,7 +4,7 @@ module.exports = {
     url: "https://macarthur.me",
     title: "Alex MacArthur / Nashville Web Developer",
     author: "Alex MacArthur",
-    description: "I'm a front end web developer in Nashville, spending most of my time in the WordPress and JavaScript spaces.",
+    description: "I'm a front-end web developer in Nashville, spending most of my time in WordPress and JavaScript. Hire me for your next project!",
     social: {
       twitter: "https://www.twitter.com/amacarthur",
       linkedin: "https://linkedin.com/in/alexmacarthur",
