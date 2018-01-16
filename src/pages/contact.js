@@ -16,8 +16,7 @@ export default ({ data }) => {
       </p>
 
       <div style={{
-        maxWidth: '600px',
-        margin: '5rem auto 0'
+        margin: '5rem 0 0'
       }}>
         <ContactForm />
       </div>

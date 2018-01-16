@@ -1,6 +1,7 @@
 ---
 title: About
 path: "/about/"
+slug: "about"
 type: page
 ---
 

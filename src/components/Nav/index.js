@@ -26,6 +26,11 @@ class Nav extends React.Component {
           long: 'How can I contact him?',
           short: 'Contact',
           path: '/contact'
+        },
+        posts: {
+          long: 'What\'s he got to say?',
+          short: 'Posts',
+          path: '/posts'
         }
       }
     }

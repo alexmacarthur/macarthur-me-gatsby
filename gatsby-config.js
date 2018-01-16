@@ -5,6 +5,7 @@ module.exports = {
     author: "Alex MacArthur",
     description: "I'm a front-end web developer in Nashville, spending most of my time in WordPress and JavaScript. Hire me for your next project!",
     social: {
+      twitterHandle: "@amacarthur",
       twitter: "https://www.twitter.com/amacarthur",
       linkedin: "https://linkedin.com/in/alexmacarthur",
       github: "https://www.github.com/alexmacarthur"
@@ -84,7 +85,6 @@ module.exports = {
     },
     `gatsby-plugin-offline`,
     `gatsby-plugin-react-helmet`,
-    `gatsby-plugin-netlify`,
-    `gatsby-plugin-remove-trailing-slashes`
+    `gatsby-plugin-netlify`
   ]
 }

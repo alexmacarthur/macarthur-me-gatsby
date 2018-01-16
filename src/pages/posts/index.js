@@ -3,13 +3,19 @@ import Link from 'gatsby-link'
 import get from 'lodash/get'
 import Helmet from 'react-helmet'
 
-import Card from '../components/Card'
+import Card from '../../components/Card'
 
-import '../../assets/scss/style.scss';
+import '../../../assets/scss/style.scss';
 
 class PostList extends React.Component {
+
   render() {
     const posts = get(this, 'props.data.allMarkdownRemark.edges')
+
+    const filteredPosts = posts.filter((post) => {
+      if(!post.node.fields.slug.startsWith('/posts/')) return false;
+      return true;
+    });
 
     return (
 
@@ -18,20 +24,19 @@ class PostList extends React.Component {
 
           <h1>Posts</h1>
 
-          {posts.map(post => {
-            if (post.node.path !== '/404/' && post.node.frontmatter.type !== 'page') {
-              const title = get(post, 'node.frontmatter.title') || post.node.path
+          { filteredPosts.map(({ node }) => {
+              const title = node.frontmatter.title || node.slug
+
               return (
                 <Card
-                  key={post.node.frontmatter.path}
-                  title={post.node.frontmatter.title}
-                  path={post.node.frontmatter.path}
-                  date={post.node.frontmatter.date}
-                  postExcerpt={post.node.excerpt}
+                  key={node.fields.slug}
+                  title={node.frontmatter.title}
+                  path={node.fields.slug}
+                  date={node.frontmatter.date}
+                  postExcerpt={node.excerpt}
                 />
               )
-            }
-          })}
+          }) }
         </div>
     )
   }
@@ -50,19 +55,15 @@ export const postsQuery = graphql`
         title
       }
     }
-    allMarkdownRemark(sort: {
-      fields: [frontmatter___date],
-      order: DESC
-    }) {
+    allMarkdownRemark(sort: { fields: [frontmatter___date], order: DESC }) {
       edges {
         node {
           excerpt
-          frontmatter {
-            path
-            date(formatString: "DD MMMM, YYYY")
-            type
+          fields {
+            slug
           }
           frontmatter {
+            date(formatString: "DD MMMM, YYYY")
             title
           }
         }

@@ -7,7 +7,7 @@ import Footer from '../components/Footer'
 //-- Base styles.
 import '../../assets/scss/style.scss'
 
-class Template extends React.Component {
+class MainLayout extends React.Component {
   render() {
 
     const { location, children } = this.props;
@@ -28,10 +28,10 @@ class Template extends React.Component {
   }
 }
 
-Template.propTypes = {
+MainLayout.propTypes = {
   children: React.PropTypes.func,
   location: React.PropTypes.object,
   route: React.PropTypes.object,
 }
 
-export default Template
+export default MainLayout

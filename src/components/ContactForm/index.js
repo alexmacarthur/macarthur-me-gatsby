@@ -61,28 +61,31 @@ export default class ContactForm extends React.Component {
         data-netlify="true"
         data-netlify-honeypot="bot-field"
         onSubmit={this.handleSubmit}
+        style={{
+          flex: '1'
+        }}
       >
         <p hidden>
           <label>
             Don’t fill this out: <input name="bot-field" />
           </label>
         </p>
-        <p>
+        <p style={{marginTop: '0'}}>
           <label>
             Your name:<br />
-          <input type="text" name="name" onChange={this.handleChange}/>
+          <input required type="text" name="name" onChange={this.handleChange}/>
           </label>
         </p>
         <p>
           <label>
             Your email:<br />
-            <input type="email" name="email" onChange={this.handleChange}/>
+            <input required type="email" name="email" onChange={this.handleChange}/>
           </label>
         </p>
         <p>
           <label>
             Message:<br />
-            <textarea name="message" onChange={this.handleChange}/>
+            <textarea required name="message" onChange={this.handleChange}/>
           </label>
       </p>
         <p>

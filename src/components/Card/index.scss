@@ -3,9 +3,6 @@
 
 .Card {
   position: relative;
-  padding: 2rem;
-  max-width: 600px;
-  margin: 0 auto;
 
   & + &:not(.Card--inGrid) {
     margin-top: 3rem;
@@ -43,6 +40,7 @@
 .Card--inGrid {
   border: 3px solid $gray--mediumLight;
   border-radius: $border-radius;
+  padding: 2rem;
 
   &:hover {
     border-color: $salmon;

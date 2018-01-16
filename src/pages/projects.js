@@ -20,7 +20,7 @@ export default ({ data }) => {
       <div
         style={{
           display: 'grid',
-          gridTemplateColumns: 'repeat( auto-fit, minmax( 200px, auto ) )',
+          gridTemplateColumns: 'repeat( auto-fit, minmax( 300px, auto ) )',
           gridGap: '15px',
           marginTop: '5rem'
         }}

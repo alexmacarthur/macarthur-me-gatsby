@@ -8,6 +8,7 @@
   },
   "dependencies": {
     "gatsby": "^1.9.141",
+    "gatsby-image": "^1.0.33",
     "gatsby-link": "^1.6.8",
     "gatsby-plugin-google-analytics": "^1.0.15",
     "gatsby-plugin-manifest": "^1.0.4",
@@ -15,9 +16,8 @@
     "gatsby-plugin-offline": "^1.0.12",
     "gatsby-plugin-preact": "^1.0.3",
     "gatsby-plugin-react-helmet": "^1.0.3",
-    "gatsby-plugin-remove-trailing-slashes": "^1.0.3",
     "gatsby-plugin-sass": "^1.0.12",
-    "gatsby-plugin-sharp": "^1.6.2",
+    "gatsby-plugin-sharp": "^1.6.24",
     "gatsby-remark-copy-linked-files": "^1.5.2",
     "gatsby-remark-images": "^1.5.4",
     "gatsby-remark-prismjs": "^1.2.1",
@@ -26,7 +26,7 @@
     "gatsby-source-filesystem": "^1.4.3",
     "gatsby-transformer-json": "^1.0.14",
     "gatsby-transformer-remark": "^1.7.1",
-    "gatsby-transformer-sharp": "^1.6.1",
+    "gatsby-transformer-sharp": "^1.6.16",
     "lodash": "^4.15.0",
     "normalize.css": "^7.0.0",
     "styled-components": "^2.2.2",
@@ -52,7 +52,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "format": "prettier --trailing-comma es5 --no-semi --single-quote --write 'src/**/*.js'",
     "develop": "gatsby develop",
-    "build": "gatsby build --prefix-paths",
+    "build": "gatsby build",
     "fix-semi": "eslint --quiet --ignore-pattern node_modules --ignore-pattern public --parser babel-eslint --no-eslintrc --rule '{\"semi\": [2, \"never\"], \"no-extra-semi\": [2]}' --fix gatsby-node.js"
   }
 }

@@ -8,15 +8,21 @@
 }
 
 .SocialIcons-icon {
-  display: inline;
+  display: inline-block;
+  width: 30px;
+  height: 30px;
+
+  a {
+    display: inherit;
+  }
 
   & + & {
     margin-left: .5rem;
   }
 
   svg {
-    max-width: 30px;
-    height: auto;
+    width: 100%;
+    height: 100%;
     fill: $gray;
   }
 

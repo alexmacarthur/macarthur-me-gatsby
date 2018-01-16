@@ -5,3 +5,53 @@
   max-width: 800px;
   margin: 0 auto;
 }
+
+.Post-date {
+  color: $gray--medium;
+  font-family: $header-font-family;
+  display: block;
+  margin-top: -2.5rem;
+}
+
+.Post-content {
+  h2 {
+    margin: 4rem 0 2rem;
+  }
+
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: $base-font-family;
+  }
+}
+
+.Post-header {
+  margin-bottom: 3rem;
+}
+
+.Post-footer {
+  border-top: 2px solid $gray--mediumLight;
+  border-bottom: 2px solid $gray--mediumLight;
+  padding: 4rem 0 4rem;
+  margin-top: 5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  @include media($medium-screen) {
+    flex-direction: row;
+  }
+
+  h4 {
+    font-size: $base-font-size;
+    margin: 0 0 2rem 0;
+    text-align: center;
+
+    @include media($medium-screen) {
+      margin: 0 2rem 0 0;
+    }
+  }
+}

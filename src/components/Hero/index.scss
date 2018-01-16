@@ -21,6 +21,7 @@
   line-height: 95%;
   text-align: left;
   margin-bottom: 0;
+  max-width: 100%;
 
   @include media($mobile-screen) {
     font-size: 5rem;
