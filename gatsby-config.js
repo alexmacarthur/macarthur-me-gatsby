@@ -1,5 +1,4 @@
 module.exports = {
-  pathPrefix: "/posts",
   siteMetadata: {
     url: "https://macarthur.me",
     title: "Alex MacArthur / Nashville Web Developer",
