@@ -5,6 +5,8 @@ import Helmet from 'react-helmet'
 
 import SocialIcons from '../SocialIcons'
 
+import DisqusThread from 'react-disqus-thread';
+
 //-- Styles.
 require("prismjs/themes/prism-okaidia.css");
 import styles from './index.scss'
@@ -50,6 +52,16 @@ class Post extends React.Component {
 
           </aside>
         }
+
+        <DisqusThread
+          shortname="example"
+          identifier="something-unique-12345"
+          title="Example Thread"
+          url="http://www.example.com/example-thread"
+          category_id="123456"
+          onNewComment={this.handleNewComment}
+        />
+
 
       </article>
     )
