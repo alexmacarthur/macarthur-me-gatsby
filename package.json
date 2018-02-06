@@ -29,7 +29,6 @@
     "gatsby-transformer-sharp": "^1.6.16",
     "lodash": "^4.15.0",
     "normalize.css": "^7.0.0",
-    "react-disqus-thread": "git://github.com/theplatapi/react-disqus-thread#master",
     "styled-components": "^2.2.2",
     "typeit": "^5.0.2"
   },

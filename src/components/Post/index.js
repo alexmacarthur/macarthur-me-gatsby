@@ -5,7 +5,7 @@ import Helmet from 'react-helmet'
 
 import SocialIcons from '../SocialIcons'
 
-import ReactDisqusThread from 'react-disqus-thread';
+import DisqusThread from '../DisqusThread';
 
 //-- Styles.
 require("prismjs/themes/prism-okaidia.css");
@@ -39,7 +39,7 @@ class Post extends React.Component {
         {this.props.type === 'post' &&
           <div>
 
-            <ReactDisqusThread
+            <DisqusThread
               shortname="macarthur-me"
               identifier={this.props.url}
               title={this.props.data.title}
