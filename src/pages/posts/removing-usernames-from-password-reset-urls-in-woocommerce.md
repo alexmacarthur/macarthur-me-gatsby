@@ -7,7 +7,7 @@ Securely handling personal information on the web is a pretty big deal, and one 
 
 `https://your-site.com?email=booger%40email.com`
 
-In fact, Google has some pretty clear policies explicitly prohibiting certain information from being passed through a URL, including things like ["email addresses, user logins, social security numbers, phone numbers or any piece of data that is deemed to be "PII"](https://developers.google.com/analytics/solutions/crm-integration#user_id). And if you do send any of this information to Google, [you'll be penalized](https://support.google.com/adwords/answer/6389382?hl=en) until the issue is resolved. 
+In fact, Google has some clear policies explicitly prohibiting certain information from being passed through a URL, including things like ["email addresses, user logins, social security numbers, phone numbers or any piece of data that is deemed to be "PII"](https://developers.google.com/analytics/solutions/crm-integration#user_id). And if you do send any of this information to Google, [you'll be penalized](https://support.google.com/adwords/answer/6389382?hl=en) until the issue is resolved. 
 
 ### A Vulnerability in WooCommerce
 
