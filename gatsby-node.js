@@ -25,11 +25,17 @@ exports.onCreatePage = ({ page, boundActionCreators }) => {
 
     //-- If it's the home page, give it a special layout.
     if(page.path === '/') {
-      page.layout = "home";
+      page.layout = "home"
     }
 
-    //-- Remove trailing slash.
-    page.path = cleanPath(page.path);
+    const newPage = Object.assign({}, page, {
+      path: page.path === `/` ? page.path : page.path.replace(/\/$/, ``),
+    })
+
+    if (newPage.path !== page.path) {
+      deletePage(page)
+      createPage(newPage)
+    }
 
     resolve()
   });
