@@ -24,14 +24,3 @@ export default ({ data }) => {
     </div>
   )
 }
-
-export const contactQuery = graphql`
-  query contactQuery {
-    site {
-      siteMetadata {
-        title
-        description
-      }
-    }
-  }
-`
