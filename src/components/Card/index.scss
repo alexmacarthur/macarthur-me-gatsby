@@ -5,16 +5,16 @@
   position: relative;
 
   & + &:not(.Card--inGrid) {
-    margin-top: 3rem;
+    margin-top: 7rem;
 
     &:before {
       content: '';
       display: block;
-      background: $gray--medium;
-      height: 1px;
+      background: $gray--mediumLight;
+      height: 2px;
       width: 100%;
       position: absolute;
-      top: -2rem;
+      top: -3.5em;
     }
   }
 

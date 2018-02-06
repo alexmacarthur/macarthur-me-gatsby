@@ -27,6 +27,27 @@
   }
 }
 
+.vglnk {
+  border: 0;
+  color: inherit;
+  pointer-events: none;
+}
+
+.gatsby-highlight {
+  margin-bottom: 4rem;
+
+  code {
+    background: none;
+  }
+}
+
+code {
+  background: $gray--mediumLight;
+  padding: .45rem 1rem;
+  border-radius: 5px;
+  word-break: break-all;
+}
+
 .Post-header {
   margin-bottom: 3rem;
 }
