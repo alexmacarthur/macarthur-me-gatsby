@@ -27,7 +27,7 @@ class SocialIcons extends React.Component {
     if(this.props.shareURL) {
       links.twitter = `https://twitter.com/intent/tweet?text=${this.props.shareTitle} - ${config.siteMetadata.social.twitterHandle} ${this.props.shareURL}`;
       links.facebook = `https://www.facebook.com/sharer/sharer.php?u=${this.props.shareURL}`;
-      links.linkedin = `https://www.linkedin.com/shareArticle?mini=true&url=${this.props.shareURL}&title=${this.props.shareTitle}&source=${config.siteMetadata.url}`;
+      links.linkedin = `https://www.linkedin.com/shareArticle?mini=true&url=${this.props.shareURL}&title=${this.props.shareTitle}&source=${config.siteMetadata.siteUrl}`;
     }
 
     return (

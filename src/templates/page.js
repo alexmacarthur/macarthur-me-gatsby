@@ -20,7 +20,7 @@ class PageTemplate extends React.Component {
       <div>
         <Helmet>
           <title>{title}</title>
-          <meta property="og:url" content={get(this.props, 'data.site.siteMetadata.url') + this.props.location.pathname} />
+          <meta property="og:url" content={get(this.props, 'data.site.siteMetadata.siteUrl') + this.props.location.pathname} />
           <meta property="og:title" content={title} />
           <meta name="description" content={post.excerpt} />
           <meta name="twitter:title" content={title} />
@@ -32,7 +32,7 @@ class PageTemplate extends React.Component {
           data={post.frontmatter}
           content={post.html}
           type={type}
-          url={config.siteMetadata.url + this.props.location.pathname}
+          url={config.siteMetadata.siteUrl + this.props.location.pathname}
         />
 
       </div>
@@ -46,7 +46,7 @@ export const pageQuery = graphql`
   query BlogPostBySlug($slug: String!) {
     site {
       siteMetadata {
-        url
+        siteUrl
         title
         author
         description

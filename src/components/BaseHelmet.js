@@ -17,16 +17,16 @@ class BaseHelmet extends React.Component {
             <meta name="author" content={config.siteMetadata.author} />
             <meta property="fb:admins" content="502371334" />
             <meta property="og:type" content="website" />
-            <meta property="og:image" content={config.siteMetadata.url + withPrefix('/open-graph.jpg')} />
+            <meta property="og:image" content={config.siteMetadata.siteUrl + withPrefix('/open-graph.jpg')} />
             <meta property="og:image:width" content="1200" />
             <meta property="og:image:height" content="935" />
-            <meta name="twitter:image" content={config.siteMetadata.url + withPrefix('/open-graph.jpg')} />
+            <meta name="twitter:image" content={config.siteMetadata.siteUrl + withPrefix('/open-graph.jpg')} />
             <meta name="twitter:card" content="summary_large_image" />
             <meta name="twitter:creator" content={config.siteMetadata.social.twitterHandle} />
 
             <meta property="og:title" content={config.siteMetadata.title} />
             <meta property="og:description" content={config.siteMetadata.description} />
-            <meta property="og:url" content={config.siteMetadata.url} />
+            <meta property="og:url" content={config.siteMetadata.siteUrl} />
             <meta name="twitter:description" content={config.siteMetadata.description} />
             <meta name="twitter:title" content={config.siteMetadata.title} />
 
