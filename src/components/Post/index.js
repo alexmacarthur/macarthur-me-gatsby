@@ -5,7 +5,7 @@ import Helmet from 'react-helmet'
 
 import SocialIcons from '../SocialIcons'
 
-import DisqusThread from 'react-disqus-thread';
+import ReactDisqusThread from 'react-disqus-thread';
 
 //-- Styles.
 require("prismjs/themes/prism-okaidia.css");
@@ -37,31 +37,33 @@ class Post extends React.Component {
         />
 
         {this.props.type === 'post' &&
+          <div>
 
-          <aside className="Post-footer">
-
-            <h4>If this post made you cheer, vomit, giggle, or cry, spread it.</h4>
-
-            <SocialIcons
-              shareURL={this.props.url}
-              shareTitle={this.props.data.title}
-              newTab={true}
-              facebook={true}
-              github={false}
+            <ReactDisqusThread
+              shortname="macarthur-me"
+              identifier={this.props.url}
+              title={this.props.data.title}
+              url={this.props.url}
+              style={{
+                margin: "4rem 0 0"
+              }}
             />
 
-          </aside>
+            <aside className="Post-footer">
+
+              <h4>If this post made you cheer, vomit, giggle, or cry, spread it.</h4>
+
+              <SocialIcons
+                shareURL={this.props.url}
+                shareTitle={this.props.data.title}
+                newTab={true}
+                facebook={true}
+                github={false}
+              />
+
+            </aside>
+          </div>
         }
-
-        <DisqusThread
-          shortname="example"
-          identifier="something-unique-12345"
-          title="Example Thread"
-          url="http://www.example.com/example-thread"
-          category_id="123456"
-          onNewComment={this.handleNewComment}
-        />
-
 
       </article>
     )
