@@ -88,7 +88,7 @@ $user_id = get_user_by('login', $user_login)->ID;
 
 ```
 
-#### Theme Functions
+#### Process a User ID URL Variable Instead of Username
 
 Next, we need to remove the action that requires a user login be passed in the URL, and replace it with one that accepts an `id`. We can then use that value to get the username, which will still be used when the user clicks the generated link. Do this inside your theme's `functions.php` file.
 

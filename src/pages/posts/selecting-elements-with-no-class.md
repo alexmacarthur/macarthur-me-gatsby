@@ -53,6 +53,6 @@ And remember, `class` _is_ just an HTML attribute. Meaning, we can do completely
 }
 ```
 
-And beyond that, we can do a wide range of things more concerned with the _existence_ of an attribute rather than the attribute's value. [See a brief example on CodePen.](https://codepen.io/alexmacarthur/pen/zpJeeG/)
+Beyond that, we can do a wide range of things more concerned with the _existence_ of an attribute rather than the attribute's value. [See a brief example on CodePen.](https://codepen.io/alexmacarthur/pen/zpJeeG/)
 
 And with that, another weird, one-off challenge resolved with tools we already had available to us. 
