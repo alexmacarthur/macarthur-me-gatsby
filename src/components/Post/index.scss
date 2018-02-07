@@ -38,14 +38,17 @@
 
   code {
     background: none;
+    box-shadow: none;
   }
 }
 
 code {
   background: $gray--mediumLight;
-  padding: .45rem 1rem;
-  border-radius: 5px;
   word-break: break-all;
+  padding: 0;
+  word-break: break-all;
+  box-shadow: 0px 0px 0px 7px $gray--mediumLight;
+  margin: 0 5px;
 }
 
 .Post-header {

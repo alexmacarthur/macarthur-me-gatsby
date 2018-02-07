@@ -13,9 +13,7 @@ In fact, Google has some clear policies explicitly prohibiting certain informati
 
 Out of the box, the WordPress e-commerce plugin [WooCommerce](https://woocommerce.com/) has a weak spot in this area. Password reset emails contain a link for a user to click to reset his/her password. That link, however, contains information that could be passed to a third party (like Google Analytics), posing a threat to users' privacy, and penalizing you for enabling it.
 
-That vulnerable information is a username. Or, as WordPress often handles it, a user login. I'll be using "username" here because I like it more. For example:
-
-`http://my-site.com/settings/account/lost-password/?key=NaEYetJTi6fI2HKaNfxT&login=bartjansen`
+That vulnerable information is a username. Or, as WordPress often handles it, a user login. I'll be using "username" here because I like it more. For example: `http://my-site.com/settings/account/lost-password/?key=NaEYetJTi6fI2HKaNfxT&login=bartjansen`
 
 To better protect private information like this, the solution is relatively straightforward: **Instead of passing a username, use an ID**. An ID will be unique to the WordPress instance, and make it much more difficult to use to identify an individual. And from what I've read, [Google endorses this type of approach](https://support.google.com/adwords/answer/6389382?hl=en). 
 
@@ -111,8 +109,6 @@ add_action('template_redirect', function () {
 });
 ```
 
-Finished. Now, when users request to reset their passwords, the links they're sent via email will contain no reference to a username. Instead, it'll be something like this: 
-    
-`http://my-site.com/settings/account/lost-password/?key=NaEYetJTi6fI2HKaNfxT&id=23423`
+Finished. Now, when users request to reset their passwords, the links they're sent via email will contain no reference to a username. Instead, it'll be something like this: `http://my-site.com/settings/account/lost-password/?key=NaEYetJTi6fI2HKaNfxT&id=23423`
 
 Your customers are safer, and you'll have less to worry about.
