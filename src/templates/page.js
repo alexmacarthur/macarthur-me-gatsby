@@ -3,14 +3,13 @@ import Helmet from 'react-helmet'
 import Link from 'gatsby-link'
 import get from 'lodash/get'
 
-import config from '../../gatsby-config'
-
 import Post from '../components/Post'
 
 class PageTemplate extends React.Component {
   render() {
     const post = this.props.data.markdownRemark
     const title = `${post.frontmatter.title} | ${get(this.props, 'data.site.siteMetadata.author')}`;
+
 
     let type = post.fields.slug.includes('/posts/')
       ? 'post'
@@ -32,7 +31,8 @@ class PageTemplate extends React.Component {
           data={post.frontmatter}
           content={post.html}
           type={type}
-          url={config.siteMetadata.siteUrl + this.props.location.pathname}
+          shortBio={this.props.data.site.siteMetadata.shortBio}
+          url={this.props.data.site.siteMetadata.siteUrl + this.props.location.pathname}
         />
 
       </div>
@@ -47,9 +47,8 @@ export const pageQuery = graphql`
     site {
       siteMetadata {
         siteUrl
-        title
         author
-        description
+        shortBio
       }
     }
     markdownRemark(fields: { slug: { eq: $slug } }) {

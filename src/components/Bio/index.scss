@@ -1,0 +1,16 @@
+@import '../../../assets/scss/base/variables.scss';
+@import '../../../assets/scss/base/mixins.scss';
+
+.Bio {
+  display: flex;
+  align-items: center;
+  margin-bottom: 4rem;
+}
+
+.Bio-image {
+  border-radius: 50%;
+}
+
+.Bio-content {
+  padding-left: 2rem;
+}

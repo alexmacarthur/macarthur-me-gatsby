@@ -3,8 +3,8 @@ import Link from 'gatsby-link'
 import get from 'lodash/get'
 import Helmet from 'react-helmet'
 
+import Bio from '../Bio/index.js'
 import SocialIcons from '../SocialIcons'
-
 import DisqusThread from '../DisqusThread';
 
 //-- Styles.
@@ -17,6 +17,12 @@ class Post extends React.Component {
 
     return (
       <article className="Post">
+
+        { this.props.type === 'post' &&
+          <div>
+            <Bio content={this.props.shortBio} />
+          </div>
+        }
 
         <header className="Post-header">
           <h1 className="Post-title">

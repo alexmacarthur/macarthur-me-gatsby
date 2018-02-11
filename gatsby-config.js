@@ -3,6 +3,7 @@ module.exports = {
     siteUrl: "https://macarthur.me",
     title: "Alex MacArthur / Nashville Web Developer",
     author: "Alex MacArthur",
+    shortBio: "Alex MacArthur is a front end developer working for Dave Ramsey in Nashville, TN. Soli Deo gloria.",
     description: "I'm a front-end web developer in Nashville, spending most of my time in WordPress and JavaScript. Hire me for your next project!",
     social: {
       twitterHandle: "@amacarthur",
