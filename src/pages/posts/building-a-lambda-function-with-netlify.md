@@ -9,9 +9,9 @@ First off, TypeIt's site is hosted with Netlify, which I l-o-v-e, so development
 
 Second, I'm a freaking cheapskate, and Firebase doesn't have a free tier that allows calls to external services like Stripe. 
 
-With all that in mind, I nearly peed myself when I found out I'd been given access to Netlify's new Lambda function service (still in private beta, but you can [request access](https://app.netlify.com/functions-beta)), and I immediately dove into migrating  process. 
+With all that in mind, I nearly peed myself when I found out I'd been given access to Netlify's new Lambda function service (still in private beta, but you can [request access](https://app.netlify.com/functions-beta)), and I immediately dove into migrating my Firebase function to Netlify. 
 
-It was so fun, I thought I'd share the experience.  Hopefully, you'll get a sense of why Netlify Lambda functions are uniquely awesome, as we'll get to leverage some of the features that make Netlify great, in combination with the power of a Lambda function. 
+It was so fun, I thought I'd share the experience. Hopefully, you'll get a sense of why Netlify Lambda functions are uniquely awesome, as we'll get to leverage some of the features that make Netlify great, in combination with the power of a Lambda function. 
 
 I'll be using some pretty bare bones here, but you can implement the function with any type of static application you want -- Jekyll, Gatsby, whatever. _Just make sure you have some sort of static site you're able to host with Netlify, and that it uses webpack (we'll need its `DefinePlugin`, specifically)._ I'm starting with a package.json, and `index.html` file, some CSS, and JavaScript. You can see the setup [here](https://github.com/alexmacarthur/netlify-function-example). You'll also need a Stripe account, and access to Netlify Lambda functions (obviously).
 
@@ -365,7 +365,7 @@ Great, we've thrown a bunch of code together. Now...
 
 **Let's spin it up locally!** If you recall the actions we set up, using `yarn run dev` will spin up a webpack dev server, as well as trigger `netlify-lambda` to serve our function locally for testing. Run that command now, and our application should be available at `http://localhost:8080`. Click the button, enter your payment information (use 4242424242424242 for the card number in dev mode), and you *should* see a successful response in the console. Of course, this is web development we're doing here, where nothing goes right the first time, so have some patience as you work out any issues you have spinning it up. 
 
-## Time to deploy!
+## Time to Deploy!
 
 **Let's get this sucka live.** Put all this into a repo, log into your account, and hook a new Netlify site up to your repository. Because of our `netlify.toml` file, a lot of the configuration should already be set to go. Once that's done, you should see our `purchase.js` function listed on the 'Functions' page, where logging will be available to view, should you need it.
 
