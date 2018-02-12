@@ -10,7 +10,7 @@ class Bio extends React.Component {
   render() {
     return (
       <aside className="Bio">
-        <img className="Bio-image" src={pic} />
+        <img className="Bio-image" src={pic} alt=""/>
         <p className="Bio-content">{this.props.content}</p>
       </aside>
     )

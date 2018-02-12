@@ -2,15 +2,22 @@
 @import '../../../assets/scss/base/mixins.scss';
 
 .Bio {
+  position: relative;
   display: flex;
   align-items: center;
-  margin-bottom: 4rem;
+  margin: 5rem 0 0rem;
 }
 
 .Bio-image {
   border-radius: 50%;
+  width: 50px;
+
+  @include media($medium-screen) {
+    width: 75px;
+  }
 }
 
 .Bio-content {
   padding-left: 2rem;
+  font-family: $header-font-family;
 }

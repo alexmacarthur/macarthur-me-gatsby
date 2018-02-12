@@ -18,12 +18,6 @@ class Post extends React.Component {
     return (
       <article className="Post">
 
-        { this.props.type === 'post' &&
-          <div>
-            <Bio content={this.props.shortBio} />
-          </div>
-        }
-
         <header className="Post-header">
           <h1 className="Post-title">
             {this.props.data.title}
@@ -45,15 +39,7 @@ class Post extends React.Component {
         {this.props.type === 'post' &&
           <div>
 
-            <DisqusThread
-              shortname="macarthur-me"
-              identifier={this.props.url}
-              title={this.props.data.title}
-              url={this.props.url}
-              style={{
-                margin: "4rem 0 0"
-              }}
-            />
+            <Bio content={this.props.shortBio} />
 
             <aside className="Post-footer">
 
@@ -68,6 +54,16 @@ class Post extends React.Component {
               />
 
             </aside>
+
+            <DisqusThread
+              shortname="macarthur-me"
+              identifier={this.props.url}
+              title={this.props.data.title}
+              url={this.props.url}
+              style={{
+                margin: "4rem 0 0"
+              }}
+            />
           </div>
         }
 
