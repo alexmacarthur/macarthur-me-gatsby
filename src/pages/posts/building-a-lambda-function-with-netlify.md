@@ -21,7 +21,7 @@ Letz do dis.
 
 **First, let's create some essential directories where our function will be developed and deployed.**
 
-`mkdir lambda lambda lambda-src`
+`mkdir lambda lambda-src`
 
 We'll be storing our pre-built code in `lambda-src`, and building it into `lambda`. More on why we set it up this way later. 
 
