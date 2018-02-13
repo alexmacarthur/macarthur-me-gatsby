@@ -22,6 +22,7 @@ Letz do dis.
 **First, let's create some essential directories where our function will be developed and deployed.**
 
 `mkdir lambda lambda-src`
+`mkdir lambda lambda`
 
 We'll be storing our pre-built code in `lambda-src`, and building it into `lambda`. More on why we set it up this way later. 
 
@@ -87,6 +88,8 @@ NOT THIS TIME. As a way around this, I've added a 'context.base.enviromnent` sec
 Run `yarn add toml --dev`. This package will allow us to turn .toml contents into a JavaScript object. After that, parse it and save it to a `config` variable.  
 
 ```js
+//-- purchase.js
+
 const fs = require("fs");
 const toml = require('toml');
 const config = toml.parse(fs.readFileSync('netlify.toml'));
@@ -128,9 +131,6 @@ const headers = {
 
 ```js
 //-- purchase.js
-
-  "Access-Control-Allow-Headers": "Content-Type"
-};
 
 exports.handler = function(event, context, callback) {
     callback(null, {
@@ -314,7 +314,7 @@ const handler = StripeCheckout.configure({
 ```js
 //-- scripts.js
 
-// Stripe handles pricing in cents, so this is actually $10.00.
+//-- Stripe handles pricing in cents, so this is actually $10.00.
 const amount = 1000;
 
 document.querySelector('button').addEventListener('click', () => {

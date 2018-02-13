@@ -43,7 +43,7 @@ class Post extends React.Component {
 
             <aside className="Post-footer">
 
-              <h4>If this post made you cheer, vomit, giggle, or cry, spread it.</h4>
+              <h4>If this post made you cheer, vomit, giggle, or cry, share it.</h4>
 
               <SocialIcons
                 shareURL={this.props.url}
