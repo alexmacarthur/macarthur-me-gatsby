@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 
 import BaseHelmet from '../components/BaseHelmet'
 import Nav from '../components/Nav'
@@ -29,9 +30,9 @@ class MainLayout extends React.Component {
 }
 
 MainLayout.propTypes = {
-  children: React.PropTypes.func,
-  location: React.PropTypes.object,
-  route: React.PropTypes.object,
+  children: PropTypes.func,
+  location: PropTypes.object,
+  route: PropTypes.object,
 }
 
 export default MainLayout

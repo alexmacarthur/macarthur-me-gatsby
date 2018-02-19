@@ -1,5 +1,5 @@
 import React from 'react'
-import Link from 'gatsby-link'
+import PropTypes from 'prop-types'
 import get from 'lodash/get'
 import Helmet from 'react-helmet'
 
@@ -21,7 +21,7 @@ class BlogIndex extends React.Component {
 }
 
 BlogIndex.propTypes = {
-  route: React.PropTypes.object,
+  route: PropTypes.object,
 }
 
 export default BlogIndex

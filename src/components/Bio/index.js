@@ -1,6 +1,5 @@
 import React from 'react'
-import Link from 'gatsby-link'
-import get from 'lodash/get'
+import PropTypes from 'prop-types'
 
 import styles from './index.scss'
 import pic from './bio.jpg';
@@ -18,7 +17,7 @@ class Bio extends React.Component {
 }
 
 Bio.propTypes = {
-  route: React.PropTypes.object,
+  route: PropTypes.object,
 }
 
 export default Bio

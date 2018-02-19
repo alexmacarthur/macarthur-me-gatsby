@@ -1,6 +1,5 @@
 import React from 'react'
-import Link from 'gatsby-link'
-import get from 'lodash/get'
+import PropTypes from 'prop-types'
 import Helmet from 'react-helmet'
 
 import Bio from '../Bio/index.js'
@@ -73,7 +72,7 @@ class Post extends React.Component {
 }
 
 Post.propTypes = {
-  route: React.PropTypes.object,
+  route: PropTypes.object,
 }
 
 export default Post

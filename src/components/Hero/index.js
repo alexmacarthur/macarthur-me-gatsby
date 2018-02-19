@@ -1,6 +1,5 @@
 import React from 'react'
-import Link from 'gatsby-link'
-import get from 'lodash/get'
+import PropTypes from 'prop-types'
 import Helmet from 'react-helmet'
 
 //-- Components.
@@ -38,7 +37,7 @@ class Hero extends React.Component {
 }
 
 Hero.propTypes = {
-  route: React.PropTypes.object,
+  route: PropTypes.object,
 }
 
 export default Hero
