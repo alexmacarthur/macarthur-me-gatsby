@@ -9,6 +9,11 @@ body {
   color: $gray;
 }
 
+* {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
 h1,
 h2,
 h3,
@@ -76,6 +81,10 @@ date,
 li {
   font-size: $base-font-size;
   line-height: $base-line-height;
+}
+
+strong {
+  font-weight: 700;
 }
 
 small {

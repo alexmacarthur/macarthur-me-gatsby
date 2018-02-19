@@ -32,11 +32,11 @@ We'll be storing our pre-built code in `lambda-src`, and building it into `lambd
 **Once that's installed, let's set up some actions in our package.json to make our work a little easier.** Aside from the normal webpack configuration stuff you'll need to do, I've created an action to serve our Lambda function as we're developing it locally, as well as a `dev` action to serve our site and function at the same time. Take note of the `concurrently` command, which allows us to run two commands at once. Install that with `yarn add concurrently --dev`.
 
 ```json
-  "scripts": {
-    "lambda-serve": "cp lambda-src/purchase.js lambda/purchase.js && netlify-lambda serve lambda",
-    "build": "NODE_ENV=production webpack",
-    "dev": "NODE_ENV=development concurrently \"webpack-dev-server --content-base src/\" \"yarn run lambda-serve\""
-  }
+"scripts": {
+  "lambda-serve": "cp lambda-src/purchase.js lambda/purchase.js && netlify-lambda serve lambda",
+  "build": "NODE_ENV=production webpack",
+  "dev": "NODE_ENV=development concurrently \"webpack-dev-server --content-base src/\" \"yarn run lambda-serve\""
+}
 ```
 
 Also, notice that in our `lambda-serve` action, I'm copying the function source from `lambda-src` to `lambda`. This is because when we run our local dev server, the contents of `lambda` will be built and overwritten. So, we want to keep our pre-built code in a separate directory for safekeeping. This is important.
