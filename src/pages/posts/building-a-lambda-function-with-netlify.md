@@ -293,7 +293,7 @@ module.exports = {
 }
 ```
 
-**Excellent. Now, let's create a Stripe Checkout handler in our scripts.js file, and include that bundled `bundle.js` file at the bottom of `index.html`. ** 
+**Excellent. Now, let's create a Stripe Checkout handler in our scripts.js file, and include that bundled `bundle.js` file at the bottom of `index.html`.** 
 
 ```js
 //-- script.js
