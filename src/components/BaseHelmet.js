@@ -23,7 +23,6 @@ class BaseHelmet extends React.Component {
             <meta name="twitter:image" content={config.siteMetadata.siteUrl + withPrefix('/open-graph.jpg')} />
             <meta name="twitter:card" content="summary_large_image" />
             <meta name="twitter:creator" content={config.siteMetadata.social.twitterHandle} />
-
             <meta property="og:title" content={config.siteMetadata.title} />
             <meta property="og:description" content={config.siteMetadata.description} />
             <meta property="og:url" content={config.siteMetadata.siteUrl} />

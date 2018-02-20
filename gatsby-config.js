@@ -88,6 +88,15 @@ module.exports = {
     `gatsby-plugin-react-helmet`,
     `gatsby-plugin-netlify`,
     `gatsby-plugin-sitemap`,
-    `gatsby-plugin-feed`
+    `gatsby-plugin-feed`, 
+    {
+      resolve: `gatsby-plugin-google-fonts`,
+      options: {
+        fonts: [
+          `Nunito\:400,900`,
+          `Merriweather\:400,700`,
+        ]
+      }
+    }
   ]
 }
