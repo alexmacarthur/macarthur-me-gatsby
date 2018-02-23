@@ -15,7 +15,7 @@
 
 .Post-content {
   h2 {
-    margin: 4rem 0 2rem;
+    margin: 3rem 0 2rem;
   }
 
   h2,
@@ -24,6 +24,10 @@
   h5,
   h6 {
     font-family: $base-font-family;
+  }
+
+  ul {
+    list-style: disc;
   }
 }
 

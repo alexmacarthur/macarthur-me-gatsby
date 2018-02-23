@@ -1,0 +1,129 @@
+---
+title: Lazy Load Images in WordPress without a Plugin
+date: "2018-02-23"
+---
+
+To do pretty much anything in WordPress, there's no shortage of plugin available. But introducing "just one more plugin" into your environment can often mean added bloat, unpredictable behavior, and lack of flexibility for how you actually want to implement it.
+
+Lazy loading your images within WordPress is no exception. Convenience costs. Thankfully, if you want to limit scope and have a lot more control over your lazy loading, it's actually fairly simple to set this up yourself and start reaping the benefits.
+
+## Let's Get Lazy
+
+You can lazy load a lot of things, but here, we're just focusing on lazy loading images stored in your WordPress database that are spit out as post or page content. Basically, images you upload and use via the WordPress admin.
+
+To do this, let's use [Lozad](https://github.com/ApoorvSaxena/lozad.js) for our lazy loading JavaScript library. It's has no jQuery dependency, appears to be pretty actively maintained, and it leverages the [Interaction Observer API](https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API), which will get you better performance, especially as browser support grows in the future. In the meantime, there's a [polyfill](https://github.com/w3c/IntersectionObserver/tree/master/polyfill) you can include.
+
+### Getting Lozad Up on Its Feet
+
+**First, enqueue the Lozad library.** We'll also want to throw in the official W3C polyfill for the Interaction Observer API. We'll enqueue both of these in the footer because we're responsible web developers and don't want these scripts to block page rendering. 
+
+```php
+add_action('wp_enqueue_scripts', function () {
+   wp_enqueue_script( 'interaction-observer-polyfill', 'path-to-interaction-observer.js', [], null, true );
+   wp_enqueue_script( 'lozad', 'https://cdn.jsdelivr.net/npm/lozad@1.3.0/dist/lozad.min.js', ['interaction-observer-polyfill'], null, true );
+});
+```
+
+**Next, initialize Lozad.** Out of the box, a "lozad" class is used to watch for elements to be lazy loaded, but since we're going to modify the configuration a bit anyway, let's change that to a more generic "lazy-load" class. Also, note that I'm just using `wp_add_inline_script` here, since the amount of JS we're writing is small. You're welcome to put that in a separate JS file -- just make sure it executes after `lozad` is loaded. 
+
+```php
+add_action('wp_enqueue_scripts', function () {
+    wp_enqueue_script( 'interaction-observer-polyfill', 'path-to-interaction-observer.js', [], null, true );
+    wp_enqueue_script( 'lozad', 'https://cdn.jsdelivr.net/npm/lozad@1.3.0/dist/lozad.min.js', ['interaction-observer-polyfill'], null, true );
+    wp_add_inline_script( 'lozad', '
+        lozad(".lazy-load").observe();
+    ');
+});
+```
+_Neat! But what if I don't want to target elements by class?_ No problem! Instead of defining a class to be watched, you can pass in a `NodeList`. In that case, our `wp_add_inline_script` section would look something more like this: 
+
+```php
+   wp_add_inline_script( 'lozad', '
+	    var myElements = document.querySelectorAll("#main img");
+        lozad(myElements).observe();
+   ');
+```
+In this case, Lozad will watch for any images that are children to `#container`.
+
+**Our next step is to add our target class to every image we want to lazy load, as well as change the `src` attribute to `data-src`.** This will prevent the browser from loading the images by default (which would block the rest of the page from rendering), and only do so when `lozad` changes `data-src` back to `src`, which will happen when images come into view.
+
+For any images on custom pages outside of the WordPress database, it's pretty easy to set up the attributes we need. Just manually do it. Unfortunately, working with the images that are stored in the database will require that we filter everything via `the_content` hook. I don't _love_ the idea of having to filter post content like this, but if you're properly caching your site like you should be, this is less of an issue. 
+
+```php
+add_filter('the_content', function ($content) {
+	//-- Change src/srcset to data attributes.
+	$content = preg_replace("/<img(.*?)(src=|srcset=)(.*?)>/i", '<img$1data-$2$3>', $content);
+
+	//-- Add .lazy-load class to each image that already has a class.
+	$content = preg_replace('/<img(.*?)class=\"(.*?)\"(.*?)>/i', '<img$1class="$2 lazy-load"$3>', $content);
+
+	//-- Add .lazy-load class to each image that doesn't have a class.
+	$content = preg_replace('/<img(.*?)(?!\bclass\b)(.*?)/i', '<img$1 class="lazy-load"$2', $content);
+	
+	return $content;
+});
+```
+
+We're doing three separate things with our filter here. 
+
+* Changing `src` and `srcset` attributes to `data-src` and `data-srcset` on each image.
+* Adding a `lazy-load` class to each image so Lozad can properly target the images we want to lazy load.
+* Adding a `lazy-load` class to each image that doesn't already have a class attached to it. 
+
+**Technically, you're done.** Now, each page on which you have content populated from the WordPress editor, images should _not_ load by default, and instead load only when they come into view. But that might not be good enough. 
+
+### Let's Make It All Prettier
+
+If images only load when they come into view, you'll see an ugly pop on the page when that happens. To make everything happen in a prettier fashion, we have some options at our disposal. 
+
+**Let's adjust the `rootMargin` so images start loading when they're _about_ to come into view.** This way, they can be ready to go before the user even gets there, and everything will appear much more seamless. Go back to our `wp_add_inline_script` call: 
+
+```php
+wp_add_inline_script( 'lozad', '
+	lozad(".lazy-load", { 
+		rootMargin: "300px 0px"
+	}).observe()');
+```
+
+Now, when images come within 300px of being visible, Lozad will trigger them to start loading. Feel free to adjust that value as you see fit. 
+
+**We can also add a class after our images load, so they fade in a super pretty, majestic way.** Do that by adding a `loaded` callback: 
+
+```php
+wp_add_inline_script( 'lozad', '
+	lozad(".lazy-load", { 
+		rootMargin: "300px 0px", 
+		loaded: function (el) {
+			el.classList.add("is-loaded");
+		}
+	}).observe()');
+```
+
+And add some CSS that'll hide the images until they're fully loaded, and then allow them to fade in. 
+
+```css
+.lazy-load {
+    transition: opacity .15s;
+    opacity: 0;
+}
+
+.lazy-load.is-loaded {
+    opacity: 1;
+}
+```
+
+Boom. Now, every image will now have an `opacity` of `0`, until they're loaded in, when `is-loaded` will fade them in. 
+
+### Getting Guten-Ready
+
+In version 5.0 of WordPress, we'll see the much anticipated block editor roll out ([Gutenberg](https://github.com/WordPress/gutenberg)). Will this lazy loading setup work with Gutenberg? 
+
+**Answer: yes.** 
+
+The new editor will still rely on `the_content` to return database content, which means everything we've done here will still be in tact. However, Gutenberg will slightly change which classes are added to images. For example, an image block will wrap an image with `<figure>` tags that have alignment classes attached, instead of on the images themselves. So, if you're not targeting images by class like shown here, and instead using nested selectors or something else, just be aware of how that might impact you. Not a huge deal. 
+
+### Soon, This May All Be Meaningless
+
+Lazy loading is a good, responsible thing to implement, but, all this might come out-of-the-box and fully managed by browsers themselves in a couple of years. [Google Chrome is already headed this way](https://www.bleepingcomputer.com/news/google/google-chrome-to-feature-built-in-image-lazy-loading/). So, pay attention. In a short while, all of what I've just showed you might be pointless, and I will need to put a sad disclaimer at the top of this post that you might just be wasting your time by reading this. 
+
+Hope this helps!
