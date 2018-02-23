@@ -38,10 +38,10 @@ add_action('wp_enqueue_scripts', function () {
 _Neat! But what if I don't want to target elements by class?_ No problem! Instead of defining a class to be watched, you can pass in a `NodeList`. In that case, our `wp_add_inline_script` section would look something more like this: 
 
 ```php
-   wp_add_inline_script( 'lozad', '
-	    var myElements = document.querySelectorAll("#main img");
-        lozad(myElements).observe();
-   ');
+wp_add_inline_script( 'lozad', '
+	var myElements = document.querySelectorAll("#main img");
+	lozad(myElements).observe();
+');
 ```
 In this case, Lozad will watch for any images that are children to `#container`.
 
@@ -82,7 +82,8 @@ If images only load when they come into view, you'll see an ugly pop on the page
 wp_add_inline_script( 'lozad', '
 	lozad(".lazy-load", { 
 		rootMargin: "300px 0px"
-	}).observe()');
+	}).observe()
+');
 ```
 
 Now, when images come within 300px of being visible, Lozad will trigger them to start loading. Feel free to adjust that value as you see fit. 
@@ -96,7 +97,8 @@ wp_add_inline_script( 'lozad', '
 		loaded: function (el) {
 			el.classList.add("is-loaded");
 		}
-	}).observe()');
+	}).observe()
+');
 ```
 
 And add some CSS that'll hide the images until they're fully loaded, and then allow them to fade in. 
