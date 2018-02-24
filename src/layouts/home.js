@@ -1,6 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import BaseHelmet from '../components/BaseHelmet'
+
+import SEO from "../components/SEO"
 
 //-- Base styles.
 import '../../assets/scss/style.scss'
@@ -12,8 +13,7 @@ class Template extends React.Component {
 
     return (
       <div>
-        <BaseHelmet />
-
+        <SEO />
         {children()}
       </div>
     )

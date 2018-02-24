@@ -1,10 +1,14 @@
 module.exports = {
   siteMetadata: {
+    pathPrefix: '',
     siteUrl: "https://macarthur.me",
     title: "Alex MacArthur / Nashville Web Developer",
+    altTitle: "Alex MacArthur",
     author: "Alex MacArthur",
     shortBio: "Alex MacArthur is a front end developer working for Dave Ramsey in Nashville, TN. Soli Deo gloria.",
     description: "I'm a front-end web developer in Nashville, spending most of my time in WordPress and JavaScript. Hire me for your next project!",
+    openGraphImage: '/open-graph.jpg',
+    fbAdmins: '502371334',
     social: {
       twitterHandle: "@amacarthur",
       twitter: "https://www.twitter.com/amacarthur",

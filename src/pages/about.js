@@ -16,7 +16,6 @@ export default ({ data }) => {
       <p>I specialize in building custom WordPress and JavaScript applications that meet the unique needs of those I'm serving. I'm interested in helping you too. <a href="/contact">Let's connect</a> to get the process started.</p>
 
       <p>To stay updated on what I'm building and/or blabbing about, follow me on <a href="https://www.twitter.com/amacarthur">Twitter</a> and <a href="https://github.com/alexmacarthur">GitHub</a>.</p>
-
     </div>
   )
 }
