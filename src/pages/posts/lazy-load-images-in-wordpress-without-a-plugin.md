@@ -3,7 +3,11 @@ title: Lazy Load Images in WordPress without a Plugin
 date: "2018-02-23"
 ---
 
-To do pretty much anything in WordPress, there's no shortage of plugins available. But introducing "just one more plugin" into your environment can often mean added bloat (through unnecessary settings, configuration, and features), unpredictable behavior, and lack of flexibility for how you actually want to implement it.
+When facing any given problem in WordPress, there's rarely a shortage of third party plugins available to solve it. But if you're hoping to keep your application simple, predictable, and easy to mantain, adding "just one more plugin" can often make this a challenge by introducing a lot of code, configuration, and database settings you just don't need. And with more complexity, risk of unforseen consequences necessarily increases -- even if that complexity is well-written and documented.
+
+---
+
+To do pretty much anything in WordPress, there's no shortage of plugins available . But introducing "just one more plugin" into your environment can often mean added bloat (through unnecessary settings, configuration, and features), unpredictable behavior, and lack of flexibility for how you actually want to implement it.
 
 Lazy loading your images within WordPress is no exception. Convenience costs. Thankfully, if you want to limit scope and have a lot more control over your lazy loading, it's actually fairly simple to set this up yourself and start reaping the benefits.
 
