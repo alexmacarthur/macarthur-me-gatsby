@@ -3,11 +3,23 @@ title: Lazy Load Images in WordPress without a Plugin
 date: "2018-02-23"
 ---
 
-When facing any given problem in WordPress, there's rarely a shortage of third party plugins available to solve it. But if you're hoping to keep your application simple, predictable, and easy to mantain, adding "just one more plugin" can often make this a challenge by introducing code, configuration, and database settings you just don't need. And with more complexity like this in the mix, the risk of unforseen consequences necessarily increases.
+When you're looking to incorporate any given feature into your WordPress application, there's rarely a shortage of third-party plugins available to make it happen. But sometimes, whether you're trying to avoid the inevitable complexity a third-party plugin introduces or some other reason, you feel called to take a stab at developing that feature on your own. Lazy loading your images might be one of these features, and fortunately, it's fairly simple to set it up yourself and start reaping the performance benefits. 
 
-To be clear, I'm _not_ saying that you should never use a third-party plugin. In many cases, it just makes sense to find a well-written, well-documented plugin solution with a proven track record -- there's often no need to reinvent the wheel when so many reliable options out there exist. What I am saying is that sometimes, it might be worth it to just build it yourself. Especially if the feature is small, this option leaves you knowing exactly what the feature entails, and fewer other variables out there that you'd be introducing to your application.
+I'm assuming here that you have full development dominion over your WordPress application, and that you're relatively familiar with the [WordPress Plugin API](https://codex.wordpress.org/Plugin_API) -- the characteristic hook system that makes WordPress development as flexible as it is. While we _could_ put place all of the following functionality inside your theme's functions.php file, we'll rolling out own super basic plugin. This is generally a better idea -- it'll separate concerns a little better, you'll be able to switch themes without losing lazy loading functionality, and it'll be easy to toggle if ever needed for something like debugging.
 
-Lazy loading your images might be one of these features. Sometimes, convenience costs. If you want to limit scope and have a lot more control over your lazy loading, it's actually fairly simple to set this up yourself and start reaping the benefits.
+_Read this:_ I won't be going in-depth on the philosophy of what makes a well-crafted WordPress plugin. Play with singletons, class structure, and PSR-4 autoloading on your own. I'm just gonna help give you bare bones lazy loading in a little plugin.
+
+## Set Up Your Plugin
+In your plugins directory, create a `simple-lazy-loading` directory and a file inside it named `simple-lazy-loading.php`. Open that file, and place the following at the top: 
+
+```php
+<?php
+/*
+Plugin Name: Simple Lazy Loading
+*/
+```
+
+![Clear Sans typeface](simple-lazy-loading.jpg)
 
 ## Let's Get Lazy
 
