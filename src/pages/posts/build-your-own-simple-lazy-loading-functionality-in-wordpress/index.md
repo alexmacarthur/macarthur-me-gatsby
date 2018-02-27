@@ -1,13 +1,13 @@
 ---
-title: Lazy Load Images in WordPress without a Plugin
+title: Build Your Own Simple Lazy Loading Functionality in WordPress
 date: "2018-02-23"
 ---
 
-When you're looking to incorporate any given feature into your WordPress application, there's rarely a shortage of third-party plugins available to make it happen. But sometimes, whether you're trying to avoid the inevitable complexity a third-party plugin introduces or some other reason, you feel called to take a stab at developing that feature on your own. Lazy loading your images might be one of these features, and fortunately, it's fairly simple to set it up yourself and start reaping the performance benefits. 
+When you're looking to incorporate any given feature into your WordPress application, there's rarely a shortage of third-party plugins out there to make it happen. But sometimes, whether you're trying to avoid the inevitable complexity an unfamiliar third-party plugin introduces, or for some other reason, you might feel called to take a stab at developing that feature on your own. Lazy loading images could be one of these features, and fortunately, it's fairly simple to set it up yourself and start reaping the performance benefits. 
 
-I'm assuming here that you have full development dominion over your WordPress application, and that you're relatively familiar with the [WordPress Plugin API](https://codex.wordpress.org/Plugin_API) -- the characteristic hook system that makes WordPress development as flexible as it is. While we _could_ put place all of the following functionality inside your theme's functions.php file, we'll rolling out own super basic plugin. This is generally a better idea -- it'll separate concerns a little better, you'll be able to switch themes without losing lazy loading functionality, and it'll be easy to toggle if ever needed for something like debugging.
+I'm assuming here that you have full development dominion over your WordPress application, and that you're relatively familiar with the [WordPress Plugin API](https://codex.wordpress.org/Plugin_API) -- the characteristic hook system that makes WordPress development as flexible as it is. While we _could_ put all of the following functionality inside your theme's `functions.php` file, we'll be rolling our own extremely basic plugin. This is generally a good idea over just using your theme -- it'll separate concerns a little better, you'll be able to switch themes without losing functionality, and it'll be easy to toggle whenever like, which is particularly helpful when debugging.
 
-_Read this:_ I won't be going in-depth on the philosophy of what makes a well-crafted WordPress plugin. Play with singletons, class structure, and PSR-4 autoloading on your own. I'm just gonna help give you bare bones lazy loading in a little plugin.
+_Know this:_ I won't be going in-depth on the philosophy of what makes a well-crafted WordPress plugin. Play with singletons, class structure, and PSR-4 autoloading on your own. I'm just gonna give you the bare bones of what it takes to make a lazy loading plugin with just a few lines of code. Let's get started.
 
 ## Set Up Your Plugin
 In your plugins directory, create a `simple-lazy-loading` directory and a file inside it named `simple-lazy-loading.php`. Open that file, and place the following at the top: 
@@ -15,11 +15,15 @@ In your plugins directory, create a `simple-lazy-loading` directory and a file i
 ```php
 <?php
 /*
-Plugin Name: Simple Lazy Loading
+* Plugin Name: Simple Lazy Loading
 */
 ```
 
-![Clear Sans typeface](simple-lazy-loading.jpg)
+At bare minimum, you now have a plugin that can be activated in the the WordPress admin. Head there and switch it on.
+
+![Activate Simple Lazy Loading Plugin](simple-lazy-loading.jpg)
+
+After you've done that, open up the file you just created and we're ready to go!
 
 ## Let's Get Lazy
 
@@ -57,11 +61,11 @@ wp_add_inline_script( 'lozad', '
 	lozad(myElements).observe();
 ');
 ```
-In this case, Lozad will watch for any images that are children to `#container`.
+If we set things up this way, Lozad will watch for any images that are children to `#main`.
 
-**Our next step is to add our target class to every image we want to lazy load, as well as change the `src` attribute to `data-src`.** This will prevent the browser from loading the images by default (which would block the rest of the page from rendering), and only do so when `lozad` changes `data-src` back to `src`, which will happen when images come into view.
+**Our next step is to add our target class to every image we want to lazy load, as well as change the `src` attribute to `data-src`.** This will prevent the browser from loading the images by default (which would block the rest of the page from rendering), and only do so when `lozad` changes `data-src` back to `src`, which will happen when users scroll to those images.
 
-For any images on custom pages outside of the WordPress database, it's pretty easy to set up the attributes we need. Just manually do it. Unfortunately, working with the images that are stored in the database will require that we filter everything via `the_content` hook. I don't _love_ the idea of having to filter post content like this, but if you're properly caching your site like you should be, this is less of an issue. 
+For any images on custom pages outside of the WordPress database, it's pretty easy to set up the attributes we need. Just manually do it. Unfortunately, working with the images that are stored in the database will require that we filter everything via `the_content` hook. I don't _love_ the idea of having to filter post content like this, but if you're properly caching your site like you should be, this is less of an issue, at least in terms of performance. 
 
 ```php
 add_filter('the_content', function ($content) {
@@ -115,7 +119,7 @@ wp_add_inline_script( 'lozad', '
 ');
 ```
 
-And add some CSS that'll hide the images until they're fully loaded, and then allow them to fade in. 
+And add some CSS that'll hide the images until they're fully loaded, and then allow them to fade in. Note that if you do add the following CSS, you'll need to enqueue it in a stylesheet or by some other means. 
 
 ```css
 .lazy-load {
