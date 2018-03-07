@@ -24,6 +24,10 @@
   h5,
   h6 {
     font-family: $base-font-family;
+    
+    a {
+      @include link;
+    }
   }
 
   ul {

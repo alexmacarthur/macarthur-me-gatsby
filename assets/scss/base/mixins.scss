@@ -3,3 +3,13 @@
     @content;
   }
 }
+
+@mixin link() {
+  color: $salmon;
+  border-bottom: 2px solid $salmon;
+
+  &:hover {
+    color: $salmon--dark;
+    border-color: $salmon--dark;
+  }
+}

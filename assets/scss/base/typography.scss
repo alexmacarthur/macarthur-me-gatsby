@@ -50,6 +50,7 @@ h3, h4, h5, h6 {
 
 h4 {
   font-size: $base-font-size-large;
+  font-weight: 600;
 }
 
 a {
@@ -63,13 +64,7 @@ a {
 
 p {
   a {
-    color: $salmon;
-    border-bottom: 2px solid $salmon;
-
-    &:hover {
-      color: $salmon--dark;
-      border-color: $salmon--dark;
-    }
+    @include link;
   }
 }
 
