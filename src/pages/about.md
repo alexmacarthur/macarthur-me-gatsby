@@ -1,4 +1,6 @@
-# About
+---
+title: About
+---
 
 #### I'm a web developer for [Dave Ramsey](https://www.daveramsey.com) in Nashville, TN.
 My family and I moved here in 2015 from Minnesota, where "soda" is just shorthand for the stuff you mix with vinegar to create a volcano for a junior high science fair. I love what I do here, and it's a privilege to do it for a mission that matters. 
