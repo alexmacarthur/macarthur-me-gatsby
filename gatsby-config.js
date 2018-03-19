@@ -39,7 +39,7 @@ module.exports = {
       {
         title: "Sahlstrom's",
         description:
-          "A custom WordPress site design and built for an HVAC company in Minnesota.",
+          "A custom WordPress site designed and built for an HVAC company in Minnesota.",
         url: "http://www.sahlstromsheating.com"
       },
       {
