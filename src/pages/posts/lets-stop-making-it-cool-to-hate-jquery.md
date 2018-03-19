@@ -9,7 +9,7 @@ Since then, the native JavaScript API has improved, browsers have stepped up the
 
 I'll never say that you _can't_ hate jQuery, but you do need to have a legitimate reason you can articulate, because the case to give the library the reverence it deserves is pretty solid, and the case that we should quickly run from it because "😠😠😠JQUERY😠😠😠" is weak and based on some concerns that I think are largely exaggerated.  
 
-### jQuery helped make the web -- and you -- who you are today.
+### jQuery helped make the web -- and you -- what they are today.
 
 Because of how undisputed it is, we don't even need to spend much time discussing the technical problems jQuery helped solve when it was introduced -- the inconsistent browser support of JavaScript features, the lacking or convoluted JS API, and other challenges. The fact that jQuery made development a heck of a lot faster and easier isn't questioned. And for that, it deserves respect, as well as for the impact it had on the evolution and adoption of the language leading up until today.
 
