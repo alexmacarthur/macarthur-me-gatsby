@@ -1,7 +1,7 @@
 ---
 title: Building a Lambda Function with Netlify
 date: "2018-02-12"
-open_graph: ""
+open_graph: "https://images.pexels.com/photos/238118/pexels-photo-238118.jpeg?w=1260&h=750&dpr=2&auto=compress&cs=tinysrgb"
 ---
  
 A few weeks ago, I wrote my first Lambda function with Firebase. Like every Lambda function tutorial on the web shows you how to do, my function processes a payment via Stripe when someone purchases a license for [TypeIt](https://typeitjs.com), the most versatile animated typing utility on the planet. The process was pretty straightforward -- Firebase's CLI, documentation, and support are all amazing. Even so, I had some reservations about the setup.
@@ -75,9 +75,9 @@ Let's go ahead and define that information now. Again, feel free to glance at th
   # your production variables...
 ```
 
-I wanna call out a special trick here that'll help us develop locally later on. The lines that look like `context.[SOMETHING].environment` are how we define variables for each Netlify environment. And as Node builds out our site  when we deploy, each of these variables is available using `process.env.VAR_NAME` in whatever Node is triggering via JavaScript. There's just one problem: as we develop on our local machine, those variables aren't  accessible because Netlify isn't triggering the build -- we are. We usually just need to bite the bullet and duplicate variable values where we need them, and only reference them in `netify.toml` when they're in Netlify's hands. 
+I want to call out a trick here that'll help us develop locally later on. The lines that look like `context.[SOMETHING].environment` are how we define variables for each Netlify environment. And as Node builds out our site when we deploy, each of these variables is available using `process.env.VAR_NAME` in whatever Node is triggering via JavaScript. There's just one problem: as we develop on our local machine, those variables aren't accessible because Netlify isn't triggering the build -- we are. We usually just need to bite the bullet and duplicate variable values where we need them, and only reference them in `netify.toml` when they're in Netlify's hands. 
 
-NOT THIS TIME. As a way around this, I've added a 'context.base.enviromnent` section that we'll parse manually (using a .toml parser) and access when we're developing locally, or if the other variables aren't available. Think of it as a set of fallback variable values. This will all be done when webpack builds our code, so they'll be easily accessible right within our JavaScript, without having to deploy first. More on this magic later. For now, feel free to drop in Stripe publishable and secret keys that'll you want to use per environment. You can find these keys in your [Stripe dashboard](https://dashboard.stripe.com/).
+NOT THIS TIME. As a way around this, I've added a 'context.base.enviromnent` section that we'll parse manually (using a .toml parser) and access when we're developing locally, or if the other variables aren't available. Think of it as a set of fallback variable values. This will all be done when webpack builds our code, so they'll be easily accessible right within our JavaScript, without having to deploy first. More on this magic later. For now, feel free to drop in Stripe keys that'll you want to use per environment. You can find these keys in your [Stripe dashboard](https://dashboard.stripe.com/).
 
 ### Neat. Now, let's write some Lambda code.
 
