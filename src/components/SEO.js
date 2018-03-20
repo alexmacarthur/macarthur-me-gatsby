@@ -8,7 +8,7 @@ class SEO extends Component {
         let title;
         let description;
         let postURL;
-        let image = config.siteMetadata.openGraphImage;
+        let image = config.siteMetadata.siteUrl + config.siteMetadata.pathPrefix + config.siteMetadata.openGraphImage;
         if (postSEO) {
             const postMeta = postNode.frontmatter;
             title = postMeta.title;
@@ -21,7 +21,6 @@ class SEO extends Component {
             title = config.siteMetadata.title;
             description = config.siteMetadata.description;
         }
-        image = config.siteMetadata.siteUrl + config.siteMetadata.pathPrefix + image;
         const blogURL = config.siteMetadata.siteUrl + config.siteMetadata.pathPrefix;
         const schemaOrgJSONLD = [
             {
