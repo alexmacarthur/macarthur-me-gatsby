@@ -1,6 +1,7 @@
 ---
 title: Removing Usernames from Password Reset URLs in WooCommerce
 date: "2018-02-05"
+open_graph: ""
 ---
 
 Securely handling personal information on the web is a pretty big deal, and one of the ways you do that is making sure none of it's sent via query string in a URL. Things like this are bad:

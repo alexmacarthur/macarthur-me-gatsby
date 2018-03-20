@@ -1,6 +1,7 @@
 ---
 title: Using the Negation Pseudo-Class to Select Elements with No Class
 date: "2018-01-24"
+open_graph: ""
 ---
 
 If you've been a developer for more than 7 minutes, you've probably felt uncomfortably pressured into doing something weird with your code, like specifically styling plain, classless, attribute-less elements. Don't ask for the details, just accept the reality of this happening sometimes.

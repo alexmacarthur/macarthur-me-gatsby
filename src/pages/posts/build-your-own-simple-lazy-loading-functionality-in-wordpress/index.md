@@ -1,6 +1,7 @@
 ---
 title: Build Your Own Simple Lazy Loading Functionality in WordPress
 date: "2018-02-23"
+open_graph: ""
 ---
 
 When you're looking to incorporate any given feature into your WordPress application, there's rarely a shortage of third-party plugins out there to make it happen. But sometimes, whether you're trying to avoid the inevitable complexity an unfamiliar third-party plugin introduces, or for some other reason, you might feel called to take a stab at developing that feature on your own. Lazy loading images could be one of these features, and fortunately, it's fairly simple to set it up yourself and start reaping the performance benefits. 

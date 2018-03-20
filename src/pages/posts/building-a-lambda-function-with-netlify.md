@@ -1,6 +1,7 @@
 ---
 title: Building a Lambda Function with Netlify
 date: "2018-02-12"
+open_graph: ""
 ---
  
 A few weeks ago, I wrote my first Lambda function with Firebase. Like every Lambda function tutorial on the web shows you how to do, my function processes a payment via Stripe when someone purchases a license for [TypeIt](https://typeitjs.com), the most versatile animated typing utility on the planet. The process was pretty straightforward -- Firebase's CLI, documentation, and support are all amazing. Even so, I had some reservations about the setup.
