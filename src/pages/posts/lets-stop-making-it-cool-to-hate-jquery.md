@@ -1,7 +1,7 @@
 ---
 title: Let's Stop Making it Cool to Hate jQuery
 date: "2018-03-19"
-open_graph: ""
+open_graph: "https://images.pexels.com/photos/249798/pexels-photo-249798.png?w=1260&h=750&dpr=2&auto=compress&cs=tinysrgb"
 ---
 
 When I started web development, beginning a new project often felt like drowning and then being asked to write JavaScript that worked. At the time, all I needed to do was perform some DOM stuff: make an element disappear on a click, add some classes, animate a dropdown. For all of these tasks, jQuery provided functionality that was simple to implement, reliable across browsers, and most important at the time, easy for me to understand what the heck was going on.
