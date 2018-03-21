@@ -193,7 +193,7 @@
         background: var(--bar-color);
         position: absolute;
         height: 2px;
-        bottom: -5px;
+        bottom: -1px;
 
         @include media($medium-screen) {
           height: 4px;

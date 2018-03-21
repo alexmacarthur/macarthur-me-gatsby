@@ -11,7 +11,7 @@ exports.onCreateNode = ({ node, boundActionCreators, getNode }) => {
     createNodeField({
       name: `slug`,
       node,
-      value,
+      value: value.replace(/\/$/, ``)
     })
   }
 }
@@ -26,15 +26,6 @@ exports.onCreatePage = ({ page, boundActionCreators }) => {
     //-- If it's the home page, give it a special layout.
     if(page.path === '/') {
       page.layout = "home"
-    }
-
-    const newPage = Object.assign({}, page, {
-      path: page.path === `/` ? page.path : page.path.replace(/\/$/, ``),
-    })
-
-    if (newPage.path !== page.path) {
-      deletePage(page)
-      createPage(newPage)
     }
 
     resolve()

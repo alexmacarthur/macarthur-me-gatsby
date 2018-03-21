@@ -24,7 +24,7 @@ class Hero extends React.Component {
 
             <div className="Hero-bottomWrapper">
               <h2 className="Hero-subTitle">
-                A front-end web developer.
+                A web developer.
               </h2>
               <SocialIcons />
             </div>

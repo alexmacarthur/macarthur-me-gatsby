@@ -63,6 +63,7 @@
   text-transform: uppercase;
   font-weight: normal;
   font-size: $medium-font-size;
+  line-height: 1;
   padding: .75rem .75rem .75rem 0;
 
   @include media($medium-screen) {
