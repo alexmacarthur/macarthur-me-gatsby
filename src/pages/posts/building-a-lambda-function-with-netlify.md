@@ -4,15 +4,21 @@ date: "2018-02-12"
 open_graph: "https://images.pexels.com/photos/238118/pexels-photo-238118.jpeg?w=1260&h=750&dpr=2&auto=compress&cs=tinysrgb"
 ---
  
-A few weeks ago, I wrote my first Lambda function with Firebase. Like every Lambda function tutorial on the web shows you how to do, my function processes a payment via Stripe when someone purchases a license for [TypeIt](https://typeitjs.com), the most versatile animated typing utility on the planet. The process was pretty straightforward -- Firebase's CLI, documentation, and support are all amazing. Even so, I had some reservations about the setup.
+A few weeks ago, I wrote my first Lambda function with Firebase. Like every Lambda function tutorial on the web shows you how to do, my mine processes a payment via Stripe when someone purchases a license for [TypeIt](https://typeitjs.com), the most versatile animated typing utility on the planet. The process was pretty straightforward -- Firebase's CLI, documentation, and support are all great. Even so, I had some reservations about the setup.
 
-First off, TypeIt's site is hosted with Netlify, which I l-o-v-e, so development of the function felt detached. I couldn't just keep everything in the same repository, little conveniences like shared environment variables were out of the question, and I had to keep tabs on three different accounts to make this all happen -- Netlify, Firebase, and Stripe. 
+First off, TypeIt's site is hosted with Netlify, with which I am madly in love, so development of the function felt... detached. I couldn't just keep everything in the same repository, little conveniences like shared environment variables were out of the question, and I had to keep tabs on three different services to make this all happen -- Netlify, Firebase, and Stripe. 
 
-Second, I'm a freaking cheapskate, and Firebase doesn't have a free tier that allows calls to external services like Stripe. 
+Second, I'm a freaking cheapskate, and at the time, Firebase didn't have a free tier that allows calls to external services like Stripe. 
 
-With all that in mind, I nearly peed myself when I found out I'd been given access to Netlify's new Lambda function service (still in private beta, but you can [request access](https://app.netlify.com/functions-beta)), and I immediately dove into migrating my Firebase function to Netlify. 
+With all that in mind, I nearly peed myself when I found out I'd been given access to Netlify's new Lambda function service (still in private beta, but you can [request access](https://app.netlify.com/functions-beta)), and I immediately dove into migrating my Firebase function to Netlify.
 
-It was so fun, I thought I'd share the experience. Hopefully, you'll get a sense of why Netlify Lambda functions are uniquely awesome, as we'll get to leverage some of the features that make Netlify great, in combination with the power of a Lambda function. 
+<aside>
+  <p>
+UPDATE: It's been <a href="https://www.netlify.com/blog/2018/03/20/netlifys-aws-lambda-functions-bring-the-backend-to-your-frontend-workflow/">officially launched!</a>
+  </p>
+</aside>
+
+It was so fun, I thought I'd share the experience, and we'll get to leverage some of the features that make Netlify great, in combination with the power of a Lambda function. Hopefully, you'll get a sense of why a service like this with this specific provider is uniquely awesome.
 
 I'll be using some pretty bare bones here, but you can implement the function with any type of static application you want -- Jekyll, Gatsby, whatever. _Just make sure you have some sort of static site you're able to host with Netlify, and that it uses webpack (we'll need its `DefinePlugin`, specifically)._ I'm starting with a package.json, and `index.html` file, some CSS, and JavaScript. You can see the setup [here](https://github.com/alexmacarthur/netlify-function-example). You'll also need a Stripe account, and access to Netlify Lambda functions (obviously).
 
@@ -40,7 +46,7 @@ We'll be storing our pre-built code in `lambda-src`, and building it into `lambd
 }
 ```
 
-Also, notice that in our `lambda-serve` action, I'm copying the function source from `lambda-src` to `lambda`. This is because when we run our local dev server, the contents of `lambda` will be built and overwritten. So, we want to keep our pre-built code in a separate directory for safekeeping. This is important.
+Also, notice that in our `lambda-serve` action, I'm copying the function source from `lambda-src` to `lambda`. This is because when we run our local development server, the contents of `lambda` will be built and overwritten. So, we want to keep our pre-built code in a separate directory for safekeeping. This is important.
 
 **Next up, let's create our `netlify.toml` file,** which will contain all the configuration information for our Netlify deployment. 
 
@@ -48,7 +54,7 @@ Also, notice that in our `lambda-serve` action, I'm copying the function source 
 
 [The `netlify.toml` file](https://www.netlify.com/docs/continuous-deployment/#deploy-contexts) is responsible for defining things like build commands, our publish directory, environment variables, and most notably for this post, where our Lambda functions directory will be. It's worth noting that you can set up all these things in the admin as well, but that's significantly less cool.
 
-Let's go ahead and define that information now. Again, feel free to glance at the repository for better context.  
+Let's go ahead and define that information now. Again, feel free to glance at the [repository](https://github.com/alexmacarthur/netlify-function-example) for better context.  
 
 ```
 # netlify.toml 
@@ -75,9 +81,13 @@ Let's go ahead and define that information now. Again, feel free to glance at th
   # your production variables...
 ```
 
-I want to call out a trick here that'll help us develop locally later on. The lines that look like `context.[SOMETHING].environment` are how we define variables for each Netlify environment. And as Node builds out our site when we deploy, each of these variables is available using `process.env.VAR_NAME` in whatever Node is triggering via JavaScript. There's just one problem: as we develop on our local machine, those variables aren't accessible because Netlify isn't triggering the build -- we are. We usually just need to bite the bullet and duplicate variable values where we need them, and only reference them in `netify.toml` when they're in Netlify's hands. 
+I want to call out a trick here that'll help us work locally later on. The lines that look like `context.[SOMETHING].environment` are how we define variables for each Netlify environment. And as Node builds out our site when we deploy, each of these variables is available using `process.env.VAR_NAME` in whatever Node is triggering via JavaScript. There's just one problem: as we develop on our local machine, those variables aren't accessible because Netlify isn't triggering the build -- we are. As a solution, we usually just need to bite the bullet and duplicate variable values where we need them, and only reference them in `netify.toml` when they're in Netlify's hands. 
 
-NOT THIS TIME. As a way around this, I've added a 'context.base.enviromnent` section that we'll parse manually (using a .toml parser) and access when we're developing locally, or if the other variables aren't available. Think of it as a set of fallback variable values. This will all be done when webpack builds our code, so they'll be easily accessible right within our JavaScript, without having to deploy first. More on this magic later. For now, feel free to drop in Stripe keys that'll you want to use per environment. You can find these keys in your [Stripe dashboard](https://dashboard.stripe.com/).
+Not anymore! As a way around this, I've added a `context.base.enviromnent` section that we'll parse manually (using a .toml parser) and access when we're developing locally, or if the other variables aren't available. Think of it as a set of fallback variable values. This will all be done when webpack builds our code, so they'll be easily accessible right within our JavaScript, without having to deploy first. 
+
+You _could_ also alleviate this problem by using a package like `dotenv`, which would merge a set of variables you define with `process.env` if they're not available. However, using the trick I described here would allow you to keep all of these values in a single place, rather than multiples files. Whatever the case, just make sure you know where and how these values will be stored and what the potential risks are in how you set it up. 
+
+More on this piece of our setup later. For now, feel free to drop in Stripe keys that'll you want to use per environment. You can find these keys in your [Stripe dashboard](https://dashboard.stripe.com/).
 
 ### Neat. Now, let's write some Lambda code.
 
@@ -111,9 +121,9 @@ const SECRET_KEY = process.env.STRIPE_SECRET_KEY !== undefined
 const stripe = require('stripe')(SECRET_KEY);
 ```
 
-Good job. You're locally parsing a `netlify.toml` file -- no need to locally hard code variables, and you can access still access the right values during a Netlify deployment!
+Good job. You're locally parsing a `netlify.toml` file, and you can access still access the correct values during a Netlify deployment!
 
-**Now, let's set appropriate headers.** We'll want to make sure we're allowing access to our function via AJAX, as well as that we can pass data to our function successfully. For now, I'm just gonna open it up to requests from any domain, but you'll want to change that to your specific domain when you deploy. Because I want to later leverage JavaScript's enhanced object literals, I also saved a default status code: 
+**Now, let's set appropriate headers.** We'll want to make sure we're allowing access to our function via AJAX, as well as that we can pass data to our function successfully. For now, I'm just going to open it up to requests from any domain, but you'll want to change that to your specific domain when you deploy. Because I want to later leverage JavaScript's enhanced object literals, I also saved a default status code: 
 
 ```js
 //-- purchase.js
@@ -202,9 +212,11 @@ exports.handler = function(event, context, callback) {
 
 Let's break this body payload down a bit. 
 
-*token* - This is the unique payment token that will be generated by our checkout form on the front end. In it, the user's email address is also included, which comes in handy to trigger email receipts.  
-*amount* - This is the price of the widget, measured in cents. So, 1000 is actually $10.00.
-*idempotency_key* - This is a good idea to pass to better [prevent the same operation from being performed twice accidentally](https://stripe.com/docs/api?lang=curl#idempotent_requests). We're dealing with money here. If this happens, people gonna be mad. It doesn't necessarily matter what that value actually is, just that it's unique.
+**token**: This is the unique payment token that will be generated by our checkout form on the front end. In it, the user's email address is also included, which comes in handy to trigger email receipts.  
+
+**amount**: This is the price of the widget, measured in cents. So, 1000 is actually $10.00.
+
+**idempotency_key**: This is a good idea to pass to better [prevent the same operation from being performed twice accidentally](https://stripe.com/docs/api?lang=curl#idempotent_requests). We're dealing with money here. If this happens, people gonna be mad. It doesn't necessarily matter what that value actually is, just that it's unique.
 
 **If the body has everything we require, pass it to Stripe to create a charge.** After we get a response back, we're returning the status of that charge back to the browser. Feel free to elaborate on this as you see fit. Create customers, trigger emails following a successful charge, whatever you like. The point is we create a charge and immediately let the browser know if it was successful or not. 
 

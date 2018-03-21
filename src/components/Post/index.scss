@@ -34,6 +34,18 @@
     list-style: disc;
     padding-left: 2rem;
   }
+
+  aside {
+    margin: 2.75rem 0;
+    padding: 2rem 2.5rem;
+    border: 1px solid $gray--mediumLight;
+    background: $gray--light;
+    border-radius: $border-radius;
+
+    p {
+      margin: 0;
+    }
+  }
 }
 
 .gatsby-resp-image-wrapper {
