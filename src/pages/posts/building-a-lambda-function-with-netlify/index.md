@@ -81,7 +81,7 @@ Run `yarn add dotenv` to install that package, and create a `.env` file in your 
 ```
 STRIPE_PUBLISHABLE_KEY="XXXXXX"
 STRIPE_SECRET_KEY="XXXXXX"
-LAMBDA_ENDPOINT="https://netlify-lambda.netlify.com/.netlify/functions/purchase"
+LAMBDA_ENDPOINT="https://netlify-lambda.netlify.com/.netlify/functions/"
 ```
 
 ### Actually Writing Some Lambda Code.
