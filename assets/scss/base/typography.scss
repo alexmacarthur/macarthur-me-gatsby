@@ -30,7 +30,7 @@ h1 {
   font-size: $medium-font-size;
   margin: 0 auto 3rem;
   text-align: left;
-  line-height: 1.1;
+  line-height: 1.2;
 
   @include media($medium-screen) {
     font-size: $large-font-size;

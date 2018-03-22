@@ -15,7 +15,7 @@
 
 .Post-content {
   h2 {
-    margin: 3rem 0 2rem;
+    margin: 3rem 0 0;
   }
 
   h2,
@@ -65,6 +65,7 @@
   border: 0;
   color: inherit;
   pointer-events: none;
+  word-break: break-all;
 }
 
 .gatsby-highlight {
