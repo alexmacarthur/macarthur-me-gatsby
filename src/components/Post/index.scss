@@ -46,6 +46,15 @@
       margin: 0;
     }
   }
+
+  :not(pre) > code[class*="language-"] {
+    background: lighten($gray, 75%);
+    word-break: break-all;
+    color: $gray;
+    text-shadow: none;
+    padding: 2px 3px;
+    border-radius: 2px;
+  }
 }
 
 .gatsby-resp-image-wrapper {
@@ -65,12 +74,6 @@
     background: none;
     box-shadow: none;
   }
-}
-
-code {
-  background: lighten($gray, 75%);
-  word-break: break-all;
-  padding: 2px 2px;
 }
 
 .Post-header {
