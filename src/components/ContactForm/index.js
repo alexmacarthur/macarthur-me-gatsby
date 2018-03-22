@@ -39,6 +39,12 @@ export default class ContactForm extends React.Component {
       body: this.encode({ "form-name": "contact", ...this.state })
     })
       .then(() => {
+        
+        document.querySelectorAll('input, textarea').forEach(item => {
+          console.log(item);
+          item.value = '';
+        });
+
         this.setState({
           validationMessage: 'Thanks! Your message was submitted successfully.',
           validationClass: ''
