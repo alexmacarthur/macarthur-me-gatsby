@@ -3,13 +3,25 @@
 }
 
 #___gatsby {
-  background: linear-gradient(63deg, lighten($gray, 79%) 35.3%, white 35.3%);
+  z-index: 1;
+  position: relative;
 
   & > div {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
   }
+}
+
+#slice {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background: linear-gradient(63deg, lighten($gray, 79%) 35.3%, white 35.3%);
+  z-index: 0;
+  transition: height .5s;
 }
 
 main {

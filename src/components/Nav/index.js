@@ -70,7 +70,7 @@ class Nav extends React.Component {
           <Link
             className="Nav-logo"
             to="/">
-            <span>A</span>M
+            <span>Alex</span>MacArthur
           </Link>
         }
 
