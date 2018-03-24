@@ -9,11 +9,7 @@ import SEO from '../components/SEO'
 import '../../assets/scss/style.scss'
 
 class MainLayout extends React.Component {
-
-  componentDidUpdate() {
-    window.slice.style.height = `${document.documentElement.scrollHeight}px`;
-  }
-
+  
   render() {
 
     const { location, children } = this.props;

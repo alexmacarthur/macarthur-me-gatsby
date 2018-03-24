@@ -7,9 +7,6 @@ import SEO from "../components/SEO"
 import '../../assets/scss/style.scss'
 
 class Template extends React.Component {
-  shouldComponentUpdate() {
-    window.slice.style.height = `${document.documentElement.scrollHeight}px`;
-  }
 
   render() {
 
