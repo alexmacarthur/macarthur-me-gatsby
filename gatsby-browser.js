@@ -1,12 +1,16 @@
 import { createElement } from "react"
 
-exports.onClientEntry = () => {
+exports.onInitialClientRender = () => {
   window.slice = document.getElementById('slice');
-  window.slice.style.height = `${document.body.clientHeight}px`;
+}
+
+function randomBetween (min, max) {
+  return Math.floor(Math.random() * (max - min + 1) + min);
 }
 
 exports.onRouteUpdate = ({ location }) => {
-  window.slice.style.height = `${document.body.clientHeight}px`;
+  let winHeight = window.innerHeight;
+  window.slice.style.height = `${randomBetween(winHeight + 300, winHeight + 600)}px`;
 
   if (typeof window.closeNav !== 'undefined') {
     window.closeNav();
