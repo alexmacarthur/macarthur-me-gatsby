@@ -20,23 +20,21 @@
   min-height: 100%;
   top: 0;
   left: 0;
-  background: linear-gradient(63deg, lighten($gray, 79%) 35.3%, white 35.3%);
+  background: linear-gradient(63deg, lighten($gray, 79%) 31%, white 31%);
   z-index: 0;
   transition: height .5s;
 }
 
 main {
-  padding: 3rem 2rem;
+  padding: 1rem 2rem;
   flex: 1;
+  
+  @include media($medium-screen) {
+    padding-top: 3rem;
+  }
 
   & > div {
     max-width: 800px;
     margin: 0 auto;
-  }
-}
-
-article {
-  h1 {
-
   }
 }
