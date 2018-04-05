@@ -103,7 +103,7 @@ Lighthouse Performance Results:
 
 ---
 
-This is for a very specific use case, running on my local machine using Chrome's built-in Lighthouse auditing tool. It's not out in the wild, but it's hard to deny those are some significant improvements. Just imagine if I were even _half_ wrong. 
+This is for a very specific use case, running on my local machine using Chrome's built-in Lighthouse auditing tool. I did some quick testing with a less script-heavy marketing site, and those improvements fell down to the 3-5% range. Regardless of the actual numbers, it's hard to deny those are some significant improvements. And for such a quick, low-impact win, you'd be a fool to turn those savings down.
 
 Did you see similar improvements? Please share your results when you measure them!
 
