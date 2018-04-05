@@ -1,7 +1,7 @@
 ---
 title: Automatically Preloading JavaScript Assets in WordPress
 date: "2018-04-05"
-open_graph: "https://cdn.pixabay.com/photo/2016/12/04/17/25/wordpress-1882120_1280.png"
+open_graph: "https://images.pexels.com/photos/8775/traffic-car-vehicle-black.jpg?cs=srgb&dl=automobile-boost-car-8775.jpg&fm=jpg"
 ---
 
 Squeezing every last drop of performance out of your website on any platform is an always-changing, never-ending, often addictive battle.
