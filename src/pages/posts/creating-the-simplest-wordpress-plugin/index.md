@@ -1,6 +1,6 @@
 ---
 title: Creating the Simplest WordPress Plugin
-date: "2018-04-05"
+date: "2018-04-04"
 open_graph: "https://cdn.pixabay.com/photo/2014/02/13/07/28/wordpress-265132_1280.jpg"
 ---
 
