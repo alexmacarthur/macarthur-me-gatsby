@@ -31,7 +31,7 @@ In WordPress, it's easy enough to manually spit out a `link ref="preload"` tag f
 So, a solution! **Loop over our footer-enqueued scripts and preload them in the header.** This can be achieved by simply running the following few lines of code in your application. You _could_ drop them in your theme's functions.php file, but don't. Instead, just [make a really simple plugin](https://macarthur.me/posts/creating-the-simplest-wordpress-plugin). It's almost always a better option.
 
 ```php
-add_action('wp_print_styles', function () {
+add_action('wp_head', function () {
 
     global $wp_scripts;
 
@@ -48,14 +48,14 @@ add_action('wp_print_styles', function () {
             echo "<link rel='preload' href='{$source}' as='script'/>\n";
         }
     }
-});
+}, 1);
 
 ```
-Here's what's going on: On the `wp_print_styles` hook (which fires after our scripts have been enqueued), we're looping through our registered scripts and printing out a `link` tag in our `head` for each resource that's enqueued in the footer of our page. In the end, every JavaScript file that's loaded toward the bottom of your page will have a `<head>` start (LOL) as the page loads for the user.
+Here's what's going on: On the `wp_head` hook (which fires after our scripts have been enqueued), we're looping through our registered scripts and printing out a `link` tag in our `head` for each resource that's enqueued in the footer of our page. In the end, every JavaScript file that's loaded toward the bottom of your page will have a `<head>` start (LOL) as the page loads for the user.
 
 Three notes about this setup: 
 
-**1. We're hooking into `wp_print_styles` to spit out our `link` tags.** Why not `wp_print_scripts`, since we're preloading, you know, scripts? We're choosing this hook because this allows us to get as close to the top of the page as possible, meaning our stuff can start loading as soon as possible.  The `wp_print_scripts` hook would also work just fine -- it'd just mean we preload things a little farther down on the page. 
+**1. We're hooking into `wp_head` with a early priority to spit out our `link` tags.** We're choosing this hook because it fires after our scripts have been enqueued, and it allows us to get as close to the top of the page as possible, meaning our stuff can start loading as soon as possible. The priority of `1` means it'll fire early on -- before most other stuff gets printed in the head. You see The `wp_print_scripts` or `wp_print_styles` hooks would also work just fine -- it'd just mean we preload things a little farther down on the page. 
 
 **2. We're not preloading scripts enqueued in the header.** This is for two reasons. 
 
@@ -95,11 +95,11 @@ Lighthouse Performance Results:
 
 **Overall Score:** 2-5 point improvement 
 
-**First Meaningful Paint:** ~20% improvement 
+**First Meaningful Paint:** As high as ~20% improvement 
 
-**First Interactive:** ~15% improvement 
+**First Interactive:** As high as ~15% improvement 
 
-**Perceptual Speed Index:** ~20% improvement 
+**Perceptual Speed Index:** As high as ~20% improvement 
 
 ---
 
