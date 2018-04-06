@@ -13,7 +13,7 @@ You can preload just about anything, but often, the easiest way to see quick win
 ```html
 <html>
 	<head>
-		<link ref="preload" href="https://my-script.js" as="script" />
+		<link rel="preload" href="https://my-script.js" as="script" />
 	</head>
 	<body>
 		<!-- a bunch o' content -->
