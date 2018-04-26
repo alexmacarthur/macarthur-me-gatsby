@@ -40,7 +40,7 @@ Imagine that we want all of the "long" cat massage tutorials in our database -- 
 
 We _could_ do something like get all the posts, and then loop over each retrieved post in our PHP, filtering out those under a certain character count. But this is inefficient and bit more cumbersome compared to another option we have.
 
-## Better option: Use the 'posts_where' to modify the 'where' clause in your WP_Query. 
+## Better option: Use the 'posts\_where' to modify the 'where' clause in your WP_Query. 
 
 By modifying the SQL query underlying our WP_Query, the work can be efficiently offloaded to where it _should_ be done, rather than dealing with it elsewhere, like in template logic. 
 
