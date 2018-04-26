@@ -1,10 +1,10 @@
 ---
-title: "When WP_Query Just Isn't Good Enough: Using the 'posts_where' Filter in WordPress"
+title: "Querying for the Unqueryable with WP_Query: Using the 'posts_where' Filter in WordPress"
 date: "2018-04-25"
 open_graph: "https://images.unsplash.com/photo-1483736762161-1d107f3c78e1?ixlib=rb-0.3.5&s=761469e5b4fedfc206d9fe3cee4d2d71&auto=format&fit=crop&w=1200&q=100"
 ---
 
-If you've spent 20 seconds in WordPress development, you've worked with, yelled at, praised, and fallen in love with the WP_Query class -- one of the most useful, commonly used tools in any given WordPress website or application.
+If you've spent 20 seconds in WordPress development, you've likely worked with, cursed, and fallen in love with the WP_Query class -- one of the most useful, commonly used tools in any given WordPress website or application.
 
 Aside from being responsible for the main query on any given page or post, it serves as the go-to way to interface with your database in tons of different contexts. Most commonly, you might see it used to retrieve data like custom post types. For example, getting all of the cat massage tutorials in a site: 
 
@@ -36,11 +36,11 @@ That's all really neat, and honestly, relatively common to see. So, let's do som
 
 Imagine that we want all of the "long" cat massage tutorials in our database -- those whose content have at least a certain number of characters. This information isn't stored in post meta, so we can't rely on out-of-the-box functionality of WP_Query. So, how do we collect only the "long" posts in our database? 
 
-## One option: Loop through all the things.
+### One option: Loop through all the things.
 
 We _could_ do something like get all the posts, and then loop over each retrieved post in our PHP, filtering out those under a certain character count. But this is inefficient and bit more cumbersome compared to another option we have.
 
-## Better option: Use the 'posts\_where' to modify the 'where' clause in your WP_Query. 
+### Better option: Use the 'posts\_where' filter to modify the 'where' clause in your WP_Query. 
 
 By modifying the SQL query underlying our WP_Query, the work can be efficiently offloaded to where it _should_ be done, rather than dealing with it elsewhere, like in template logic. 
 
@@ -99,10 +99,10 @@ add_filter('posts_where', function ($where, $query) {
 
 Now, our WP_Query object will return exactly what we defined in our arguments, but within the scope of how we filtered our `where` clause. All _without_ needing to be clever with any other PHP. 
 
-## "When am I ever going to need this?"
+### "When am I ever going to need this?"
 I don't know. This WordPress development we're talking about. Always be ready.
 
-## "This doesn't make me feel very good."
+### "This doesn't make me feel very good."
 I'm right there with you. When querying like this, making a WP_Query object and then writing a filter in a different location is far less than elegant, and I'm certainly open to more effective ways so do this without getting abandoning use of the tool altogether. Do you have a better solution? Share it!
 
 If you're struggling with make this or anything thing related work in your own application, I'm available to help. [Get in touch](/contact)!
