@@ -53,7 +53,7 @@ $massageQuery = new WP_Query([
 ]);
 ```
 
-**In our arguments, pass a "query_label" key and value. This isn't a WP\_Query option -- it's a totally arbitrary key we're passing that we'll use later to identify our query.**
+**In our arguments, pass a `query_label` key and value. This isn't a WP\_Query option -- it's a totally arbitrary key we're passing that we'll use later to identify our query.**
 
 ```php 
 $massageQuery = new WP_Query([
@@ -105,4 +105,4 @@ I don't know. This WordPress development we're talking about. Always be ready.
 ### "This doesn't make me feel very good."
 I'm right there with you. When querying like this, making a WP\_Query object and then writing a filter in a different location is far less than elegant, and I'm certainly open to more effective ways so do this without getting abandoning use of the tool altogether. Do you have a better solution? Share it!
 
-If you're struggling with make this or anything thing related work in your own application, I'm available to help. [Get in touch](/contact)!
+For better or for worse, I hope this will help tackle a task using WP_Query in the future. That said, if you're struggling with this or anything related in your own application, I'm available for hire. [Get in touch](/contact)!
