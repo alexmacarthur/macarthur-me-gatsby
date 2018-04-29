@@ -1,5 +1,5 @@
 ---
-title: "Querying for the Unqueryable with WP_Query: Using the 'posts_where' Filter in WordPress"
+title: "Using the 'posts_where' Filter with WP_Query in WordPress"
 date: "2018-04-25"
 open_graph: "https://images.unsplash.com/photo-1483736762161-1d107f3c78e1?ixlib=rb-0.3.5&s=761469e5b4fedfc206d9fe3cee4d2d71&auto=format&fit=crop&w=1200&q=100"
 ---
