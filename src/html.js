@@ -30,6 +30,10 @@ module.exports = class HTML extends React.Component {
             name="viewport"
             content="width=device-width, initial-scale=1, shrink-to-fit=no"
           />
+
+          <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+          <script dangerouslySetInnerHTML={{__html: '(adsbygoogle = window.adsbygoogle || []).push({google_ad_client: "ca-pub-6353121975973387", enable_page_level_ads: true});'}}></script>
+
           {this.props.headComponents}
           {css}
         </head>
