@@ -19,6 +19,12 @@ module.exports = {
     },
     projects: [
       {
+        title: "Better Resource Hints",
+        description:
+          "A WordPress plugin that improves performance by leveraging modern resource hints like preload, prefetch, and server push.",
+        url: "https://wordpress.org/plugins/better-resource-hints/"
+      },
+      {
         title: "TypeIt",
         description:
           "The most versatile JavaScript animated typing utility on the planet.",
