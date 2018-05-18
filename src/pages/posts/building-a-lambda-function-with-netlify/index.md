@@ -44,7 +44,7 @@ Letz do dis.
 }
 ```
 
-Notice that, even though we've created a `lambda` directory to contain our compiled function's code, we're _not_ actually targeting it with any of these commands. Instead, `netlify-lambda` will handle that itself, when it automatically transfers the contents of our target directory (`lambda-src`) to the destination directory we'll define in the next step, using a `netlify.toml` file.
+Notice that even though we've created a `lambda` directory to contain our compiled function's code, we're _not_ actually targeting it with any of these commands. Instead, `netlify-lambda` will handle that itself. When the `server` or `build` command is executed, the contents of the target directory are automatically transferred to the directory we'll define in our `netlify.toml` file in the next step.
 
 **Speaking of, the next important step is creating a `netlify.toml` file,** which will contain the required configuration information for our function's deployment. 
 
