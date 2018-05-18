@@ -6,7 +6,7 @@ open_graph: "https://images.pexels.com/photos/8775/traffic-car-vehicle-black.jpg
 
 Squeezing every last drop of performance out of your website on any platform is an always-changing, never-ending, often addictive battle.
 
-Among the several tactics you can employ in this fight, optimizing your site's [resource hints](https://www.w3.org/TR/resource-hints) is a modern approach that can yield some significant ROI. And specifically, asset preloading is a particularly impactful place to start. [It's a topic worth learning about in more depth yourself](https://www.smashingmagazine.com/2016/02/preload-what-is-it-good-for/), but in short, preloading involves a web page starting to load a particular asset as soon as possible in the background, so it's ready to be used when the page calls for it. Because it's all done asyncronously, it won't block anything else from coming in the view during load. This is different from using an attribute like `async` on your `script` tags, because preloaded JavaScript won't automatically execute after it's loaded -- it's effectively inert until it's needed on your page. So, while the _amount_ of data being loaded by your page won't change, the start-to-end process of it all will go much quicker. This all translates into a better experience for your users, and more of da dolla billz for you. 
+Among the several tactics you can employ in this fight, optimizing your site's [resource hints](https://www.w3.org/TR/resource-hints) is a modern approach that can yield some significant ROI. And specifically, asset preloading is a particularly impactful place to start. [It's a topic worth learning about in more depth yourself](https://www.smashingmagazine.com/2016/02/preload-what-is-it-good-for/), but in short, preloading involves a web page starting to load a particular asset as soon as possible in the background, so it's ready to be used when the page calls for it. Because it's all done asyncronously, it won't block anything else from coming in the view during load. This is different from using an attribute like `async` on your `script` tags, because preloaded JavaScript won't automatically execute after it's loaded -- it's effectively inert until it's needed on your page. So, while the _amount_ of data being loaded by your page won't change, the start-to-end process of it all will go much quicker. This all translates into a better experience for your users, and more of da dolla billz for you.
 
 You can preload just about anything, but often, the easiest way to see quick wins is to start with your JavaScript files, which are often loaded toward the bottom of the page (to prevent render blocking), but nevertheless essential for your page or application to function. It looks something like this: 
 
@@ -29,6 +29,12 @@ When this page is loaded, the browser first hits `<link rel="preload" ... />`, w
 In WordPress, it's easy enough to manually spit out a `link ref="preload"` tag for each file you'd like to preload, but it's kind of a pain to set up if you're managing a site with a lot of different scripts being enqueued by several different plugins, some of which are in the `head`, and others toward the bottom of your page. You want this automated, and you want that automation to be smart about which scripts are chosen to be preloaded. 
 
 So, a solution! **Loop over our footer-enqueued scripts and preload them in the header.** This can be achieved by simply running the following few lines of code in your application. You _could_ drop them in your theme's functions.php file, but don't. Instead, just [make a really simple plugin](https://macarthur.me/posts/creating-the-simplest-wordpress-plugin). It's almost always a better option.
+
+<aside>
+  <p>
+    HOLD UP: What you're reading about is super important to understand. But, if you want an easy, comprehensive way to implement asset preloading and other resource hints, try out my new <strong>FREE</strong> plugin <a href="https://wordpress.org/plugins/better-resource-hints">Better Resource Hints.</a> Install it and measure your performance gains!
+  </p>
+</aside>
 
 ```php
 add_action('wp_head', function () {
