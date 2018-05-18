@@ -4,7 +4,7 @@ date: "2018-02-12"
 open_graph: "https://images.pexels.com/photos/238118/pexels-photo-238118.jpeg?w=1260&h=750&dpr=2&auto=compress&cs=tinysrgb"
 ---
  
-Some time ago, I wrote my first Lambda function with Firebase. Like every Lambda function tutorial on the web shows you how to do, mine processes a payment via Stripe when someone purchases a license for [TypeIt](https://typeitjs.com), the most versatile animated typing utility on the planet. The process was pretty straightforward -- Firebase's CLI, documentation, and support are all great. Even so, I had some reservations about the setup.
+Some time ago, I wrote my first Lambda function with Firebase. Like every Lambda function tutorial on the web shows you how to do, mine processes a payment via Stripe when someone purchases a license for [TypeIt](https://typeitjs.com), a JavaScript utility for making typewriter effects. The process was pretty straightforward -- Firebase's CLI, documentation, and support are all great. Even so, I had some reservations about the setup.
 
 First off, TypeIt's site is hosted with Netlify, with which I am madly in love, so development of the function felt... detached. I couldn't just keep everything in the same repository, and I had to keep tabs on three different services to make this all happen -- Netlify, Firebase, and Stripe. 
 
@@ -38,16 +38,15 @@ Letz do dis.
 
 ```json
 "scripts": {
-  "copy": "cp lambda-src/purchase.js lambda/purchase.js",
-  "lambda-serve": "yarn run copy && netlify-lambda serve lambda",
-  "build": "NODE_ENV=production webpack && yarn run copy && netlify-lambda build lambda",
+  "lambda-serve": "netlify-lambda serve lambda-src",
+  "build": "NODE_ENV=production webpack && netlify-lambda build lambda-src",
   "dev": "NODE_ENV=development concurrently \"webpack-dev-server --content-base src/\" \"yarn run lambda-serve\""
 }
 ```
 
-Also, notice that in our `lambda-serve` and `copy` actions, I'm copying the function source from `lambda-src` to `lambda`. This is because when we run our local development server, the contents of `lambda` will be built and overwritten. So, we want to keep our pre-built code in a separate directory for safekeeping. This is important and will prevent you from tearing out your hair after accidentally wiping out the code you've been slaving over.
+Notice that, even though we've created a `lambda` directory to contain our compiled function's code, we're _not_ actually targeting it with any of these commands. Instead, `netlify-lambda` will handle that itself, when it automatically transfers the contents of our target directory (`lambda-src`) to the destination directory we'll define in the next step, using a `netlify.toml` file.
 
-**The next important step is creating a `netlify.toml` file,** which will contain the required configuration information for our function's deployment. 
+**Speaking of, the next important step is creating a `netlify.toml` file,** which will contain the required configuration information for our function's deployment. 
 
 `touch netlify.toml`
 
