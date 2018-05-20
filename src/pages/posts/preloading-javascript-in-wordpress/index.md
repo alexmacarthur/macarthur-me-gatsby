@@ -1,7 +1,7 @@
 ---
 title: Preloading JavaScript Assets in WordPress
 date: "2018-04-05"
-open_graph: "https://images.pexels.com/photos/8775/traffic-car-vehicle-black.jpg?cs=srgb&dl=automobile-boost-car-8775.jpg&fm=jpg"
+open_graph: "https://images.pexels.com/photos/8775/traffic-car-vehicle-black.jpg"
 ---
 
 Squeezing every last drop of performance out of your website on any platform is an always-changing, never-ending, often addictive battle.
@@ -32,7 +32,7 @@ So, a solution! **Loop over our footer-enqueued scripts and preload them in the 
 
 <aside>
   <p>
-    HOLD UP: What you're reading about is super important to understand. But, if you want an easy, comprehensive way to implement asset preloading and other resource hints, try out my new <strong>FREE</strong> plugin <a href="https://wordpress.org/plugins/better-resource-hints">Better Resource Hints.</a> Install it and measure your performance gains!
+    If you want an easy way to implement asset preloading and leverage other performance-enhancing resource hints, try out my new <strong>FREE</strong> plugin <a href="https://wordpress.org/plugins/better-resource-hints">Better Resource Hints.</a> Install it and measure your performance gains!
   </p>
 </aside>
 

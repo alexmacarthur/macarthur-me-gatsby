@@ -26,7 +26,7 @@ Letz do dis.
 
 ## Setting Up Our Function
 
-**First, let's create two directories where our function will be developed and deployed.** We'll be storing our pre-built code in `lambda-src`, and building it into `lambda`. More on why we set it up this way later. 
+**First, let's create two directories where our function will be developed and deployed.** We'll be storing our pre-built code in `lambda-src`, and building it into `lambda`.
 
 `mkdir lambda lambda-src`
 
@@ -44,7 +44,7 @@ Letz do dis.
 }
 ```
 
-Notice that, even though we've created a `lambda` directory to contain our compiled function's code, we're _not_ actually targeting it with any of these commands. Instead, `netlify-lambda` will handle that itself, when it automatically transfers the contents of our target directory (`lambda-src`) to the destination directory we'll define in the next step, using a `netlify.toml` file.
+Notice that even though we've created a `lambda` directory to contain our compiled function's code, we're _not_ actually targeting it with any of these commands. Instead, `netlify-lambda` will handle that itself, when it automatically transfers the contents of our target directory (`lambda-src`) to the destination directory we'll define in the next step using a `netlify.toml` file.
 
 **Speaking of, the next important step is creating a `netlify.toml` file,** which will contain the required configuration information for our function's deployment. 
 
