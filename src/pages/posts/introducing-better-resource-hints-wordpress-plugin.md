@@ -28,4 +28,4 @@ Specifically, this plugin leverages the following types of hints:
 
 **Server Push** – If enabled, server push will tell your server to start delivering an asset before the browser even asks for it. This results in a much faster delivery of key assets, and it be toggled on for both preloaded, prefetched, and preconnected assets. Note: This feature requires a server that supports server push, and is the most experimental strategy this plugin provides.
 
-There's not much to lose here. [Download the plugin](https://wordpress.org/plugins/better-resource-hints/), activate it, and start measuring your performance gains using a tool like Google Lighthouse. Regardless of the results, [let me know!](/contact). I want to know what I can do to make the plugin better in any way.
+There's not much to lose here. [Download the plugin](https://wordpress.org/plugins/better-resource-hints/), activate it, and start measuring your performance gains using a tool like Google Lighthouse. Regardless of the results, [let me know!](/contact) I want to know what I can do to make the plugin better in any way.
