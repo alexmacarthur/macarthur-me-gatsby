@@ -1,14 +1,14 @@
 ---
 title: Build Your Own Simple Lazy Loading Functionality in WordPress
 date: "2018-02-23"
-open_graph: ""
+open_graph: "https://images.pexels.com/photos/196655/pexels-photo-196655.jpeg"
 ---
 
 When you're looking to incorporate any given feature into your WordPress application, there's rarely a shortage of third-party plugins out there to make it happen. But sometimes, whether you're trying to avoid the inevitable complexity an unfamiliar third-party plugin introduces, or for some other reason, you might feel called to take a stab at developing that feature on your own. Lazy loading images could be one of these features, and fortunately, it's fairly simple to set it up yourself and start reaping the performance benefits. 
 
-I'm assuming here that you have full development dominion over your WordPress application, and that you're relatively familiar with the [WordPress Plugin API](https://codex.wordpress.org/Plugin_API) -- the characteristic hook system that makes WordPress development as flexible as it is. While we _could_ put all of the following functionality inside your theme's `functions.php` file, we'll be rolling our own extremely basic plugin. This is generally a good idea over just using your theme -- it'll separate concerns a little better, you'll be able to switch themes without losing functionality, and it'll be easy to toggle whenever like, which is particularly helpful when debugging.
+I'm assuming here that you have full development dominion over your WordPress application, and that you're relatively familiar with the [WordPress Plugin API](https://codex.wordpress.org/Plugin_API) -- the characteristic hook system that makes WordPress development as flexible as it is. While we _could_ set up lazy loading without a plugin by putting everything inside your theme's `functions.php` file, we'll be rolling our own extremely basic plugin. This is generally a good idea over just using your theme -- it'll separate concerns a little better, you'll be able to switch themes without losing functionality, and it'll be easy to toggle whenever like, which is particularly helpful when debugging.
 
-_Know this:_ I won't be going in-depth on the philosophy of what makes a well-crafted WordPress plugin. Play with singletons, class structure, and PSR-4 autoloading on your own. I'm just gonna give you the bare bones of what it takes to make a lazy loading plugin with just a few lines of code. Let's get started.
+_Know this:_ I won't be going in-depth on the philosophy of what makes a well-crafted WordPress plugin. Play with singletons, class structure, and autoloading on your own. I'm just gonna give you the bare bones of what it takes to make a lazy loading plugin with just a few lines of code. Let's get started.
 
 ## Set Up Your Plugin
 In your plugins directory, create a `simple-lazy-loading` directory and a file inside it named `simple-lazy-loading.php`. Open that file, and place the following at the top: 
