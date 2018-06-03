@@ -9,4 +9,4 @@ I refuse to make you read through pages and pages of boring text about a policy 
 No information that may personally identify you as an individual is collected through this service. I don't really care who you are; I just want you to benefit from what I've built or written.
 
 ## That's About It
-If you have questions about any of this, [contact me](/contact);
+If you have questions about any of this, [contact me](/contact).
