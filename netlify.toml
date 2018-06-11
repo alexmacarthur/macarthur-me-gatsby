@@ -1,0 +1,14 @@
+[build]
+  command = "yarn run build"
+  publish = "public"
+  NODE_ENV = "8.9.4"
+
+[[redirects]]
+  from = "/typeit"
+  to = "https://typeitjs.com"
+  status = 301
+
+[[redirects]]
+  from = "/posts/lazy-load-images-in-wordpress-without-a-plugin"
+  to = "/posts/build-your-own-simple-lazy-loading-functionality-in-wordpress"
+  status = 301
