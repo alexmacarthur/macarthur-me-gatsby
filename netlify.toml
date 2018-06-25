@@ -12,3 +12,8 @@
   from = "/posts/lazy-load-images-in-wordpress-without-a-plugin"
   to = "/posts/build-your-own-simple-lazy-loading-functionality-in-wordpress"
   status = 301
+  
+[[redirects]]
+  from = "/jk"
+  to = "https://docs.google.com/forms/d/e/1FAIpQLSfcDuZp-6LfmvocxfPmci-HqZ1dERw5s8Q-eXSVEJLLcorR5g/viewform?usp=sf_link"
+  status = 302
