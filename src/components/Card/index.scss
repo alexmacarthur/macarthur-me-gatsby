@@ -28,15 +28,6 @@
   margin-bottom: 0;
 }
 
-.Card-fillLink {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  left: 0;
-  top: 0;
-  z-index: 1;
-}
-
 .Card--inGrid {
   border: 3px solid $gray--mediumLight;
   border-radius: $border-radius;

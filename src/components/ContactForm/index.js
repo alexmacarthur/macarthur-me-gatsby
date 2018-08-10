@@ -1,10 +1,7 @@
 import React from 'react'
-import Link from 'gatsby-link'
-import get from 'lodash/get'
-import Helmet from 'react-helmet'
 
 //-- Styles.
-import styles from './index.scss'
+import './index.scss'
 
 export default class ContactForm extends React.Component {
 

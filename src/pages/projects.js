@@ -1,16 +1,16 @@
 import React from 'react'
-import Link from 'gatsby-link'
-import get from 'lodash/get'
+import { graphql } from 'gatsby'
 import Helmet from 'react-helmet'
 
 import Card from '../components/Card'
+import Layout from "../components/Layout"
 
 export default ({ data }) => {
 
   const projects = data.site.siteMetadata.projects;
 
   return (
-  <div>
+    <Layout>
       <Helmet title={data.site.siteMetadata.title} />
 
       <h1>Projects</h1>
@@ -38,7 +38,7 @@ export default ({ data }) => {
           />
         )}
       </div>
-    </div>
+    </Layout>
   )
 }
 

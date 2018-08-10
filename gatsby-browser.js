@@ -1,5 +1,3 @@
-import { createElement } from "react"
-
 exports.onInitialClientRender = () => {
   window.slice = document.getElementById('slice');
 }

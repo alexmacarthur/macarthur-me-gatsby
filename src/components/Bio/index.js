@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import styles from './index.scss'
+import './index.scss';
 import pic from './bio.jpg';
 
 class Bio extends React.Component {

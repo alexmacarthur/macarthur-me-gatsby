@@ -1,10 +1,8 @@
 import React from 'react'
 import Link from 'gatsby-link'
-import get from 'lodash/get'
-import Helmet from 'react-helmet'
 
 //-- Styles.
-import styles from './index.scss'
+import './index.scss'
 
 class Card extends React.Component {
 
@@ -25,10 +23,6 @@ class Card extends React.Component {
       <article
         className={"Card" + (this.props.inGrid ? " Card--inGrid" : "")}
         key={this.props.path}>
-
-        {this.props.fillLink &&
-          <a title="" className="Card-fillLink" href={this.props.path}></a>
-        }
 
         <h3 className="Card-title">
           { link }

@@ -1,12 +1,11 @@
 import React from 'react'
-import get from 'lodash/get'
 
 import IconGithub from '-!svg-react-loader?name=Icon!../../../assets/img/github.svg';
 import IconTwitter from '-!svg-react-loader?name=Icon!../../../assets/img/twitter.svg';
 import IconLinkedIn from '-!svg-react-loader?name=Icon!../../../assets/img/linkedin.svg';
 import IconFacebook from '-!svg-react-loader?name=Icon!../../../assets/img/facebook.svg';
 
-import styles from './index.scss';
+import './index.scss';
 
 import config from '../../../gatsby-config.js';
 
