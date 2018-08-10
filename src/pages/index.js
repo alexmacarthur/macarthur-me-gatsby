@@ -1,7 +1,7 @@
-import React from 'react'
+import { graphql } from 'gatsby'
+import React, { Fragment } from 'react'
 import PropTypes from 'prop-types'
-import get from 'lodash/get'
-import Helmet from 'react-helmet'
+import SEO from "../components/SEO"
 
 import Hero from '../components/Hero'
 
@@ -9,9 +9,10 @@ class BlogIndex extends React.Component {
 
   render() {
     return (
-      <div>
+      <Fragment>
+        <SEO />
         <Hero />
-      </div>
+      </Fragment>
     )
   }
 }

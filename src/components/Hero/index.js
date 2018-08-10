@@ -1,13 +1,12 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import Helmet from 'react-helmet'
 
 //-- Components.
 import Nav from '../Nav'
 import SocialIcons from '../SocialIcons'
 
 //-- Styles.
-import styles from './index.scss'
+import './index.scss'
 
 class Hero extends React.Component {
 

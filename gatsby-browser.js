@@ -1,4 +1,5 @@
-import { createElement } from "react"
+//-- Include global styles.
+require('./assets/scss/style.scss');
 
 exports.onInitialClientRender = () => {
   window.slice = document.getElementById('slice');

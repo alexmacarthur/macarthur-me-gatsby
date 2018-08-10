@@ -1,11 +1,11 @@
 import React from 'react'
+import { graphql } from 'gatsby'
 import PropTypes from 'prop-types'
 import get from 'lodash/get'
 import Helmet from 'react-helmet'
 
 import Card from '../../components/Card'
-
-import '../../../assets/scss/style.scss';
+import Layout from '../../components/Layout'
 
 class PostList extends React.Component {
 
@@ -18,15 +18,13 @@ class PostList extends React.Component {
     });
 
     return (
-
+      <Layout>
         <div>
           <Helmet title={get(this, 'props.data.site.siteMetadata.title')} />
 
           <h1>Posts</h1>
 
           { filteredPosts.map(({ node }) => {
-              const title = node.frontmatter.title || node.slug
-
               return (
                 <Card
                   key={node.fields.slug}
@@ -38,6 +36,7 @@ class PostList extends React.Component {
               )
           }) }
         </div>
+      </Layout>
     )
   }
 }

@@ -110,7 +110,7 @@ module.exports = {
     {
       resolve: `gatsby-plugin-google-fonts`,
       options: {
-        fonts: [`Nunito\:400,900`, `Merriweather\:400,400i,700`]
+        fonts: [`Nunito:400,900`, `Merriweather:400,400i,700`]
       }
     }
   ]

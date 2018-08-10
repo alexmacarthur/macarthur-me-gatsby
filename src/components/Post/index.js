@@ -1,14 +1,13 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import Helmet from 'react-helmet'
 
 import Bio from '../Bio/index.js'
 import SocialIcons from '../SocialIcons'
 import DisqusThread from '../DisqusThread';
 
-//-- Styles.
-require("prismjs/themes/prism-okaidia.css");
-import styles from './index.scss'
+import './index.scss';
+
+import "prismjs/themes/prism-okaidia.css";
 
 class Post extends React.Component {
 

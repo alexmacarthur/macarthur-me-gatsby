@@ -1,8 +1,7 @@
 import React from 'react'
 import Link from 'gatsby-link'
-import get from 'lodash/get'
 
-import styles from './index.scss';
+import './index.scss';
 
 class Nav extends React.Component {
 
