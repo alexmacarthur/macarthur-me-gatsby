@@ -8,7 +8,7 @@ When you're looking to incorporate any given feature into your WordPress applica
 
 I'm assuming here that you have full development dominion over your WordPress application, and that you're relatively familiar with the [WordPress Plugin API](https://codex.wordpress.org/Plugin_API) -- the characteristic hook system that makes WordPress development as flexible as it is. While we _could_ set up lazy loading without a plugin by putting everything inside your theme's `functions.php` file, we'll be rolling our own extremely basic plugin. This is generally a good idea over just using your theme -- it'll separate concerns a little better, you'll be able to switch themes without losing functionality, and it'll be easy to toggle whenever like, which is particularly helpful when debugging.
 
-_Know this:_ I won't be going in-depth on the philosophy of what makes a well-crafted WordPress plugin. Experiment and argue about all tha jazz on your own. I'm just gonna give you the bare bones of what it takes to make a lazy loading plugin with just a few lines of code. Let's get started.
+_Know this:_ I won't be going in-depth on the philosophy of what makes a well-crafted WordPress plugin. Experiment and argue about all that jazz on your own. I'm just gonna give you the bare bones of what it takes to make a lazy loading plugin with just a few lines of code. Let's get started.
 
 ## Set Up Your Plugin
 In your plugins directory, create a `simple-lazy-loading` directory and a file inside it named `simple-lazy-loading.php`. Open that file, and place the following at the top: 
@@ -30,16 +30,16 @@ After you've done that, open up the file you just created and we're ready to go!
 
 You can lazy load a lot of things, but here, we're just focusing on lazy loading images stored in your WordPress database that are spit out as post or page content. Basically, images you upload and use via the WordPress admin.
 
-To do this, let's use [Lozad](https://github.com/ApoorvSaxena/lozad.js) for our lazy loading JavaScript library. It has no jQuery dependency, appears to be pretty actively maintained, and it leverages the [Interaction Observer API](https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API), which will get you better performance, especially as browser support grows in the future. In the meantime, there's a [polyfill](https://github.com/w3c/IntersectionObserver/tree/master/polyfill) you can include.
+To do this, let's use [Lozad](https://github.com/ApoorvSaxena/lozad.js) for our lazy loading JavaScript library. It has no jQuery dependency, appears to be pretty actively maintained, and it leverages the [Intersection Observer API](https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API), which will get you better performance, especially as browser support grows in the future. In the meantime, there's a [polyfill](https://github.com/w3c/IntersectionObserver/tree/master/polyfill) you can include.
 
 ### Getting Lozad Up on Its Feet
 
-**First, enqueue the Lozad library.** We'll also want to throw in the official W3C polyfill for the Interaction Observer API. We'll enqueue both of these in the footer because we're responsible web developers and don't want these scripts to block page rendering. 
+**First, enqueue the Lozad library.** We'll also want to throw in the official W3C polyfill for the Intersection Observer API. We'll enqueue both of these in the footer because we're responsible web developers and don't want these scripts to block page rendering. 
 
 ```php
 add_action('wp_enqueue_scripts', function () {
-   wp_enqueue_script( 'interaction-observer-polyfill', 'path-to-interaction-observer.js', [], null, true );
-   wp_enqueue_script( 'lozad', 'https://cdn.jsdelivr.net/npm/lozad@1.3.0/dist/lozad.min.js', ['interaction-observer-polyfill'], null, true );
+   wp_enqueue_script( 'intersection-observer-polyfill', 'path-to-intersection-observer.js', [], null, true );
+   wp_enqueue_script( 'lozad', 'https://cdn.jsdelivr.net/npm/lozad@1.3.0/dist/lozad.min.js', ['intersection-observer-polyfill'], null, true );
 });
 ```
 
@@ -47,8 +47,8 @@ add_action('wp_enqueue_scripts', function () {
 
 ```php
 add_action('wp_enqueue_scripts', function () {
-    wp_enqueue_script( 'interaction-observer-polyfill', 'path-to-interaction-observer.js', [], null, true );
-    wp_enqueue_script( 'lozad', 'https://cdn.jsdelivr.net/npm/lozad@1.3.0/dist/lozad.min.js', ['interaction-observer-polyfill'], null, true );
+    wp_enqueue_script( 'intersection-observer-polyfill', 'path-to-intersection-observer.js', [], null, true );
+    wp_enqueue_script( 'lozad', 'https://cdn.jsdelivr.net/npm/lozad@1.3.0/dist/lozad.min.js', ['intersection-observer-polyfill'], null, true );
     wp_add_inline_script( 'lozad', '
         lozad(".lazy-load").observe();
     ');
