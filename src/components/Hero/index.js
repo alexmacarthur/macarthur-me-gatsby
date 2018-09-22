@@ -25,7 +25,9 @@ class Hero extends React.Component {
               <h2 className="Hero-subTitle">
                 A web developer.
               </h2>
-              <SocialIcons />
+              <SocialIcons 
+                newTab={true}
+              />
             </div>
           </div>
           <Nav type="long"/>
