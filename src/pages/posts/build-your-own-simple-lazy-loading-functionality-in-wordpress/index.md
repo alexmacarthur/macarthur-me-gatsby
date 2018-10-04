@@ -76,8 +76,8 @@ add_filter('the_content', function ($content) {
 	//-- Add .lazy-load class to each image that already has a class.
 	$content = preg_replace('/<img(.*?)class=\"(.*?)\"(.*?)>/i', '<img$1class="$2 lazy-load"$3>', $content);
 
-	//-- Add .lazy-load class to each image that doesn't have a class.
-	$content = preg_replace('/<img(.*?)(?!\bclass\b)(.*?)/i', '<img$1 class="lazy-load"$2', $content);
+	//-- Add .lazy-load class to each image that doesn't already have a class.
+	$content = preg_replace('/<img((?:(?!class=).)*?)>/i', '<img class="lazy-load"$1>', $content);
 	
 	return $content;
 });
@@ -101,7 +101,7 @@ If images only load when they come into view, you'll see an ugly pop on the page
 wp_add_inline_script( 'lozad', '
 	lozad(".lazy-load", { 
 		rootMargin: "300px 0px"
-	}).observe()
+	}).observe();
 ');
 ```
 
@@ -116,7 +116,7 @@ wp_add_inline_script( 'lozad', '
 		loaded: function (el) {
 			el.classList.add("is-loaded");
 		}
-	}).observe()
+	}).observe();
 ');
 ```
 
