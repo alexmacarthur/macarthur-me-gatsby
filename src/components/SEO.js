@@ -67,6 +67,7 @@ class SEO extends Component {
             {/* General tags */}
             <meta name="description" content={description} />
             <meta name="image" content={image} />
+            <title>{title}</title>
 
             {/* Schema.org tags */}
             <script type="application/ld+json">
@@ -81,7 +82,7 @@ class SEO extends Component {
                 ? <meta property="og:type" content="article" /> 
                 : null
             }
-
+            
             <meta property="og:title" content={title} />
             <meta property="og:description" content={description} />
             <meta property="og:image" content={image} />
