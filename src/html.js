@@ -12,6 +12,8 @@ export default class HTML extends React.Component {
             name="viewport"
             content="width=device-width, initial-scale=1, shrink-to-fit=no"
           />
+          <link rel="prefetch" as="document" href="https://adopt.macarthur.me" />
+          <link rel="prerender" href="https://adopt.macarthur.me" />
           {this.props.headComponents}
         </head>
         <body {...this.props.bodyAttributes}>

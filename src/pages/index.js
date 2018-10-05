@@ -4,6 +4,7 @@ import PropTypes from 'prop-types'
 import SEO from "../components/SEO"
 
 import Hero from '../components/Hero'
+import Banner from '../components/Banner'
 
 class BlogIndex extends React.Component {
 
@@ -11,6 +12,7 @@ class BlogIndex extends React.Component {
     return (
       <Fragment>
         <SEO />
+        <Banner isAbsolute={true} />
         <Hero />
       </Fragment>
     )

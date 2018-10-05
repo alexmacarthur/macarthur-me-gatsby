@@ -4,6 +4,7 @@ import PropTypes from 'prop-types'
 import Nav from '../components/Nav'
 import Footer from '../components/Footer'
 import SEO from '../components/SEO'
+import Banner from "components/Banner";
 
 class Layout extends React.Component {
 
@@ -17,9 +18,11 @@ class Layout extends React.Component {
             <div>
                 <SEO />
 
+                <Banner />
+
                 <Nav isTop={ true } type="short" />
 
-                <main> 
+                <main>
                     { children }
                 </main>
 

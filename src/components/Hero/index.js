@@ -30,7 +30,7 @@ class Hero extends React.Component {
               />
             </div>
           </div>
-          <Nav type="long"/>
+          <Nav type="short"/>
         </div>
       </main>
     )
