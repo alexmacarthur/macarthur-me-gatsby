@@ -12,7 +12,7 @@ class BlogIndex extends React.Component {
     return (
       <Fragment>
         <SEO />
-        <Banner isAbsolute={true} />
+        <Banner />
         <Hero />
       </Fragment>
     )
