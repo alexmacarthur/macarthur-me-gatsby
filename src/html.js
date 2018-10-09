@@ -12,8 +12,8 @@ export default class HTML extends React.Component {
             name="viewport"
             content="width=device-width, initial-scale=1, shrink-to-fit=no"
           />
-          <link rel="prefetch" as="document" href="https://adopt.macarthur.me" />
-          <link rel="prerender" href="https://adopt.macarthur.me" />
+          <link rel="prefetch" as="document" href="https://mystory.lifesongfororphans.org/stories/macarthurs-adopting-south-korea/" />
+          <link rel="prerender" href="https://mystory.lifesongfororphans.org/stories/macarthurs-adopting-south-korea/" />
           {this.props.headComponents}
         </head>
         <body {...this.props.bodyAttributes}>
