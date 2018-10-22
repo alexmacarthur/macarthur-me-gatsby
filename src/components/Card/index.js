@@ -1,5 +1,6 @@
 import React from 'react'
 import Link from 'gatsby-link'
+import url from 'url';
 
 import IconExternal from '-!svg-react-loader?name=Icon!../../../assets/img/external.svg';
 
@@ -49,7 +50,7 @@ class Card extends React.Component {
         <small>{this.props.date}</small>
 
         { this.props.external && !this.props.disableExternalIcon && 
-          <small> / {(new URL(this.props.path).host)}</small>
+          <small> / {url.parse(this.props.path).host}</small>
         }
 
         <p className="Card-content" >{this.props.postExcerpt}</p>

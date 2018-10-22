@@ -39,7 +39,8 @@
     "react-disqus-comments": "^1.2.0",
     "react-dom": "^16.4.2",
     "react-helmet": "^5.2.0",
-    "styled-components": "^2.2.2"
+    "styled-components": "^2.2.2",
+    "url": "^0.11.0"
   },
   "devDependencies": {
     "prettier": "^1.6.1",
