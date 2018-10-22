@@ -25,13 +25,19 @@ class PostList extends React.Component {
           <h1>Posts</h1>
 
           { filteredPosts.map(({ node }) => {
+
+              let link = node.frontmatter.external 
+                ? node.frontmatter.external
+                : node.fields.slug;
+
               return (
                 <Card
-                  key={node.fields.slug}
+                  key={link}
                   title={node.frontmatter.title}
-                  path={node.fields.slug}
+                  path={link}
                   date={node.frontmatter.date}
                   postExcerpt={node.excerpt}
+                  external={node.frontmatter.external}
                 />
               )
           }) }
@@ -63,7 +69,8 @@ export const postsQuery = graphql`
           }
           frontmatter {
             date(formatString: "DD MMMM, YYYY")
-            title
+            title,
+            external
           }
         }
       }

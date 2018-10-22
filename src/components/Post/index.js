@@ -22,9 +22,9 @@ class Post extends React.Component {
           </h1>
 
           { this.props.data.date &&
-            <date className="Post-date">
+            <span className="Post-date">
               {this.props.data.date}
-            </date>
+            </span>
           }
 
         </header>
