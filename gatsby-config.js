@@ -6,7 +6,7 @@ module.exports = {
     altTitle: "Alex MacArthur",
     author: "Alex MacArthur",
     shortBio:
-      "Alex MacArthur is a front end developer working for Dave Ramsey in Nashville, TN. Soli Deo gloria.",
+      "Alex MacArthur is a developer working for Dave Ramsey in Nashville. Soli Deo gloria.",
     description:
       "I'm a front-end web developer in Nashville, spending most of my time in WordPress and JavaScript. Hire me for your next project!",
     openGraphImage: "/open-graph.jpg",
