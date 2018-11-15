@@ -7,22 +7,10 @@
     width: 100%;
     text-align: center;
     background: $green;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 90px;
-    padding: 0 1rem;
+    padding: 2rem;
 
-    @include media($small-screen) {
-        height: 60px;
-    }
-
-    & + .Hero {
-        height: calc(100vh - 90px);
-
-        @include media($small-screen) {
-            height: calc(100vh - 60px);
-        }
+    &.is-absolute {
+        position: absolute;
     }
 
     &-text {
