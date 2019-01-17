@@ -116,3 +116,17 @@ hr {
   height: 2px;
   background: $gray--mediumLight;
 }
+
+table {
+  width: 100%;
+}
+
+th {
+  text-align: left;
+}
+
+td, th {
+  font-size: $base-font-size;
+  padding: 1rem;
+  border: 2px solid $gray--mediumLight;
+}

@@ -53,7 +53,14 @@ class Card extends React.Component {
           <small> / {url.parse(this.props.path).host}</small>
         }
 
-        <p className="Card-content" >{this.props.postExcerpt}</p>
+        <p className="Card-content"
+          dangerouslySetInnerHTML = {
+            {
+              __html: this.props.postExcerpt
+            }
+          }
+        >
+        </p>
       </article>
     )
   }
