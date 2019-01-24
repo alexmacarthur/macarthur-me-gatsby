@@ -1,0 +1,38 @@
+@import '../../../assets/scss/base/variables.scss';
+@import '../../../assets/scss/base/mixins.scss';
+
+.Pagination {
+    padding-top: 3rem;
+    text-align: center;
+
+    &:before {
+        content: '';
+        display: block;
+        height: 4px;
+        width: 50px;
+        background: $salmon;
+        margin: 0 auto 2rem;
+    }
+
+    &-state {
+        font-family: $header-font-family;
+    }
+
+    &-list {
+        display: flex;
+        justify-content: center;
+    }
+
+    &-item {
+        font-family: $header-font-family;
+
+        & + .Pagination-item {
+            margin-left: 1rem;
+        }
+
+        .is-inactive {
+            pointer-events: none;
+            opacity: .5;
+        }
+    }
+}

@@ -6,16 +6,13 @@ import Helmet from 'react-helmet'
 
 import Card from '../../components/Card'
 import Layout from '../../components/Layout'
+import Pagination from '../../components/Pagination'
 
 class PostList extends React.Component {
 
   render() {
     const posts = get(this, 'props.data.allMarkdownRemark.edges')
-
-    const filteredPosts = posts.filter((post) => {
-      if(!post.node.fields.slug.startsWith('/posts/')) return false;
-      return true;
-    });
+    const pageContext = get(this, 'props.pageContext')
 
     return (
       <Layout>
@@ -24,7 +21,7 @@ class PostList extends React.Component {
 
           <h1>Posts</h1>
 
-          { filteredPosts.map(({ node }) => {
+          { posts.map(({ node }) => {
 
               let link = node.frontmatter.external 
                 ? node.frontmatter.external
@@ -42,6 +39,8 @@ class PostList extends React.Component {
               )
           }) }
         </div>
+
+        <Pagination pageContext={pageContext}/>
       </Layout>
     )
   }
@@ -54,13 +53,18 @@ PostList.propTypes = {
 export default PostList
 
 export const postsQuery = graphql`
-  query PostsQuery {
+  query PostsQuery($skip: Int, $limit: Int) {
     site {
       siteMetadata {
         title
       }
     }
-    allMarkdownRemark(sort: { fields: [frontmatter___date], order: DESC }) {
+    allMarkdownRemark(
+      sort: { fields: [frontmatter___date], order: DESC }
+      limit: $limit
+      skip: $skip, 
+      filter: {fileAbsolutePath: {regex: "/(\/pages\/posts)/(.*).md$/"}}
+    ) {
       edges {
         node {
           excerpt(pruneLength: 250)
