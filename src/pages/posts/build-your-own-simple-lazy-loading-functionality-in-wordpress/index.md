@@ -77,7 +77,7 @@ add_filter('the_content', function ($content) {
 	$content = preg_replace('/<img(.*?)class=\"(.*?)\"(.*?)>/i', '<img$1class="$2 lazy-load"$3>', $content);
 
 	//-- Add .lazy-load class to each image that doesn't already have a class.
-	$content = preg_replace('/<img((?:(?!class=).)*?)>/i', '<img class="lazy-load"$1>', $content);
+	$content = preg_replace('/<img((.(?!class=))*)\/?>/i', '<img class="lazy-load"$1>', $content);
 	
 	return $content;
 });
