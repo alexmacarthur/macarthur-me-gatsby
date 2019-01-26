@@ -166,7 +166,15 @@ Nailed it! This _should_ cover most of our scenarios, allowing us to accurately 
 
 ![](screen6.jpg)
 
-But that's no longer a valid image tag, so that sort of risk really isn't one at all. 
+But that's no longer a valid image tag, so that sort of risk really isn't one at all. And with that, here's our updated PHP call that should work exactly as we expect it.
+
+```php
+$content = preg_replace(
+  '/<img((.(?!class=))*)\/?>/i',
+  '<img class="lazy-load"$1>', 
+  $content
+);
+```
 
 ## Takeaways
 
