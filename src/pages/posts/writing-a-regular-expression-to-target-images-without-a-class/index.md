@@ -39,9 +39,10 @@ Here's my string:
 
 To start, the pattern matches the point immediately following `<img` in any image tag, since the next immediate character is _not_ the initial boundary for the word "class," but instead a space. Remember, the `(.*?)` group doesn't require a match to have any length, so we get something like this:
 
-![The resulting match set of my expression.](https://d2mxuefqeaa7sj.cloudfront.net/s_B76F170867D6572B67568F5A87D4B7248FE6E624F103582998D00C11F9EC0D46_1547755145793_image.png)
+![The resulting match set of my expression.](screen1.jpg)
 
-![For each matching group in my expression, I find in a match in my string.](https://d2mxuefqeaa7sj.cloudfront.net/s_B76F170867D6572B67568F5A87D4B7248FE6E624F103582998D00C11F9EC0D46_1547755184486_image.png)
+
+![For each matching group in my expression, I find in a match in my string.](screen2.jpg)
 
 And because of this result, here's how the string is processed by `preg_replace()`:
 
@@ -116,32 +117,32 @@ Similar markup, but shaken up attributes:
 Clearly, my expression's main fault was its tendency to find a match way too soon, without searching the entire `img` string to know if it has `class=` or not. So, after several hours of beating my head against a screen, I ended up with this.
 
 ```re
-<img((.(?!class=))*)\/?>
+/<img((.(?!class=))*)\/?>/
 ```
 
 Let's take this real slow and piece it together from scratch.
 
 First, I knew I wanted to target `img` tags, which have an opening `<img`, followed by attributes and stuff (like a `src`, duh), and a closing bracket with an optional slash. Here are the components I started with:
 
-part | what it matches
+Part | What It Matches
 ------ | -----------------------------------
 `<img` | opening of the image tag
 `(.*)` | any set of characters at any length
 `\/?`  | an optional slash closing the tag
 `>`    | a closing bracket
 
-```
+```re
 /<img(.*)\/?>/
 ```
 
 Expectedly, this will match pretty much anything that has the shell of an `img` tag containing any characters, any number of times -- signified by `(.*)`.
 
-![](https://d2mxuefqeaa7sj.cloudfront.net/s_B76F170867D6572B67568F5A87D4B7248FE6E624F103582998D00C11F9EC0D46_1547756013037_image.png)
+![](screen3.jpg)
 
 And I know that within that shell, I'm just fine with matching anything -- UNLESS it's a class attribute. So, let's modify that inner group. Rather than matching _any_ character, let's replace that character to target any character that is _not_ followed by a class attribute.
 
-```
-<img((.(?!class=))*)\/?>
+```re
+/<img((.(?!class=))*)\/?>/
 ```
 
 Here are our updated components:
@@ -155,22 +156,24 @@ part   | what it matches
 
 Here's what we get for matches when we run it against our string:
 
-![Great, no match!](https://d2mxuefqeaa7sj.cloudfront.net/s_B76F170867D6572B67568F5A87D4B7248FE6E624F103582998D00C11F9EC0D46_1547756310284_image.png)
+![Great, no match!](screen4.jpg)
 
 And if we were to remove that class attribute:
 
-![Got a match!](https://d2mxuefqeaa7sj.cloudfront.net/s_B76F170867D6572B67568F5A87D4B7248FE6E624F103582998D00C11F9EC0D46_1547756358151_image.png)
+![Got a match!](screen5.jpg)
 
 Nailed it! This _should_ cover most of our scenarios, allowing us to accurately add a new `class` attribute only to the images that don't have any. From what I can tell, the only time we would get a match is when `class` is butt right up against `<img`, when there would be no other character to precede the attribute.
 
-![](https://d2mxuefqeaa7sj.cloudfront.net/s_B76F170867D6572B67568F5A87D4B7248FE6E624F103582998D00C11F9EC0D46_1547756386182_image.png)
+![](screen6.jpg)
 
 But that's no longer a valid image tag, so that sort of risk really isn't one at all. 
 
 ## Takeaways
 
-1. Don't trust any regular expression you find laying on the street. 
-1. Take the time to break an expression apart to understand what it's actually doing.
-1. Make [regex101](https://regex101.com/) your best friend.
+First, learning to break up &amp; understand the fundamentals of regular expressions doesn't _need_ to be terrifying, especially if you're patient and willing to start slow. This is, by far, the most significant thing with which I walked away from this process. 
+
+Second, with the patience & willingness to understand why regular expressions behave the way they do, stop trusting any given expression you find on the street. With a renewed confidence in tackling stuff like this, I'm much less likely to be burned in the future. 
+
+Finally, find a good tool you're willing to get comfortable with as you break these things apart. I spent a lot of time with [regex101](https://regex101.com/). For you, it might be something different. That's cool, just know what it is, so you can jump to it when it's needed. 
 
 Thanks for embarking on this journey with me!
