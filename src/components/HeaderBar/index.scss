@@ -1,0 +1,26 @@
+@import '../../../assets/scss/base/variables.scss';
+@import '../../../assets/scss/base/mixins.scss';
+
+.HeaderBar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 3rem;
+
+    &--stacked {
+        flex-direction: column;
+        align-items: end;
+    }
+
+    h1 {
+        margin: 0;
+    }
+    
+    span {
+        color: $gray--medium;
+        font-family: $header-font-family;
+        font-size: $small-font-size;
+        display: block;
+        margin-top: 1rem;
+    }
+}

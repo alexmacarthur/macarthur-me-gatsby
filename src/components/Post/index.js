@@ -4,6 +4,7 @@ import PropTypes from 'prop-types'
 import Bio from '../Bio/index.js'
 import SocialIcons from '../SocialIcons'
 import DisqusThread from '../DisqusThread';
+import HeaderBar from '../HeaderBar';
 
 import './index.scss';
 
@@ -16,18 +17,18 @@ class Post extends React.Component {
     return (
       <article className="Post">
 
-        <header className="Post-header">
-          <h1 className="Post-title">
+        <HeaderBar isStacked={true}>
+          <h1>
             {this.props.data.title}
           </h1>
 
-          { this.props.data.date &&
-            <span className="Post-date">
+          {this.props.data.date &&
+            <span>
               {this.props.data.date}
             </span>
           }
 
-        </header>
+        </HeaderBar>
 
         <div
           className="Post-content"

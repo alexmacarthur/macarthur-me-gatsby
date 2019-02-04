@@ -2,8 +2,9 @@
 @import '../../../assets/scss/base/mixins.scss';
 
 .Pagination {
-    padding-top: 3rem;
     text-align: center;
+    position: relative;
+    padding-top: 3rem;
 
     &:before {
         content: '';
@@ -14,8 +15,21 @@
         margin: 0 auto 2rem;
     }
 
+    &.Pagination--slim {
+        padding-top: 0;
+        
+        &:before {
+            content: none;
+        }
+    }
+
     &-state {
         font-family: $header-font-family;
+
+        .Pagination--slim & {
+            color: $gray--medium;
+            font-size: $small-font-size;
+        }
     }
 
     &-list {

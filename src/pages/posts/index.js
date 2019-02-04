@@ -7,6 +7,7 @@ import Helmet from 'react-helmet'
 import Card from '../../components/Card'
 import Layout from '../../components/Layout'
 import Pagination from '../../components/Pagination'
+import HeaderBar from '../../components/HeaderBar'
 
 class PostList extends React.Component {
 
@@ -19,8 +20,18 @@ class PostList extends React.Component {
         <div>
           <Helmet title={get(this, 'props.data.site.siteMetadata.title')} />
 
-          <h1>Posts</h1>
-
+          <HeaderBar>
+            <h1
+              style={{
+                margin: 0
+              }}
+            >Posts</h1>
+            <Pagination
+              pageContext={pageContext}
+              slim={true}
+            />
+          </HeaderBar>
+          
           { posts.map(({ node }) => {
 
               let link = node.frontmatter.external 

@@ -4,6 +4,7 @@ import Helmet from 'react-helmet'
 
 import Card from '../components/Card'
 import Layout from "../components/Layout"
+import HeaderBar from "../components/HeaderBar"
 
 export default ({ data }) => {
 
@@ -13,7 +14,9 @@ export default ({ data }) => {
     <Layout>
       <Helmet title={data.site.siteMetadata.title} />
 
-      <h1>Projects</h1>
+      <HeaderBar>
+        <h1>Projects</h1>
+      </HeaderBar>
 
       <p>On the side, I enjoy building web tools and applications to make the world a little easier for someone else. Most of the time, it's in the WordPress and JavaScript spaces. Below is just a few of the highlights. To see even more, <a title="Find Alex on Github" href={data.site.siteMetadata.social.github}>find me on Github.</a></p>
 

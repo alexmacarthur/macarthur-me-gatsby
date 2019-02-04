@@ -64,7 +64,7 @@ exports.createPages = ({ graphql, actions }) => {
           hasNextPage: pageNumber < pageChunks.length,
           hasPreviousPage: pageNumber > 1,
           nextPageLink: `/posts/${pageNumber + 1}`,
-          previousPageLink: pageNumber > 1 ? `/posts/${pageNumber - 1}` : `/posts/`,
+          previousPageLink: (pageNumber - 1) > 1 ? `/posts/${pageNumber - 1}` : `/posts/`,
         }
       });
     });
