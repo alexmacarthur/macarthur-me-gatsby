@@ -44,7 +44,7 @@ exports.createPages = ({ graphql, actions }) => {
     }
 
     //-- Create blog posts pages.
-    const PAGE_SIZE = 3;
+    const PAGE_SIZE = 5;
 
     const posts = result.data.allMarkdownRemark.edges;
     const pageChunks = _.chunk(posts, PAGE_SIZE);
