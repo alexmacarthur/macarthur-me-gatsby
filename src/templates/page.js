@@ -1,30 +1,40 @@
-import React from 'react'
-import { graphql } from 'gatsby'
-import get from 'lodash/get'
+import React from "react";
+import { graphql } from "gatsby";
+import get from "lodash/get";
 
-import SEO from "../components/SEO"
-import Layout from "../components/Layout"
-import Post from '../components/Post'
+import SEO from "../components/SEO";
+import Layout from "../components/Layout";
+import Post from "../components/Post";
 
 class PageTemplate extends React.Component {
   render() {
+    const post = get(this.props, "data.markdownRemark");
 
-    const post = get(this.props, 'data.markdownRemark');
-
-    let type = post.fields.slug.includes('/posts/')
-      ? 'post'
-      : 'page';
+    let type = post.fields.slug.includes("/posts/") ? "post" : "page";
 
     return (
       <Layout>
-        <SEO postPath={post.fields.slug} postNode={post} postSEO={type === 'post'} />
-        <Post data={post.frontmatter} content={post.html} type={type} shortBio={this.props.data.site.siteMetadata.shortBio} url={this.props.data.site.siteMetadata.siteUrl + this.props.location.pathname} />
+        <SEO
+          postPath={post.fields.slug}
+          postNode={post}
+          postSEO={type === "post"}
+        />
+        <Post
+          data={post.frontmatter}
+          content={post.html}
+          type={type}
+          shortBio={this.props.data.site.siteMetadata.shortBio}
+          url={
+            this.props.data.site.siteMetadata.siteUrl +
+            this.props.location.pathname
+          }
+        />
       </Layout>
     );
   }
 }
 
-export default PageTemplate
+export default PageTemplate;
 
 export const pageQuery = graphql`
   query BlogPostBySlug($slug: String!) {
@@ -49,4 +59,4 @@ export const pageQuery = graphql`
       }
     }
   }
-`
+`;

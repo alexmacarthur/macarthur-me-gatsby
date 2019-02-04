@@ -1,48 +1,46 @@
-import React, {
-    Component
-} from "react";
+import React, { Component } from "react";
 import ReactDisqusComments from "react-disqus-comments";
 
 class Disqus extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            toasts: []
-        };
-        this.notifyAboutComment = this.notifyAboutComment.bind(this);
-        this.onSnackbarDismiss = this.onSnackbarDismiss.bind(this);
-    }
+  constructor(props) {
+    super(props);
+    this.state = {
+      toasts: []
+    };
+    this.notifyAboutComment = this.notifyAboutComment.bind(this);
+    this.onSnackbarDismiss = this.onSnackbarDismiss.bind(this);
+  }
 
-    onSnackbarDismiss() {
-        const [, ...toasts] = this.state.toasts;
-        this.setState({
-            toasts
-        });
-    }
+  onSnackbarDismiss() {
+    const [, ...toasts] = this.state.toasts;
+    this.setState({
+      toasts
+    });
+  }
 
-    notifyAboutComment() {
-        const toasts = this.state.toasts.slice();
-        
-        toasts.push({
-            text: "New comment available!"
-        });
+  notifyAboutComment() {
+    const toasts = this.state.toasts.slice();
 
-        this.setState({
-            toasts
-        });
-    }
+    toasts.push({
+      text: "New comment available!"
+    });
 
-    render() {
-        return (
-            <ReactDisqusComments
-                shortname={this.props.shortname}
-                identifier={this.props.identifier}
-                title={this.props.title}
-                url={this.props.url}
-                onNewComment={this.notifyAboutComment}
-            />
-        );
-    }
+    this.setState({
+      toasts
+    });
+  }
+
+  render() {
+    return (
+      <ReactDisqusComments
+        shortname={this.props.shortname}
+        identifier={this.props.identifier}
+        title={this.props.title}
+        url={this.props.url}
+        onNewComment={this.notifyAboutComment}
+      />
+    );
+  }
 }
 
 export default Disqus;

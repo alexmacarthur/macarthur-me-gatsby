@@ -1,18 +1,17 @@
-import React from 'react'
+import React from "react";
 
-import IconGithub from '-!svg-react-loader?name=Icon!../../../assets/img/github.svg';
-import IconTwitter from '-!svg-react-loader?name=Icon!../../../assets/img/twitter.svg';
-import IconLinkedIn from '-!svg-react-loader?name=Icon!../../../assets/img/linkedin.svg';
-import IconFacebook from '-!svg-react-loader?name=Icon!../../../assets/img/facebook.svg';
+import IconGithub from "-!svg-react-loader?name=Icon!../../../assets/img/github.svg";
+import IconTwitter from "-!svg-react-loader?name=Icon!../../../assets/img/twitter.svg";
+import IconLinkedIn from "-!svg-react-loader?name=Icon!../../../assets/img/linkedin.svg";
+import IconFacebook from "-!svg-react-loader?name=Icon!../../../assets/img/facebook.svg";
 
-import './index.scss';
+import "./index.scss";
 
-import config from '../../../gatsby-config.js';
+import config from "../../../gatsby-config.js";
 
 class SocialIcons extends React.Component {
   render() {
-
-    let target = this.props.newTab ? '_blank' : '_self';
+    let target = this.props.newTab ? "_blank" : "_self";
 
     //-- Set default link values.
     let links = {
@@ -23,47 +22,53 @@ class SocialIcons extends React.Component {
     };
 
     //-- If props provide a share URL, modify link values.
-    if(this.props.shareURL) {
-      links.twitter = `https://twitter.com/intent/tweet?text=${this.props.shareTitle} - ${config.siteMetadata.social.twitterHandle} ${this.props.shareURL}`;
-      links.facebook = `https://www.facebook.com/sharer/sharer.php?u=${this.props.shareURL}`;
-      links.linkedin = `https://www.linkedin.com/shareArticle?mini=true&url=${this.props.shareURL}&title=${this.props.shareTitle}&source=${config.siteMetadata.siteUrl}`;
+    if (this.props.shareURL) {
+      links.twitter = `https://twitter.com/intent/tweet?text=${
+        this.props.shareTitle
+      } - ${config.siteMetadata.social.twitterHandle} ${this.props.shareURL}`;
+      links.facebook = `https://www.facebook.com/sharer/sharer.php?u=${
+        this.props.shareURL
+      }`;
+      links.linkedin = `https://www.linkedin.com/shareArticle?mini=true&url=${
+        this.props.shareURL
+      }&title=${this.props.shareTitle}&source=${config.siteMetadata.siteUrl}`;
     }
 
     return (
       <ul className="SocialIcons">
-        { this.props.github &&
+        {this.props.github && (
           <li className="SocialIcons-icon">
             <a target={target} href={links.github}>
               <IconGithub />
             </a>
           </li>
-        }
+        )}
 
-        { this.props.twitter &&
+        {this.props.twitter && (
           <li className="SocialIcons-icon">
             <a target={target} href={links.twitter}>
               <IconTwitter />
             </a>
           </li>
-        }
+        )}
 
-        { this.props.linkedin &&
+        {this.props.linkedin && (
           <li className="SocialIcons-icon">
             <a target={target} href={links.linkedin}>
               <IconLinkedIn />
             </a>
           </li>
-        }
+        )}
 
-        { this.props.facebook &&
+        {this.props.facebook && (
           <li className="SocialIcons-icon">
             <a target={target} href={links.facebook}>
               <IconFacebook />
             </a>
           </li>
-        }
+        )}
       </ul>
-    )
+    );
   }
 }
 
@@ -74,4 +79,4 @@ SocialIcons.defaultProps = {
   facebook: false
 };
 
-export default SocialIcons
+export default SocialIcons;

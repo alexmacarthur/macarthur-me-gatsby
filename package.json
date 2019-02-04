@@ -33,6 +33,7 @@
     "lodash": "^4.15.0",
     "node-sass": "^4.11.0",
     "normalize.css": "^7.0.0",
+    "pre-commit": "^1.2.2",
     "prismjs": "^1.15.0",
     "prop-types": "^15.6.0",
     "react": "^16.7.0",
@@ -56,11 +57,13 @@
     "type": "git",
     "url": "git+https://github.com/alexmacarthur/macarthur.me.git"
   },
+  "pre-commit": [
+    "prettify-and-add"
+  ],
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "format": "prettier --trailing-comma es5 --no-semi --single-quote --write 'src/**/*.js'",
+    "prettify-and-add": "prettier \"src/**/*.js\" --write && git add -A",
     "develop": "gatsby develop",
-    "build": "gatsby build",
-    "fix-semi": "eslint --quiet --ignore-pattern node_modules --ignore-pattern public --parser babel-eslint --no-eslintrc --rule '{\"semi\": [2, \"never\"], \"no-extra-semi\": [2]}' --fix gatsby-node.js"
+    "build": "gatsby build"
   }
 }

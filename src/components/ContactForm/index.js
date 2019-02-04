@@ -1,34 +1,33 @@
-import React from 'react'
+import React from "react";
 
 //-- Styles.
-import './index.scss'
+import "./index.scss";
 
 export default class ContactForm extends React.Component {
-
   constructor(props) {
     super(props);
     this.state = {
-      validationMessage: '',
-      validationClass: ''
+      validationMessage: "",
+      validationClass: ""
     };
   }
 
-  encode = (data) => {
+  encode = data => {
     return Object.keys(data)
       .map(key => encodeURIComponent(key) + "=" + encodeURIComponent(data[key]))
       .join("&");
-  }
+  };
 
-  handleChange = (e) => {
-    this.setState({[e.target.name]: e.target.value});
-  }
+  handleChange = e => {
+    this.setState({ [e.target.name]: e.target.value });
+  };
 
   handleSubmit = e => {
     e.preventDefault();
 
     let state = this.state;
 
-    delete(state.validationMessage);
+    delete state.validationMessage;
 
     fetch("/", {
       method: "POST",
@@ -36,21 +35,21 @@ export default class ContactForm extends React.Component {
       body: this.encode({ "form-name": "contact", ...this.state })
     })
       .then(() => {
-
-        document.querySelectorAll('input, textarea').forEach(item => {
-          item.value = '';
+        document.querySelectorAll("input, textarea").forEach(item => {
+          item.value = "";
         });
 
         this.setState({
-          validationMessage: 'Thanks! Your message was submitted successfully.',
-          validationClass: ''
-        })
+          validationMessage: "Thanks! Your message was submitted successfully.",
+          validationClass: ""
+        });
       })
       .catch(error => {
         this.setState({
-          validationMessage: 'Sorry, something went wrong. If you want, you can email me at <strong>alex@macarthur.me</strong> directly.',
-          validationClass: 'is-error'
-        })
+          validationMessage:
+            "Sorry, something went wrong. If you want, you can email me at <strong>alex@macarthur.me</strong> directly.",
+          validationClass: "is-error"
+        });
       });
   };
 
@@ -64,7 +63,7 @@ export default class ContactForm extends React.Component {
         data-netlify-honeypot="bot-field"
         onSubmit={this.handleSubmit}
         style={{
-          flex: '1'
+          flex: "1"
         }}
       >
         <p hidden>
@@ -72,35 +71,47 @@ export default class ContactForm extends React.Component {
             Don’t fill this out: <input name="bot-field" />
           </label>
         </p>
-        <p style={{marginTop: '0'}}>
+        <p style={{ marginTop: "0" }}>
           <label>
-            Your name:<br />
-          <input required type="text" name="name" onChange={this.handleChange}/>
+            Your name:
+            <br />
+            <input
+              required
+              type="text"
+              name="name"
+              onChange={this.handleChange}
+            />
           </label>
         </p>
         <p>
           <label>
-            Your email:<br />
-            <input required type="email" name="email" onChange={this.handleChange}/>
+            Your email:
+            <br />
+            <input
+              required
+              type="email"
+              name="email"
+              onChange={this.handleChange}
+            />
           </label>
         </p>
         <p>
           <label>
-            Message:<br />
-            <textarea required name="message" onChange={this.handleChange}/>
+            Message:
+            <br />
+            <textarea required name="message" onChange={this.handleChange} />
           </label>
-      </p>
+        </p>
         <p>
           <button type="submit">Send</button>
         </p>
 
-        { this.state.validationMessage &&
-          <span className={"message " + this.state.validationClass}
-          >{ this.state.validationMessage }</span>
-        }
-
+        {this.state.validationMessage && (
+          <span className={"message " + this.state.validationClass}>
+            {this.state.validationMessage}
+          </span>
+        )}
       </form>
-    )
+    );
   }
 }
-

@@ -1,36 +1,30 @@
-import React from 'react'
-import PropTypes from 'prop-types'
+import React from "react";
+import PropTypes from "prop-types";
 
-import Nav from '../components/Nav'
-import Footer from '../components/Footer'
-import SEO from '../components/SEO'
+import Nav from "../components/Nav";
+import Footer from "../components/Footer";
+import SEO from "../components/SEO";
 
 class Layout extends React.Component {
+  render() {
+    const { children } = this.props;
 
-    render() {
+    return (
+      <div>
+        <SEO />
 
-        const {
-            children
-        } = this.props;
+        <Nav isTop={true} type="short" />
 
-        return (
-            <div>
-                <SEO />
+        <main>{children}</main>
 
-                <Nav isTop={ true } type="short" />
-
-                <main>
-                    { children }
-                </main>
-
-                <Footer/>
-            </div>
-        );
-    }
+        <Footer />
+      </div>
+    );
+  }
 }
 
 Layout.propTypes = {
-    route: PropTypes.object
-}
+  route: PropTypes.object
+};
 
-export default Layout
+export default Layout;

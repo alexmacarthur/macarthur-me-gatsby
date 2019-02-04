@@ -1,10 +1,9 @@
-import React from 'react'
-import Link from 'gatsby-link'
+import React from "react";
+import Link from "gatsby-link";
 
-import './index.scss';
+import "./index.scss";
 
 class Nav extends React.Component {
-
   constructor() {
     super();
 
@@ -12,36 +11,36 @@ class Nav extends React.Component {
       isOpen: false,
       links: {
         about: {
-          long: 'Who is this guy?',
-          short: 'About',
-          path: '/about'
+          long: "Who is this guy?",
+          short: "About",
+          path: "/about"
         },
         projects: {
-          long: 'What\'s he even built?',
-          short: 'Projects',
-          path: '/projects'
+          long: "What's he even built?",
+          short: "Projects",
+          path: "/projects"
         },
         contact: {
-          long: 'How can I contact him?',
-          short: 'Contact',
-          path: '/contact'
+          long: "How can I contact him?",
+          short: "Contact",
+          path: "/contact"
         },
         posts: {
-          long: 'What\'s he got to say?',
-          short: 'Posts',
-          path: '/posts'
+          long: "What's he got to say?",
+          short: "Posts",
+          path: "/posts"
         }
       }
-    }
+    };
 
-    this.openNav = this.openNav.bind(this)
-    this.closeNav = this.closeNav.bind(this)
+    this.openNav = this.openNav.bind(this);
+    this.closeNav = this.closeNav.bind(this);
   }
 
   componentDidMount() {
     window.closeNav = () => {
       this.closeNav();
-    }
+    };
   }
 
   openNav() {
@@ -57,34 +56,30 @@ class Nav extends React.Component {
   }
 
   render() {
-
     return (
-      <nav className={
-        "Nav" +
-        (this.props.isTop ? " Nav--top" : " ") +
-        (this.state.isOpen ? " is-open" : " ")
-      }>
-
-        { this.props.isTop &&
-          <Link
-            className="Nav-logo"
-            to="/">
+      <nav
+        className={
+          "Nav" +
+          (this.props.isTop ? " Nav--top" : " ") +
+          (this.state.isOpen ? " is-open" : " ")
+        }
+      >
+        {this.props.isTop && (
+          <Link className="Nav-logo" to="/">
             <span>Alex</span>MacArthur
           </Link>
-        }
+        )}
 
         <ul className={"Nav-list"}>
-
-          {Object.keys(this.state.links).map((key) => {
-            return(
+          {Object.keys(this.state.links).map(key => {
+            return (
               <li className="Nav-item" key={key}>
                 <Link to={this.state.links[key].path}>
                   {this.state.links[key][this.props.type]}
                 </Link>
               </li>
-            )
+            );
           })}
-
         </ul>
 
         <div className="Nav-close" onClick={this.closeNav}>
@@ -96,14 +91,13 @@ class Nav extends React.Component {
         <button className="Nav-toggle" onClick={this.openNav}>
           Menu
         </button>
-
       </nav>
-    )
+    );
   }
 }
 
 Nav.defaultProps = {
-  type: 'short'
+  type: "short"
 };
 
-export default Nav
+export default Nav;
