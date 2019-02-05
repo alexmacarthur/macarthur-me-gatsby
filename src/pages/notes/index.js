@@ -5,29 +5,29 @@ import Helmet from "react-helmet";
 import Layout from "../../components/Layout";
 import PostList from "../../components/PostList";
 
-const PostsPage = props => {
+const NotesPage = props => {
   return (
     <Layout>
       <Helmet title={props.data.site.siteMetadata.title} />
       <PostList
         pageContext={props.pageContext}
+        description={props.data.site.siteMetadata.pageDescriptions.notes}
         edges={props.pageContext.edges}
-        description={props.data.site.siteMetadata.pageDescriptions.posts}
-        title="Posts"
+        title="Notes"
       />
     </Layout>
   );
 };
 
-export default PostsPage;
+export default NotesPage;
 
-export const postsQuery = graphql`
-  query PostsQuery {
+export const notesQuery = graphql`
+  query NotesQuery {
     site {
       siteMetadata {
         title
         pageDescriptions {
-          posts
+          notes
         }
       }
     }

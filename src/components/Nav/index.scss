@@ -31,10 +31,17 @@
 }
 
 .Nav-list {
+  display: flex;
+  flex-direction: column;
   transition: all .05s ease-in-out;
   padding: 0;
   margin: 0;
   background: rgba($gray, .95);
+
+  @include media($medium-screen) {
+    flex-direction: row;
+    align-items: center;
+  }
 
   .Hero & {
     background: none;
@@ -151,16 +158,10 @@
   }
 
   & + & {
-    margin-top: 1.5rem;
+    margin: 1.25rem 0 0 0;
 
     @include media($medium-screen) {
-      margin-top: 2.5rem;
-    }
-
-    .Nav--top & {
-      @include media($medium-screen) {
-        margin: 0 0 0 2rem;
-      }
+      margin: 0 0 0 2rem;
     }
   }
 

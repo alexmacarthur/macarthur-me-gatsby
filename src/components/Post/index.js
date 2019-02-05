@@ -25,13 +25,14 @@ class Post extends React.Component {
           dangerouslySetInnerHTML={{ __html: this.props.content }}
         />
 
-        {this.props.type === "post" && (
+        {this.props.type !== "page" && (
           <div>
             <Bio content={this.props.shortBio} />
 
             <aside className="Post-footer">
               <h4>
-                If this post made you cheer, vomit, giggle, or cry, share it.
+                If this was helpful, interesting, or caused some other positive
+                emotion, share!
               </h4>
 
               <SocialIcons

@@ -1,6 +1,7 @@
 const _ = require('lodash')
 const path = require('path')
 const { createFilePath } = require('gatsby-source-filesystem')
+const paginate = require('./paginate');
 
 exports.onCreateNode = ({ node, actions, getNode }) => {
   const { createNodeField } = actions
@@ -18,11 +19,8 @@ exports.onCreateNode = ({ node, actions, getNode }) => {
 exports.createPages = ({ graphql, actions }) => {
   const { createPage } = actions
 
-  /**
-   * Generate pages JUST for `post` pagination.
-   */
-  const paginationPromise = graphql(
-    `
+  const postsPaginationPromise = paginate({
+    queryPromise: graphql(`
       {
         allMarkdownRemark(
           sort: { fields: [frontmatter___date], order: DESC }, 
@@ -31,43 +29,52 @@ exports.createPages = ({ graphql, actions }) => {
         ) {
           edges {
             node {
-              id
+              excerpt(pruneLength: 250)
+              fields {
+                slug
+              }
+              frontmatter {
+                date(formatString: "DD MMMM, YYYY")
+                title
+                external
+              }
             }
           }
         }
       }
-    `
-  ).then((result) => {
-    if (result.errors) {
-      console.log(result.errors)
-      reject(result.errors)
-    }
+    `),
+    perPage: 5,
+    listPath: 'posts', 
+    createPage
+  });
 
-    //-- Create blog posts pages.
-    const PAGE_SIZE = 5;
-
-    const posts = result.data.allMarkdownRemark.edges;
-    const pageChunks = _.chunk(posts, PAGE_SIZE);
-
-    pageChunks.forEach((chunk, index) => {
-
-      let pageNumber = index + 1;
-
-      createPage({
-        path: pageNumber > 1 ? `posts/${pageNumber}` : `posts`,
-        component: path.resolve('./src/pages/posts/index.js'),
-        context: {
-          skip: PAGE_SIZE * (pageNumber - 1),
-          limit: PAGE_SIZE,
-          pageNumber: pageNumber,
-          totalPages: pageChunks.length,
-          hasNextPage: pageNumber < pageChunks.length,
-          hasPreviousPage: pageNumber > 1,
-          nextPageLink: `/posts/${pageNumber + 1}`,
-          previousPageLink: (pageNumber - 1) > 1 ? `/posts/${pageNumber - 1}` : `/posts/`,
+  const notesPaginationPromise = paginate({
+    queryPromise: graphql(`
+      {
+        allMarkdownRemark(
+          sort: { fields: [frontmatter___date], order: DESC }, 
+          limit: 1000,
+          filter: {fileAbsolutePath: {regex: "/(\/pages\/notes)/(.*).md$/"}}
+        ) {
+          edges {
+            node {
+              excerpt(pruneLength: 250)
+              fields {
+                slug
+              }
+              frontmatter {
+                date(formatString: "DD MMMM, YYYY")
+                title
+                external
+              }
+            }
+          }
         }
-      });
-    });
+      }
+    `),
+    perPage: 5,
+    listPath: 'notes', 
+    createPage
   });
 
   /**
@@ -110,5 +117,5 @@ exports.createPages = ({ graphql, actions }) => {
     });
   });
 
-  return Promise.all([paginationPromise, allPagesPromise]);
+  return Promise.all([postsPaginationPromise, notesPaginationPromise, allPagesPromise]);
 }

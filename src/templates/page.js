@@ -9,8 +9,8 @@ import Post from "../components/Post";
 class PageTemplate extends React.Component {
   render() {
     const post = get(this.props, "data.markdownRemark");
-
-    let type = post.fields.slug.includes("/posts/") ? "post" : "page";
+    let postTypeMatch = post.fields.slug.match(/(\/)(.*?)(\/)/);
+    const type = !postTypeMatch ? "" : postTypeMatch[0].replace(/\//g, "");
 
     return (
       <Layout>

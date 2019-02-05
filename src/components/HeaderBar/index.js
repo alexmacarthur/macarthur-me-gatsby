@@ -4,11 +4,19 @@ import "./index.scss";
 
 const HeaderBar = props => {
   return (
-    <div
-      className={"HeaderBar" + (props.isStacked ? " HeaderBar--stacked" : "")}
-    >
-      {props.children}
-    </div>
+    <>
+      <div
+        className={"HeaderBar" + (props.isStacked ? " HeaderBar--stacked" : "")}
+      >
+        {props.children}
+      </div>
+
+      {props.description && (
+        <div className="HeaderBar-description">
+          <p>{props.description}</p>
+        </div>
+      )}
+    </>
   );
 };
 

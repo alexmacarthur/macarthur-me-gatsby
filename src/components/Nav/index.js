@@ -9,28 +9,24 @@ class Nav extends React.Component {
 
     this.state = {
       isOpen: false,
-      links: {
-        about: {
-          long: "Who is this guy?",
-          short: "About",
+      links: [
+        {
+          name: "Posts",
+          path: "/posts"
+        },
+        {
+          name: "Notes",
+          path: "/notes"
+        },
+        {
+          name: "About",
           path: "/about"
         },
-        projects: {
-          long: "What's he even built?",
-          short: "Projects",
-          path: "/projects"
-        },
-        contact: {
-          long: "How can I contact him?",
-          short: "Contact",
+        {
+          name: "Contact",
           path: "/contact"
-        },
-        posts: {
-          long: "What's he got to say?",
-          short: "Posts",
-          path: "/posts"
         }
-      }
+      ]
     };
 
     this.openNav = this.openNav.bind(this);
@@ -71,12 +67,10 @@ class Nav extends React.Component {
         )}
 
         <ul className={"Nav-list"}>
-          {Object.keys(this.state.links).map(key => {
+          {this.state.links.map(item => {
             return (
-              <li className="Nav-item" key={key}>
-                <Link to={this.state.links[key].path}>
-                  {this.state.links[key][this.props.type]}
-                </Link>
+              <li className="Nav-item" key={item.path}>
+                <Link to={item.path}>{item.name}</Link>
               </li>
             );
           })}

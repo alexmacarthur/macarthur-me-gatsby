@@ -11,6 +11,10 @@ module.exports = {
       "I'm a front-end web developer in Nashville, spending most of my time in WordPress and JavaScript. Hire me for your next project!",
     openGraphImage: "/open-graph.jpg",
     fbAdmins: "502371334",
+    pageDescriptions: {
+      notes: "Brief tips, gotchas, and anything else I might want to both remember and share.", 
+      posts: "Thoughts, explanations, and musings about things. Mostly development things."
+    },
     social: {
       twitterHandle: "@amacarthur",
       twitter: "https://www.twitter.com/amacarthur",

@@ -3,7 +3,7 @@
 
 .HeaderBar {
     display: flex;
-    justify-content: space-between;
+    // justify-content: space-between;
     align-items: center;
     margin-bottom: 3rem;
 
@@ -13,7 +13,17 @@
     }
 
     h1 {
-        margin: 0;
+        margin: 0 2rem 0 0;
+    }
+
+    &-description {
+        font-family: $header-font-family;
+        margin: -2.5rem 0 5rem;
+
+        * {
+            font: inherit;
+            font-size: $base-font-size;
+        }
     }
     
     span {

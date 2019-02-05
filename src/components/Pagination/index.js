@@ -15,7 +15,11 @@ const Pagination = props => (
         <li className="Pagination-item">
           <Link
             className={props.pageContext.hasPreviousPage ? "" : "is-inactive"}
-            to={props.pageContext.previousPageLink}
+            to={
+              props.pageContext.hasPreviousPage
+                ? props.pageContext.previousPageLink
+                : ""
+            }
           >
             Previous
           </Link>
@@ -24,7 +28,11 @@ const Pagination = props => (
         <li className="Pagination-item">
           <Link
             className={props.pageContext.hasNextPage ? "" : "is-inactive"}
-            to={props.pageContext.nextPageLink}
+            to={
+              props.pageContext.hasNextPage
+                ? props.pageContext.nextPageLink
+                : ""
+            }
           >
             Next
           </Link>
