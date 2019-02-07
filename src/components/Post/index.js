@@ -25,7 +25,7 @@ class Post extends React.Component {
           dangerouslySetInnerHTML={{ __html: this.props.content }}
         />
 
-        {this.props.type !== "page" && (
+        {!this.props.isPage && (
           <div>
             <Bio content={this.props.shortBio} />
 

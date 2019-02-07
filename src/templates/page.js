@@ -17,12 +17,12 @@ class PageTemplate extends React.Component {
         <SEO
           postPath={post.fields.slug}
           postNode={post}
-          postSEO={type === "post"}
+          postSEO={type === "notes" || "posts"}
         />
         <Post
           data={post.frontmatter}
           content={post.html}
-          type={type}
+          isPage={type !== "posts" && type !== "notes"}
           shortBio={this.props.data.site.siteMetadata.shortBio}
           url={
             this.props.data.site.siteMetadata.siteUrl +
