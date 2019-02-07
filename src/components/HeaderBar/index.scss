@@ -3,13 +3,12 @@
 
 .HeaderBar {
     display: flex;
-    // justify-content: space-between;
     align-items: center;
     margin-bottom: 3rem;
 
     &--stacked {
         flex-direction: column;
-        align-items: end;
+        align-items: start;
     }
 
     h1 {

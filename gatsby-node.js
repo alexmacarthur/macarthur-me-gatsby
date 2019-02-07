@@ -48,35 +48,6 @@ exports.createPages = ({ graphql, actions }) => {
     createPage
   });
 
-  const notesPaginationPromise = paginate({
-    queryPromise: graphql(`
-      {
-        allMarkdownRemark(
-          sort: { fields: [frontmatter___date], order: DESC }, 
-          limit: 1000,
-          filter: {fileAbsolutePath: {regex: "/(\/pages\/notes)/(.*).md$/"}}
-        ) {
-          edges {
-            node {
-              excerpt(pruneLength: 250)
-              fields {
-                slug
-              }
-              frontmatter {
-                date(formatString: "DD MMMM, YYYY")
-                title
-                external
-              }
-            }
-          }
-        }
-      }
-    `),
-    perPage: 5,
-    listPath: 'notes', 
-    createPage
-  });
-
   /**
    * Generate all pages made of markdown.
    */
@@ -117,5 +88,5 @@ exports.createPages = ({ graphql, actions }) => {
     });
   });
 
-  return Promise.all([postsPaginationPromise, notesPaginationPromise, allPagesPromise]);
+  return Promise.all([postsPaginationPromise, allPagesPromise]);
 }

@@ -60,3 +60,4 @@ Use the following values to connect to the running container.
 **Password:** root
 
 **Port:** 3306
+

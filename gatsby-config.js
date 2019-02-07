@@ -12,8 +12,7 @@ module.exports = {
     openGraphImage: "/open-graph.jpg",
     fbAdmins: "502371334",
     pageDescriptions: {
-      notes: "Brief tips, gotchas, and anything else I might want to both remember and share.", 
-      posts: "Thoughts, explanations, and musings about things. Mostly development things."
+      posts: "Thoughts, explanations, and musings, usually on web development."
     },
     social: {
       twitterHandle: "@amacarthur",
