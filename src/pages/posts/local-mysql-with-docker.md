@@ -4,11 +4,11 @@ date: '2019-02-06'
 open_graph: https://images.pexels.com/photos/15798/night-computer-hdd-hard-drive.jpg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260
 ---
 
-I've often needed to quickly spin up a local instance of MySQL. [Docker Compose](https://docs.docker.com/compose/) this makes it stupid easy. 
+I've often needed to quickly spin up a local instance of MySQL. [Docker Compose](https://docs.docker.com/compose/) this makes it stupid easy. Rather than running a long, convoluted `docker` command, I can configure an image just the way I want it while maintaining the ability to turn it easily turn it on and off as needed.
 
 ## Getting Set Up
 
-Inside a new directory, create a `data` directory and `docker-compose.yml` file, like this: 
+Inside a new directory, create a `data` directory and `docker-compose.yml` file.
 
 ```
 new-directory
@@ -16,7 +16,7 @@ new-directory
 └── docker-compose.yml
 ```
 
-Inside your `docker-compose.yml` file, include this:
+Paste the following into your `docker-compose.yml` file:
 
 ```
 version: '3'
@@ -37,13 +37,11 @@ services:
 
 ## Managing a Container
 
-To start the container, run `docker-compose up`.
-
-To stop & remove the container, run `docker-compose down`.
+To start the container, run `docker-compose up`. To stop & remove the container, run `docker-compose down`. For more information on the plethora of commands avaible to leverage your container, [see here](https://docs.docker.com/compose/reference/).
 
 ## Persisting Data
 
-Whenever MySQL modifies any data within the container, it will persist locally in your `./data` directory, even after you stop and restart everything. 
+Whenever MySQL modifies any data within the container, it will persist locally inside your `./data` directory, even after you stop and restart everything. This is configured by the `volumes:` property in your `docker-compose.yml` file.
 
 ## Running Commands Inside Container
 
@@ -61,3 +59,6 @@ Use the following values to connect to the running container.
 
 **Port:** 3306
 
+## The End.
+
+Boom. With a single command, you have a running, persistent, self-contained MySQL instance ready for your development needs. Have a hot, helpful tip related to anything here? Share it!
