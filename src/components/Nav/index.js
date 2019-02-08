@@ -15,8 +15,8 @@ class Nav extends React.Component {
           path: "/posts"
         },
         {
-          name: "Notes",
-          path: "/notes"
+          name: "Projects",
+          path: "/projects"
         },
         {
           name: "About",
