@@ -115,6 +115,7 @@ module.exports = {
       options: {
         fonts: [`Nunito:400,900`, `Merriweather:400,400i,700`]
       }
-    }
+    }, 
+    `gatsby-plugin-netlify-cms`
   ]
 };
