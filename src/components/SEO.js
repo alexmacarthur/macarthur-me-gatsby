@@ -21,6 +21,10 @@ class SEO extends Component {
       postURL =
         config.siteMetadata.siteUrl + config.siteMetadata.pathPrefix + postPath;
       image = postMeta.open_graph ? postMeta.open_graph : image;
+      // Allow for potential relative or full image paths.
+      image = /^https?:\/\//i.test(image)
+        ? image
+        : config.siteMetadata.siteUrl + config.siteMetadata.pathPrefix + image;
     } else {
       title = config.siteMetadata.title;
       description = config.siteMetadata.description;
