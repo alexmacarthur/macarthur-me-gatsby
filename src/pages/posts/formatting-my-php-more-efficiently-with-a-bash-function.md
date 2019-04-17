@@ -69,7 +69,7 @@ fphp /path/to/file.php /path/to/some/other/file.php
 
 ## We've Only Bashed the Surface
 
-Obviously, my use case here is pretty specific, and there are a bazillion other ways Bash funcification (just coined that; it better stick) can optimize your command line workflow. As a top-of-mind example, my teammate and _buddy_ [Buddy Reno has written about using them](https://medium.freecodecamp.org/bash-shortcuts-to-enhance-your-git-workflow-5107d64ea0ff) awesomely overhaul how you use Git in your projects. 
+Obviously, my use case here is pretty specific, and there are a bazillion other ways Bash funcification (just coined that; it better stick) can optimize your command line workflow. As a top-of-mind example, my teammate and _buddy_ [Buddy Reno has written about using them](https://medium.freecodecamp.org/bash-shortcuts-to-enhance-your-git-workflow-5107d64ea0ff) to awesomely overhaul how you use Git in your projects. 
 
 Whatever your entry point has been or will be, do your part and be generous with your findings! To start, if you've got a Bash-related tip that's been helpful to you in the past, share it here!
 
