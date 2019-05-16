@@ -1,0 +1,54 @@
+@import '../../../assets/scss/base/variables.scss';
+@import '../../../assets/scss/base/mixins.scss';
+
+.hero {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  padding: 2rem;
+  max-width: 100%;
+
+  @include media($medium-screen) {
+    padding: 5rem;
+  }
+}
+
+.wrapper {
+  max-width: $container-width;
+
+  & > div {
+    margin-bottom: 3rem;
+  }
+}
+
+.title {
+  font-size: $large-font-size;
+  text-align: left;
+  margin-bottom: 2rem;
+  max-width: 100%;
+  font-weight: normal;
+
+  @include media($medium-screen) {
+    font-size: $giant-font-size;
+  }
+
+  span {
+    font-weight: 100;
+    font-size: inherit;
+    letter-spacing: 0;
+
+    @include media($small-screen) {
+      margin-right: -1rem;
+    }
+  }
+}
+
+.bottomWrapper {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+
+  @include media($medium-screen) {
+    flex-wrap: nowrap;
+  }
+}

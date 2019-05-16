@@ -6,35 +6,31 @@ import Nav from "../Nav";
 import SocialIcons from "../SocialIcons";
 
 //-- Styles.
-import "./index.scss";
+import styles from "./index.module.scss";
 
 class Hero extends React.Component {
   render() {
     return (
-      <main className="Hero">
-        <div className="Hero-wrapper">
+      <div className={styles.hero}>
+        <div className={styles.wrapper}>
           <div>
             <h1
-              className="Hero-title"
+              className={styles.title}
               id="heroTitle"
               ref={el => {
                 this.el = el;
               }}
             >
-              <span>I'm </span>
-              Alex
-              <br />
-              MacArthur,
+              I'm Alex MacArthur, <br />a web developer in Nashville-ish, TN.
             </h1>
 
-            <div className="Hero-bottomWrapper">
-              <h2 className="Hero-subTitle">A web developer.</h2>
+            <div className={styles.bottomWrapper}>
               <SocialIcons newTab={true} />
             </div>
           </div>
-          <Nav type="short" />
+          <Nav type="short" noBackground={true} showMobileToggle={false} />
         </div>
-      </main>
+      </div>
     );
   }
 }

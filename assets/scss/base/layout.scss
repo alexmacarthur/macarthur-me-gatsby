@@ -32,7 +32,7 @@ img {
 main {
   padding: 1rem 2rem;
   flex: 1;
-  max-width: 800px;
+  max-width: $container-width;
   margin: 0 auto;
   
   @include media($medium-screen) {

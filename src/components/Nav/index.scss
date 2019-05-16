@@ -4,7 +4,6 @@
 .Nav {
   position: relative;
   list-style: none;
-  margin-top: 2rem;
   display: inline-block;
   padding: 0;
   width: 100%;
@@ -15,7 +14,7 @@
   justify-content: space-between;
   align-items: center;
   margin: 0 auto 2rem;
-  padding: 3rem;
+  padding: 3rem 2rem;
 
   &:after {
     content: '';
@@ -43,7 +42,7 @@
     align-items: center;
   }
 
-  .Hero & {
+  &.no-background {
     background: none;
   }
 
@@ -132,33 +131,18 @@
 }
 
 .Nav-logo {
+  flex: 1 0 auto;
   font-family: $header-font-family;
-  font-size: $base-font-size-large;
-  font-weight: bold;
-  text-transform: uppercase;
-
-  span {
-    font-weight: normal;
-    font-size: inherit;
-  }
+  font-size: $medium-font-size;
 }
 
 .Nav-item {
   display: block;
   font-size: $base-font-size-large;
-  font-family: $header-font-family;
   text-transform: uppercase;
 
-  @include media($medium-screen) {
-    font-size: $medium-font-size
-  }
-
-  .Nav--top & {
-    font-size: 2rem;
-  }
-
   & + & {
-    margin: 1.25rem 0 0 0;
+    margin: 1.5rem 0 0 0;
 
     @include media($medium-screen) {
       margin: 0 0 0 2rem;
@@ -182,19 +166,11 @@
       }
     }
 
-    .Hero & {
+    .no-background & {
       color: $gray;
 
       &:hover {
         color: $salmon;
-      }
-    }
-
-    .Nav--top & {
-      font-size: $medium-font-size;
-
-      @include media($medium-screen) {
-        font-size: $base-font-size-large;
       }
     }
   }

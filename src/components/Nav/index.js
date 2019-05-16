@@ -62,11 +62,15 @@ class Nav extends React.Component {
       >
         {this.props.isTop && (
           <Link className="Nav-logo" to="/">
-            <span>Alex</span>MacArthur
+            Alex MacArthur
           </Link>
         )}
 
-        <ul className={"Nav-list"}>
+        <ul
+          className={
+            "Nav-list " + (this.props.noBackground ? "no-background" : "")
+          }
+        >
           {this.state.links.map(item => {
             return (
               <li className="Nav-item" key={item.path}>
@@ -76,22 +80,28 @@ class Nav extends React.Component {
           })}
         </ul>
 
-        <div className="Nav-close" onClick={this.closeNav}>
-          <svg viewBox="0 0 40 40">
-            <path d="M 10,10 L 30,30 M 30,10 L 10,30" />
-          </svg>
-        </div>
+        {!!this.props.showMobileToggle && (
+          <>
+            <div className="Nav-close" onClick={this.closeNav}>
+              <svg viewBox="0 0 40 40">
+                <path d="M 10,10 L 30,30 M 30,10 L 10,30" />
+              </svg>
+            </div>
 
-        <button className="Nav-toggle" onClick={this.openNav}>
-          Menu
-        </button>
+            <button className="Nav-toggle" onClick={this.openNav}>
+              Menu
+            </button>
+          </>
+        )}
       </nav>
     );
   }
 }
 
 Nav.defaultProps = {
-  type: "short"
+  type: "short",
+  noBackground: false,
+  showMobileToggle: true
 };
 
 export default Nav;
