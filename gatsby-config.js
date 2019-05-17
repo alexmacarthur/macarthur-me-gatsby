@@ -110,6 +110,12 @@ module.exports = {
     `gatsby-plugin-react-helmet`,
     `gatsby-plugin-sitemap`,
     `gatsby-plugin-feed`,
-    `gatsby-plugin-netlify-cms`
+    `gatsby-plugin-netlify-cms`, 
+    {
+      resolve: 'gatsby-plugin-html-attributes',
+      options: {
+        lang: 'en'
+      }
+    }
   ]
 };
