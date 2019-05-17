@@ -5,6 +5,7 @@
   height: 100vh;
   display: flex;
   align-items: center;
+  justify-content: center;
   padding: 2rem;
   max-width: 100%;
 
@@ -14,7 +15,7 @@
 }
 
 .wrapper {
-  max-width: $container-width;
+  max-width: $large-container-width;
 
   & > div {
     margin-bottom: 3rem;
@@ -33,13 +34,8 @@
   }
 
   span {
-    font-weight: 100;
-    font-size: inherit;
-    letter-spacing: 0;
-
-    @include media($small-screen) {
-      margin-right: -1rem;
-    }
+    font: inherit;
+    display: inline-block;
   }
 }
 

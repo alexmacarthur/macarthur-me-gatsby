@@ -1,11 +1,7 @@
 import React from "react";
-import PropTypes from "prop-types";
-
-//-- Components.
 import Nav from "../Nav";
 import SocialIcons from "../SocialIcons";
 
-//-- Styles.
 import styles from "./index.module.scss";
 
 class Hero extends React.Component {
@@ -21,7 +17,8 @@ class Hero extends React.Component {
                 this.el = el;
               }}
             >
-              I'm Alex MacArthur, <br />a web developer in Nashville-ish, TN.
+              I'm Alex MacArthur, <br />a web developer in{" "}
+              <span>Nashville-ish, TN.</span>
             </h1>
 
             <div className={styles.bottomWrapper}>
@@ -34,9 +31,5 @@ class Hero extends React.Component {
     );
   }
 }
-
-Hero.propTypes = {
-  route: PropTypes.object
-};
 
 export default Hero;
