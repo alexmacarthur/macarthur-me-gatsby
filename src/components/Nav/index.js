@@ -1,107 +1,86 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Link from "gatsby-link";
 
 import "./index.scss";
 
-class Nav extends React.Component {
-  constructor() {
-    super();
+const Nav = function({
+  type = "short",
+  noBackground = false,
+  showMobileToggle = true,
+  isTop = false
+}) {
+  let [isOpen, setIsOpen] = useState(false);
 
-    this.state = {
-      isOpen: false,
-      links: [
-        {
-          name: "Posts",
-          path: "/posts"
-        },
-        {
-          name: "Projects",
-          path: "/projects"
-        },
-        {
-          name: "About",
-          path: "/about"
-        },
-        {
-          name: "Contact",
-          path: "/contact"
-        }
-      ]
-    };
+  const links = [
+    {
+      name: "Posts",
+      path: "/posts"
+    },
+    {
+      name: "Projects",
+      path: "/projects"
+    },
+    {
+      name: "About",
+      path: "/about"
+    },
+    {
+      name: "Contact",
+      path: "/contact"
+    }
+  ];
 
-    this.openNav = this.openNav.bind(this);
-    this.closeNav = this.closeNav.bind(this);
+  function openNav() {
+    setIsOpen(true);
   }
 
-  componentDidMount() {
+  function closeNav() {
+    setIsOpen(false);
+  }
+
+  useEffect(() => {
     window.closeNav = () => {
-      this.closeNav();
+      closeNav();
     };
-  }
+  }, []);
 
-  openNav() {
-    this.setState({
-      isOpen: true
-    });
-  }
+  return (
+    <nav
+      className={
+        "Nav" + (isTop ? " Nav--top" : " ") + (isOpen ? " is-open" : " ")
+      }
+    >
+      {isTop && (
+        <Link className="Nav-logo" to="/">
+          Alex MacArthur
+        </Link>
+      )}
 
-  closeNav() {
-    this.setState({
-      isOpen: false
-    });
-  }
+      <ul className={"Nav-list " + (noBackground ? "no-background" : "")}>
+        {links.map(item => {
+          return (
+            <li className="Nav-item" key={item.path}>
+              <Link to={item.path}>{item.name}</Link>
+            </li>
+          );
+        })}
+      </ul>
 
-  render() {
-    return (
-      <nav
-        className={
-          "Nav" +
-          (this.props.isTop ? " Nav--top" : " ") +
-          (this.state.isOpen ? " is-open" : " ")
-        }
-      >
-        {this.props.isTop && (
-          <Link className="Nav-logo" to="/">
-            Alex MacArthur
-          </Link>
-        )}
+      {!!showMobileToggle && (
+        <>
+          <div className="Nav-close" onClick={closeNav}>
+            <svg viewBox="0 0 40 40">
+              <path d="M 10,10 L 30,30 M 30,10 L 10,30" />
+            </svg>
+          </div>
 
-        <ul
-          className={
-            "Nav-list " + (this.props.noBackground ? "no-background" : "")
-          }
-        >
-          {this.state.links.map(item => {
-            return (
-              <li className="Nav-item" key={item.path}>
-                <Link to={item.path}>{item.name}</Link>
-              </li>
-            );
-          })}
-        </ul>
-
-        {!!this.props.showMobileToggle && (
-          <>
-            <div className="Nav-close" onClick={this.closeNav}>
-              <svg viewBox="0 0 40 40">
-                <path d="M 10,10 L 30,30 M 30,10 L 10,30" />
-              </svg>
-            </div>
-
-            <button className="Nav-toggle" onClick={this.openNav}>
-              Menu
-            </button>
-          </>
-        )}
-      </nav>
-    );
-  }
-}
-
-Nav.defaultProps = {
-  type: "short",
-  noBackground: false,
-  showMobileToggle: true
+          <button className="Nav-toggle" onClick={openNav}>
+            Menu
+          </button>
+        </>
+      )}
+    </nav>
+  );
 };
 
 export default Nav;
