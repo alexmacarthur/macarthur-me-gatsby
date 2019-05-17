@@ -83,9 +83,17 @@ strong {
 }
 
 small {
-  font-family: $header-font-family;
+  word-break: break-word;
+  line-height: normal;
+  margin-top: .5rem;
+  display: inline-block;
+  font-family: $base-font-family;
   font-size: $small-font-size;
   color: $gray--medium;
+
+  & + small {
+    margin-left: .5rem;
+  }
 }
 
 button {

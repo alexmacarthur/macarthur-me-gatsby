@@ -16,18 +16,12 @@
     }
 
     &-description {
-        font-family: $header-font-family;
         margin: -2.5rem 0 5rem;
-
-        * {
-            font: inherit;
-            font-size: $base-font-size;
-        }
     }
     
     span {
         color: $gray--medium;
-        font-family: $header-font-family;
+        // font-family: $header-font-family;
         font-size: $small-font-size;
         display: block;
         margin-top: 1rem;
