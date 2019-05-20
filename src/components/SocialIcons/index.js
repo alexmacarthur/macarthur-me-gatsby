@@ -49,6 +49,7 @@ class SocialIcons extends React.Component {
               target={target}
               href={links.github}
               aria-label={`${label} GitHub`}
+              rel="noopener noreferrer"
             >
               <IconGithub />
             </a>
@@ -61,6 +62,7 @@ class SocialIcons extends React.Component {
               target={target}
               href={links.twitter}
               aria-label={`${label} Twitter`}
+              rel="noopener noreferrer"
             >
               <IconTwitter />
             </a>
@@ -73,6 +75,7 @@ class SocialIcons extends React.Component {
               target={target}
               href={links.linkedin}
               aria-label={`${label} LinkedIn`}
+              rel="noopener noreferrer"
             >
               <IconLinkedIn />
             </a>
@@ -85,6 +88,7 @@ class SocialIcons extends React.Component {
               target={target}
               href={links.facebook}
               aria-label={`${label} Facebook`}
+              rel="noopener noreferrer"
             >
               <IconFacebook />
             </a>
