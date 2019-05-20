@@ -30,10 +30,10 @@ class Post extends React.Component {
             <Bio content={this.props.shortBio} />
 
             <aside className="Post-footer">
-              <h4>
+              <span>
                 If this was helpful, interesting, or caused some other positive
                 emotion, share!
-              </h4>
+              </span>
 
               <SocialIcons
                 shareURL={this.props.url}

@@ -24,7 +24,7 @@
     }
 
     &-state {
-        font-family: $header-font-family;
+        font-family: $sans-serif-font-family;
 
         .Pagination--slim & {
             color: $gray--medium;
@@ -38,7 +38,7 @@
     }
 
     &-item {
-        font-family: $header-font-family;
+        font-family: $sans-serif-font-family;
 
         & + .Pagination-item {
             margin-left: 1rem;

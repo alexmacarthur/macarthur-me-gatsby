@@ -5,7 +5,7 @@ html {
 }
 
 body {
-  font-family: $base-font-family;
+  font-family: $sans-serif-font-family;
   color: $gray;
 }
 
@@ -21,7 +21,7 @@ h4,
 h5,
 h6 {
   margin: 0;
-  font-family: $header-font-family;
+  font-family: $sans-serif-font-family;
   line-height: normal;
   font-size: $base-font-size;
   font-weight: 700;
@@ -87,7 +87,7 @@ small {
   line-height: normal;
   margin-top: .5rem;
   display: inline-block;
-  font-family: $base-font-family;
+  font-family: $sans-serif-font-family;
   font-size: $small-font-size;
   color: $gray--medium;
 

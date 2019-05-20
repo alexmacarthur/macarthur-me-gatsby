@@ -1,6 +1,6 @@
 input,
 textarea {
-  font-family: $header-font-family;
+  font-family: $sans-serif-font-family;
   padding: .75rem;
   border-radius: 3px;
   border: 1px solid $gray--mediumLight;
@@ -21,7 +21,7 @@ form {
     color: white;
     background: $green;
     border-radius: 3px;
-    font-family: $header-font-family;
+    font-family: $sans-serif-font-family;
 
     &.is-error {
       background: $salmon;
@@ -30,7 +30,7 @@ form {
 }
 
 label {
-  font-family: $header-font-family;
+  font-family: $sans-serif-font-family;
   font-size: $base-font-size-large;
 
   input,

@@ -17,7 +17,7 @@ class Hero extends React.Component {
                 this.el = el;
               }}
             >
-              I'm Alex MacArthur, <br />a web developer in{" "}
+              I'm <strong>Alex MacArthur</strong>, <br />a web developer in{" "}
               <span>Nashville-ish, TN.</span>
             </h1>
 
