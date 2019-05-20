@@ -23,22 +23,33 @@ class SocialIcons extends React.Component {
 
     //-- If props provide a share URL, modify link values.
     if (this.props.shareURL) {
-      links.twitter = `https://twitter.com/intent/tweet?text=${
-        this.props.shareTitle
-      } - ${config.siteMetadata.social.twitterHandle} ${this.props.shareURL}`;
+      let encodedTitle = encodeURIComponent(this.props.shareTitle);
+
+      links.twitter = `https://twitter.com/intent/tweet?text=${encodedTitle} - ${
+        config.siteMetadata.social.twitterHandle
+      } ${this.props.shareURL}`;
+      links.twitter = `https://twitter.com/intent/tweet?text=${encodedTitle} - ${
+        config.siteMetadata.social.twitterHandle
+      } ${this.props.shareURL}`;
       links.facebook = `https://www.facebook.com/sharer/sharer.php?u=${
         this.props.shareURL
       }`;
       links.linkedin = `https://www.linkedin.com/shareArticle?mini=true&url=${
         this.props.shareURL
-      }&title=${this.props.shareTitle}&source=${config.siteMetadata.siteUrl}`;
+      }&title=${encodedTitle}&source=${config.siteMetadata.siteUrl}`;
     }
+
+    let label = this.props.shareURL ? "Share on" : "Alex on";
 
     return (
       <ul className="SocialIcons">
         {this.props.github && (
           <li className="SocialIcons-icon">
-            <a target={target} href={links.github}>
+            <a
+              target={target}
+              href={links.github}
+              aria-label={`${label} GitHub`}
+            >
               <IconGithub />
             </a>
           </li>
@@ -46,7 +57,11 @@ class SocialIcons extends React.Component {
 
         {this.props.twitter && (
           <li className="SocialIcons-icon">
-            <a target={target} href={links.twitter}>
+            <a
+              target={target}
+              href={links.twitter}
+              aria-label={`${label} Twitter`}
+            >
               <IconTwitter />
             </a>
           </li>
@@ -54,7 +69,11 @@ class SocialIcons extends React.Component {
 
         {this.props.linkedin && (
           <li className="SocialIcons-icon">
-            <a target={target} href={links.linkedin}>
+            <a
+              target={target}
+              href={links.linkedin}
+              aria-label={`${label} LinkedIn`}
+            >
               <IconLinkedIn />
             </a>
           </li>
@@ -62,7 +81,11 @@ class SocialIcons extends React.Component {
 
         {this.props.facebook && (
           <li className="SocialIcons-icon">
-            <a target={target} href={links.facebook}>
+            <a
+              target={target}
+              href={links.facebook}
+              aria-label={`${label} Facebook`}
+            >
               <IconFacebook />
             </a>
           </li>
