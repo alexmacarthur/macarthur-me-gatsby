@@ -106,7 +106,6 @@ module.exports = {
         trackingId: `UA-69526831-1`
       }
     },
-    `gatsby-plugin-offline`,
     `gatsby-plugin-react-helmet`,
     `gatsby-plugin-sitemap`,
     `gatsby-plugin-feed`,
