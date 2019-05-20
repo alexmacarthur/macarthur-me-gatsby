@@ -1,25 +1,5 @@
 [build]
   command = "npm run build"
   publish = "public"
-  NODE_ENV = "8.9.4"
-  NPM_VERSION = "6.2.0"
-
-[[redirects]]
-  from = "/typeit"
-  to = "https://typeitjs.com"
-  status = 301
-
-[[redirects]]
-  from = "/posts/lazy-load-images-in-wordpress-without-a-plugin"
-  to = "/posts/build-your-own-simple-lazy-loading-functionality-in-wordpress"
-  status = 301
-
-[[redirects]]
-  from = "/bell"
-  to = "https://alexmacarthur.github.io/bell"
-  status = 301
-
-[[redirects]]
-  from = "/notes/*"
-  to= "/posts/:splat"
-  status = 301
+  NODE_ENV = "10.15.3"
+  NPM_VERSION = "6.9.0"

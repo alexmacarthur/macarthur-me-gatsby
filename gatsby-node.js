@@ -2,6 +2,7 @@ const _ = require('lodash')
 const path = require('path')
 const { createFilePath } = require('gatsby-source-filesystem')
 const paginate = require('./paginate');
+const redirects = require('./redirects');
 
 exports.onCreateNode = ({ node, actions, getNode }) => {
   const { createNodeField } = actions
@@ -17,7 +18,12 @@ exports.onCreateNode = ({ node, actions, getNode }) => {
 }
 
 exports.createPages = ({ graphql, actions }) => {
-  const { createPage } = actions
+  const { createPage, createRedirect } = actions
+
+  // Create redirects.
+  redirects.forEach(redirect => {
+    createRedirect(redirect);
+  });
 
   const postsPaginationPromise = paginate({
     queryPromise: graphql(`
