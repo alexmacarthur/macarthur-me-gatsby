@@ -1,0 +1,34 @@
+@import '../../../assets/scss/base/variables.scss';
+@import '../../../assets/scss/base/mixins.scss';
+
+.bar {
+    display: flex;
+    align-items: center;
+    margin-bottom: 3rem;
+
+
+    h1 {
+        margin: 0 2rem 0 0;
+        font-size: $medium-font-size;   
+
+        @include media($medium-screen) {
+            font-size: $large-font-size;
+        }
+    }
+    
+    span {
+        color: $gray--medium;
+        font-size: $small-font-size;
+        display: block;
+        margin-top: 1rem;
+    }
+
+    &.stacked {
+        flex-direction: column;
+        align-items: start;
+    }
+}
+
+.description {
+    margin: -2.5rem 0 5rem;
+}

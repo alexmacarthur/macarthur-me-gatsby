@@ -10,13 +10,7 @@ class Hero extends React.Component {
       <div className={styles.hero}>
         <div className={styles.wrapper}>
           <div>
-            <h1
-              className={styles.title}
-              id="heroTitle"
-              ref={el => {
-                this.el = el;
-              }}
-            >
+            <h1 className={styles.title}>
               I'm <strong>Alex MacArthur</strong>, <br />a web developer in{" "}
               <span>Nashville-ish, TN.</span>
             </h1>
@@ -25,7 +19,7 @@ class Hero extends React.Component {
               <SocialIcons newTab={true} />
             </div>
           </div>
-          <Nav type="short" noBackground={true} showMobileToggle={false} />
+          <Nav isLandingNav={true} />
         </div>
       </div>
     );

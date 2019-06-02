@@ -1,15 +1,11 @@
 import React, { useState, useEffect } from "react";
 import Link from "gatsby-link";
 
-import "./index.scss";
+import styles from "./index.module.scss";
 
-const Nav = function({
-  type = "short",
-  noBackground = false,
-  showMobileToggle = true,
-  isTop = false
-}) {
+const Nav = function({ isLandingNav = false }) {
   let [isOpen, setIsOpen] = useState(false);
+  let [menuText, setMenuText] = useState("Open Menu");
 
   const links = [
     {
@@ -30,52 +26,52 @@ const Nav = function({
     }
   ];
 
-  function openNav() {
-    setIsOpen(true);
-  }
-
-  function closeNav() {
-    setIsOpen(false);
-  }
+  useEffect(() => {
+    setMenuText(isOpen ? "Close Menu" : "Open Menu");
+  }, [isOpen]);
 
   useEffect(() => {
     window.closeNav = () => {
-      closeNav();
+      setIsOpen(false);
     };
   }, []);
 
   return (
     <nav
       className={
-        "Nav" + (isTop ? " Nav--top" : " ") + (isOpen ? " is-open" : " ")
+        styles.nav +
+        " " +
+        (isLandingNav ? styles.nav__landing : "") +
+        " " +
+        (isOpen ? styles.isOpen : "")
       }
     >
-      {isTop && (
-        <Link className="Nav-logo" to="/">
-          Alex MacArthur
-        </Link>
+      {!isLandingNav && (
+        <div className={styles.logo}>
+          <Link className={styles.logo} to="/">
+            Alex MacArthur
+          </Link>
+        </div>
       )}
 
-      <ul className={"Nav-list " + (noBackground ? "no-background" : "")}>
+      <ul
+        className={`
+        ${styles.list}
+      `}
+      >
         {links.map(item => {
           return (
-            <li className="Nav-item" key={item.path}>
+            <li className={styles.item} key={item.path}>
               <Link to={item.path}>{item.name}</Link>
             </li>
           );
         })}
       </ul>
 
-      {!!showMobileToggle && (
+      {!isLandingNav && (
         <>
-          <div className="Nav-close" onClick={closeNav}>
-            <svg viewBox="0 0 40 40">
-              <path d="M 10,10 L 30,30 M 30,10 L 10,30" />
-            </svg>
-          </div>
-
-          <button className="Nav-toggle" onClick={openNav}>
-            Menu
+          <button className={styles.toggle} onClick={() => setIsOpen(!isOpen)}>
+            {menuText}
           </button>
         </>
       )}

@@ -1,0 +1,11 @@
+@import '../../../assets/scss/base/variables.scss';
+@import '../../../assets/scss/base/mixins.scss';
+
+.header {
+    padding: 3rem 2rem;
+    border-bottom: 1px solid $gray--mediumLight;
+
+    @include media($medium-screen) {
+        padding: 3rem;
+    }
+}

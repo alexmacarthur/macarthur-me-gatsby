@@ -1,0 +1,24 @@
+@import '../../../assets/scss/base/variables.scss';
+@import '../../../assets/scss/base/mixins.scss';
+
+.bio {
+  position: relative;
+  display: flex;
+  align-items: center;
+  margin: 5rem 0 0rem;
+}
+
+.image {
+  border-radius: 50%;
+  width: 50px;
+
+  @include media($medium-screen) {
+    width: 75px;
+  }
+}
+
+.content {
+  font-size: $small-font-size;
+  padding-left: 2rem;
+  font-family: $sans-serif-font-family;
+}

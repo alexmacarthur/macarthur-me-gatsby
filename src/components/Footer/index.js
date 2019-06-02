@@ -1,19 +1,15 @@
 import React from "react";
 
-import "./index.scss";
+import styles from "./index.module.scss";
 
-class Footer extends React.Component {
-  render() {
-    const date = new Date();
+export default () => {
+  const date = new Date();
 
-    return (
-      <footer className="Footer">
-        <span className="Footer-copyright">
-          &copy; Alex MacArthur | {date.getFullYear()}
-        </span>
-      </footer>
-    );
-  }
-}
-
-export default Footer;
+  return (
+    <footer className={styles.footer}>
+      <span className={styles.copyright}>
+        &copy; Alex MacArthur | {date.getFullYear()}
+      </span>
+    </footer>
+  );
+};

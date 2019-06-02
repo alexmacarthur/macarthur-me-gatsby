@@ -4,8 +4,7 @@ import url from "url";
 
 import IconExternal from "-!svg-react-loader?name=Icon!../../../assets/img/external.svg";
 
-//-- Styles.
-import "./index.scss";
+import styles from "./index.module.scss";
 
 class Card extends React.Component {
   render() {
@@ -14,10 +13,10 @@ class Card extends React.Component {
     if (this.props.external) {
       link = (
         <a
-          className={
-            "Card-link" +
-            (!this.props.disableExternalIcon ? " is-external" : "")
-          }
+          className={`
+            ${styles.link} 
+            ${!this.props.disableExternalIcon ? styles.isExternal : ""}
+          `}
           href={this.props.path}
           target="_blank"
           rel="noopener noreferrer"
@@ -26,7 +25,7 @@ class Card extends React.Component {
           {this.props.title}
 
           {!this.props.disableExternalIcon && (
-            <i className="Card-icon">
+            <i className={styles.icon}>
               <IconExternal />
             </i>
           )}
@@ -35,7 +34,7 @@ class Card extends React.Component {
     } else {
       link = (
         <Link
-          className="Card-link"
+          className={styles.link}
           to={this.props.path}
           title={this.props.title}
         >
@@ -45,11 +44,8 @@ class Card extends React.Component {
     }
 
     return (
-      <article
-        className={"Card" + (this.props.inGrid ? " Card--inGrid" : "")}
-        key={this.props.path}
-      >
-        <h3 className="Card-title">{link}</h3>
+      <article className={styles.card} key={this.props.path}>
+        <h3 className={styles.title}>{link}</h3>
 
         <small>{this.props.date}</small>
 
@@ -58,7 +54,6 @@ class Card extends React.Component {
         )}
 
         <p
-          className="Card-content"
           dangerouslySetInnerHTML={{
             __html: this.props.postExcerpt
           }}

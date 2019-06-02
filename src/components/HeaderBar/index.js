@@ -1,18 +1,16 @@
 import React from "react";
 
-import "./index.scss";
+import styles from "./index.module.scss";
 
 const HeaderBar = props => {
   return (
     <>
-      <div
-        className={"HeaderBar" + (props.isStacked ? " HeaderBar--stacked" : "")}
-      >
+      <div className={`${styles.bar} ${props.isStacked ? styles.stacked : ""}`}>
         {props.children}
       </div>
 
       {props.description && (
-        <div className="HeaderBar-description">
+        <div className={styles.description}>
           <p>{props.description}</p>
         </div>
       )}

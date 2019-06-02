@@ -1,0 +1,12 @@
+@import '../../../assets/scss/base/variables.scss';
+@import '../../../assets/scss/base/mixins.scss';
+
+.footer {
+  text-align: center;
+  padding: 1rem 0;
+  margin-top: 2rem;
+}
+
+.copyright {
+  font-family: $sans-serif-font-family;
+}

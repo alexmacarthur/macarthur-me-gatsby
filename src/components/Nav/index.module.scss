@@ -1,0 +1,108 @@
+@import '../../../assets/scss/base/variables.scss';
+@import '../../../assets/scss/base/mixins.scss';
+
+.nav {
+  display: flex;
+  position: relative;
+  list-style: none;
+  padding: 0;
+  width: 100%;
+}
+
+.list {
+  transition: all .15s ease-in-out;
+  position: fixed;
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+  margin: 0;
+  background: rgba($gray, .95);
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  transform: translateX(-100%);
+  justify-content: center;
+  align-items: center;
+
+  @include media($medium-screen) {
+    position: relative;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-end;
+    transform: translateX(0);
+    background: none;
+  }
+
+  .nav__landing & {
+    position: relative;
+    transform: translateX(0);
+    background: none;
+    justify-content: normal;
+    align-items: normal;
+  }
+
+  .isOpen & {
+    transform: translateX(0%);
+  }
+}
+
+.toggle {
+  position: absolute;
+  z-index: 1;
+  cursor: pointer;
+  top: 50%;
+  right: 0;
+  transform: translateY(-50%);
+
+  @include media($medium-screen) {
+    display: none;
+  }
+
+  .isOpen & {
+    color: $white;
+    border-color: $white;
+  }
+}
+
+.logo {
+  flex: 1 0 auto;
+  font-family: $sans-serif-font-family;
+  font-size: $medium-font-size;
+}
+
+.item {
+  display: block;
+  font-size: $base-font-size-large;
+
+  & + & {
+    margin: 1.5rem 0 0 0;
+
+    @include media($medium-screen) {
+      margin: 0 0 0 2rem;
+    }
+  }
+
+  a {
+    position: relative;
+    color: $white;
+    display: inline-block;
+
+    &:hover {
+      color: $white;
+    }
+
+    .nav__landing & {
+      color: $gray;
+    }
+
+    @include media($medium-screen) {
+      color: $gray;
+
+      &:hover {
+        color: $salmon;
+      }
+    }
+  }
+}

@@ -7,6 +7,7 @@ html {
 body {
   font-family: $sans-serif-font-family;
   color: $gray;
+  letter-spacing: -.05em;
 }
 
 * {
@@ -28,15 +29,15 @@ h6 {
 }
 
 h1 {
-  font-size: $medium-font-size;
+  font-size: $large-font-size;
   margin: 0 0 3rem;
   text-align: left;
   line-height: 1.2;
-
+  font-weight: 900;
+  
   @include media($medium-screen) {
-    font-size: $large-font-size;
+    font-size: $giant-font-size;
   }
-
 }
 
 h2 {
@@ -80,6 +81,12 @@ li {
 
 strong {
   font-weight: 700;
+}
+
+h1 {
+  strong {
+    font-weight: 900;
+  }
 }
 
 small {
@@ -136,4 +143,8 @@ td, th {
   font-size: $base-font-size;
   padding: 1rem;
   border: 2px solid $gray--mediumLight;
+}
+
+code[class*="language-"], pre[class*="language-"] {
+  font-size: $base-font-size !important;
 }

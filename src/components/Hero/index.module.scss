@@ -23,14 +23,13 @@
 }
 
 .title {
-  font-size: $large-font-size;
   text-align: left;
   margin-bottom: 2rem;
   max-width: 100%;
-  font-weight: normal;
+  font-weight: 100;
 
   @include media($medium-screen) {
-    font-size: $giant-font-size;
+    font-size: 6vw;
   }
 
   span {

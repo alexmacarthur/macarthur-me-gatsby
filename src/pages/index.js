@@ -1,5 +1,5 @@
 import { graphql } from "gatsby";
-import React, { Fragment } from "react";
+import React from "react";
 import PropTypes from "prop-types";
 import SEO from "../components/SEO";
 
@@ -8,10 +8,10 @@ import Hero from "../components/Hero";
 class BlogIndex extends React.Component {
   render() {
     return (
-      <Fragment>
+      <>
         <SEO />
         <Hero />
-      </Fragment>
+      </>
     );
   }
 }

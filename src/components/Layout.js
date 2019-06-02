@@ -4,6 +4,7 @@ import PropTypes from "prop-types";
 import Nav from "../components/Nav";
 import Footer from "../components/Footer";
 import SEO from "../components/SEO";
+import Header from "../components/Header";
 
 class Layout extends React.Component {
   render() {
@@ -13,7 +14,9 @@ class Layout extends React.Component {
       <div>
         <SEO />
 
-        <Nav isTop={true} type="short" />
+        <Header>
+          <Nav />
+        </Header>
 
         <main>{children}</main>
 
