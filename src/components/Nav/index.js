@@ -13,10 +13,6 @@ const Nav = function({ isLandingNav = false }) {
       path: "/posts"
     },
     {
-      name: "Projects",
-      path: "/projects"
-    },
-    {
       name: "About",
       path: "/about"
     },

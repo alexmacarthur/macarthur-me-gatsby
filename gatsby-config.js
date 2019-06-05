@@ -19,51 +19,7 @@ module.exports = {
       twitter: "https://www.twitter.com/amacarthur",
       linkedin: "https://linkedin.com/in/alexmacarthur",
       github: "https://www.github.com/alexmacarthur"
-    },
-    projects: [
-      {
-        title: "Better Resource Hints",
-        description:
-          "A WordPress plugin that improves performance by leveraging modern resource hints like preload, prefetch, and server push.",
-        url: "https://wordpress.org/plugins/better-resource-hints/"
-      },
-      {
-        title: "TypeIt",
-        description:
-          "The most versatile JavaScript animated typing utility on the planet.",
-        url: "https://typeitjs.com"
-      },
-      {
-        title: "Complete Open Graph",
-        description:
-          "A WordPress plugin enabling simple, comprehensive Open Graph management.",
-        url: "https://wordpress.org/plugins/complete-open-graph/"
-      },
-      {
-        title: "WP Vue",
-        description:
-          "A simple blog template built with Vue JS, powered by the WordPress REST API.",
-        url: "https://wp.netlify.com"
-      },
-      {
-        title: "Sahlstrom's",
-        description:
-          "A custom WordPress site designed and built for an HVAC company in Minnesota.",
-        url: "http://www.sahlstromsheating.com"
-      },
-      {
-        title: "Lavish Salon & Spa",
-        description:
-          "A simple, static website designed, built, &amp; optimized for a local salon and spa using Jekyll.",
-        url: "http://www.lavishsalonspamn.com"
-      },
-      {
-        title: "Lifewall",
-        description:
-          "Custom e-commerce website designed, built, and optimized for a startup large format printing company using Magento.",
-        url: "http://www.yourlifewall.com"
-      }
-    ]
+    }
   },
   plugins: [
     `gatsby-plugin-sass`,
