@@ -20,7 +20,7 @@ Letz do dis.
 ## Setting Up Our Function
 I'm going to assume you have a basic JAMStack project already set up & ready to go, including a `package.json` file. After that groundwork is laid, walk through these steps:
 
-**Create directories to store your Lambda code** One of these will contain your pre-compiled source code, and the other will be where Netlify puts the production-ready code. 
+**Create directories to store your Lambda code.** One of these will contain your pre-compiled source code, and the other will be where Netlify puts the production-ready code. 
 
 `mkdir lambda-src lambda`
 
