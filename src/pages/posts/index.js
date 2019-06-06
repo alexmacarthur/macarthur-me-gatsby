@@ -5,14 +5,15 @@ import Helmet from "react-helmet";
 import Layout from "../../components/Layout";
 import PostList from "../../components/PostList";
 
-const PostsPage = props => {
+const PostsPage = ({ data }) => {
+  console.log(data.allMarkdownRemark);
+
   return (
     <Layout>
-      <Helmet title={props.data.site.siteMetadata.title} />
+      <Helmet title={data.site.siteMetadata.title} />
       <PostList
-        pageContext={props.pageContext}
-        edges={props.pageContext.edges}
-        description={props.data.site.siteMetadata.pageDescriptions.posts}
+        edges={data.allMarkdownRemark.edges}
+        description={data.site.siteMetadata.pageDescriptions.posts}
         title="Posts"
       />
     </Layout>
@@ -28,6 +29,25 @@ export const postsQuery = graphql`
         title
         pageDescriptions {
           posts
+        }
+      }
+    }
+    allMarkdownRemark(
+      sort: { fields: [frontmatter___date], order: DESC }
+      limit: 1000
+      filter: { fileAbsolutePath: { regex: "/(/pages/posts)/(.*).md$/" } }
+    ) {
+      edges {
+        node {
+          excerpt(pruneLength: 250)
+          fields {
+            slug
+          }
+          frontmatter {
+            date(formatString: "DD MMMM, YYYY")
+            title
+            external
+          }
         }
       }
     }
