@@ -58,7 +58,8 @@ Following that, our `scripts` will look something like this:
 ```json
 "scripts": {
   "lambda-serve": "netlify-lambda serve lambda-src",
-  "build": "NODE_ENV=production webpack",
+  "lambda-build": "netlify-lambda build lambda-src",
+  "build": "NODE_ENV=production webpack && npm run lambda-build",
   "dev": "NODE_ENV=development concurrently \"webpack-dev-server --content-base src/\" \"npm run lambda-serve\"",
 }
 ```

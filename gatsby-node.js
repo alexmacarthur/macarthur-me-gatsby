@@ -40,7 +40,8 @@ exports.createPages = ({ graphql, actions }) => {
                 slug
               }
               frontmatter {
-                date(formatString: "DD MMMM, YYYY")
+                date(formatString: "MMMM DD, YYYY")
+                last_updated(formatString: "MMMM DD, YYYY")
                 title
                 external
               }

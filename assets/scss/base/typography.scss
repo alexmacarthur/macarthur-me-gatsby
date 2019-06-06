@@ -7,7 +7,7 @@ html {
 body {
   font-family: $sans-serif-font-family;
   color: $gray;
-  letter-spacing: -.05em;
+  letter-spacing: -.025em;
 }
 
 * {
@@ -104,10 +104,7 @@ small {
 }
 
 button {
-  text-transform: uppercase;
   font-size: $base-font-size;
-  font-weight: bold;
-  text-transform: uppercase;
   cursor: pointer;
   border: 1px solid $gray;
   border-radius: 5px;

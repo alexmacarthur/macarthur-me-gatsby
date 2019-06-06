@@ -49,6 +49,7 @@
   }
 
   :not(pre) > code[class*="language-"] {
+    font-family: $sans-serif-font-family;
     background: lighten($gray, 75%);
     word-wrap: break-word;
     color: $gray;
