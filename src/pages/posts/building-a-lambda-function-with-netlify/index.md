@@ -20,7 +20,7 @@ Letz do dis.
 ## Setting Up Our Function
 I'm going to assume you have a basic JAMStack project already set up & ready to go, including a `package.json` file. After that groundwork is laid, walk through these steps:
 
-**Create directories to store your Lambda code.** One of these will contain your pre-compiled source code, and the other will be where Netlify puts the production-ready code. 
+**Create directories to store your Lambda code.** One of these will contain your pre-compiled source code, and the other will be where Netlify puts the production-ready code. Locally, we'll only be serving out of the `lambda-src` directory, and so creating that `lambda` directory is technically unnecessary (later, when we deploy, Netlify will create that directory automatically), but we'll go ahead and do it here for better clarity in what's going on.
 
 `mkdir lambda-src lambda`
 
@@ -74,7 +74,7 @@ It's possible to define things like this in a `netlify.toml` file, but because o
 
 You'll notice I also threw our `LAMBDA_ENDPOINT` in there too. More on that in a second.
 
-To access these Stripe keys locally, we'll be using the [dotenv](https://github.com/motdotla/dotenv)(thanks to [Phil Hawksworth](https://www.hawksworx.com/) for that tip!). What it does is pretty simple: when we reference an environment variable that isn't defined in Node's `process.env` object (like when we're working locally), fill it in by referring to a `.env` file we'll have in our project. This file _won't_ be committed to the repository, and will only contain test keys. That said, put this file into your `.gitignore` file to prevent it from ever being pushed up. This is... _key_. 
+To access these Stripe keys locally, we'll be using the [dotenv](https://github.com/motdotla/dotenv) (thanks to [Phil Hawksworth](https://www.hawksworx.com/) for that tip!). What it does is pretty simple: when we reference an environment variable that isn't defined in Node's `process.env` object (like when we're working locally), fill it in by referring to a `.env` file we'll have in our project. This file _won't_ be committed to the repository, and will only contain test keys. That said, put this file into your `.gitignore` file to prevent it from ever being pushed up. This is... _key_. 
 
 ```
 echo ".env" >> .gitignore
@@ -92,7 +92,7 @@ In that file, go ahead and fill the Stripe variables with test keys, but ignore 
 ```
 STRIPE_PUBLISHABLE_KEY="XXXXXX"
 STRIPE_SECRET_KEY="XXXXXX"
-LAMBDA_ENDPOINT="localhost:34567"
+LAMBDA_ENDPOINT="http://localhost:9000/purchase"
 ```
 
 ### Actually Writing Some Lambda Code
@@ -144,7 +144,7 @@ Quick thing: I'm using an `async` function for my Lambda. This is because we'll 
 ```js
 // purchase.js
 
-exports.handler = async function(event, context, callback) {
+exports.handler = function(event, context, callback) {
   return callback(null, {
     statusCode,
     headers,
@@ -221,7 +221,7 @@ While we're here, let's break down this `data.token`, `data.amount`, and `data.i
 **If the body has everything we require, pass it to Stripe to create a charge.** After we get a response back, we're returning the status of that charge back to the browser. Feel free to elaborate on this as you see fit. Create customers, trigger emails following a successful charge, whatever you like. The point is we create a charge and immediately let the browser know if it was successful or not. 
 
 ```js
-//-- purchase.js
+// purchase.js
 
 let charge;
 
@@ -284,21 +284,21 @@ At this point, we're ready to start work on the front end, which will consist of
 **Configure webpack to make our environment variables available on the front end.** Much like we did before, we'll initialize `dotenv` so we can access environment variables locally. At the top of our `webpack.config.js` file, let's add this: 
 
 ```js
-//-- front-end.js
+// front-end.js
 
 require('dotenv').config();
 
 const webpack = require('webpack');
 
 module.exports = { 
-  //-- webpack configuration... 
+  // webpack configuration... 
 }
 ```
 
 Same as before, we're letting `dotenv` fill in the `process.env` gaps if a particular variable isn't already defined. Below that, we expose those variables to our JavaScript using webpack's `DefinePlugin`.
 
 ```js
-//-- webpack.config.js
+// webpack.config.js
 
 module.exports = {
   entry: './src/front-end.js',
@@ -318,7 +318,7 @@ module.exports = {
 **Now, let's create a Stripe Checkout handler in our front-end.js file, and include that bundled `bundle.js` file at the bottom of `index.html`.** 
 
 ```js
-//-- front-end.js
+// front-end.js
 
 const handler = StripeCheckout.configure({
   key: STRIPE_PUBLISHABLE_KEY,
@@ -334,9 +334,9 @@ const handler = StripeCheckout.configure({
 **Let's open our checkout form when someone clicks the button.**
 
 ```js
-//-- front-end.js
+// front-end.js
 
-//-- Stripe handles pricing in cents, so this is actually $10.00.
+// Stripe handles pricing in cents, so this is actually $10.00.
 const amount = 1000;
 
 document.querySelector("button").addEventListener("click", function() {
@@ -353,9 +353,7 @@ At this point, when a user clicks the button on our page, a beautiful Stripe che
 **Send the generated token to our Lambda function via AJAX.** Add this to your `front-end.js` file, right after our token is generated. I'm using the browser's [Fetch API](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API), but really doesn't matter what you choose. 
 
 ```js
-//-- front-end.js
-
-//-- I'm 
+// front-end.js
 
 const handler = StripeCheckout.configure({
   // -- Other stuff we've already gone through.
@@ -386,7 +384,7 @@ const handler = StripeCheckout.configure({
 To generate our `idempotency_key`, I'm using the [uuid](https://www.npmjs.com/package/uuid) package. It's really unique (lol). Run `npm install uuid -D` and import it at the top of your file.
 
 ```js
-//-- front-end.js
+// front-end.js
 
 import uuid from 'uuid/v4';
 ```
