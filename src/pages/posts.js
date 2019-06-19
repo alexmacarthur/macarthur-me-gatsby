@@ -2,8 +2,8 @@ import React from "react";
 import { graphql } from "gatsby";
 import Helmet from "react-helmet";
 
-import Layout from "../../components/Layout";
-import PostList from "../../components/PostList";
+import Layout from "../components/Layout";
+import PostList from "../components/PostList";
 
 const PostsPage = ({ data }) => {
   console.log(data.allMarkdownRemark);
@@ -35,7 +35,7 @@ export const postsQuery = graphql`
     allMarkdownRemark(
       sort: { fields: [frontmatter___date], order: DESC }
       limit: 1000
-      filter: { fileAbsolutePath: { regex: "/(/pages/posts)/(.*).md$/" } }
+      filter: { fileAbsolutePath: { regex: "/(posts)/(.*).md$/" } }
     ) {
       edges {
         node {

@@ -7,11 +7,17 @@ exports.onCreateNode = ({ node, actions, getNode }) => {
   const { createNodeField } = actions
 
   if (node.internal.type === `MarkdownRemark`) {
-    const value = createFilePath({ node, getNode })
+    const value = createFilePath({ node, getNode });
+
+    // If this node was source from the "posts" directory, slap a prefix onto the slug, 
+    // so that the resulting path is formatted correctly.
+    let fileNode = getNode(node.parent);
+    let slugPrefix = fileNode.dir.match(/src\/posts/) ? "posts" : "";
+
     createNodeField({
       name: `slug`,
       node,
-      value: value.replace(/\/$/, ``)
+      value: `/${slugPrefix}${value.replace(/\/$/, ``)}`
     })
   }
 }
@@ -27,7 +33,7 @@ exports.createPages = ({ graphql, actions }) => {
   /**
    * Generate all pages made of markdown.
    */
-  const allPagesPromise = graphql(
+  const allMarkdownPromise = graphql(
     `
       {
         allMarkdownRemark(sort: { fields: [frontmatter___date], order: DESC }, limit: 1000) {
@@ -64,5 +70,5 @@ exports.createPages = ({ graphql, actions }) => {
     });
   });
 
-  return Promise.all([allPagesPromise]);
+  return Promise.all([allMarkdownPromise]);
 }
