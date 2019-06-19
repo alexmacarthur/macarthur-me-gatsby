@@ -75,7 +75,7 @@ Object.prototype.map = function (func) {
 }
 ```
 
-Notice that when we fire that method, we’re also passing in the `index` and the original object itself as parameters. This is to keep our method as close to the actual `[map](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map#Syntax)`  [specification](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map#Syntax) method as reasonably possible. 
+Notice that when we fire that method, we’re also passing in the `index` and the original object itself as parameters. This is to keep our method as close to the actual [specification](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map#Syntax) as reasonably possible. 
 
 Once we have those manipulated values, we can piece our object back together with the appropriate keys.
 
