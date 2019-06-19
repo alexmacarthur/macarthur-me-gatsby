@@ -110,15 +110,15 @@ Sidebar: It was _really_ difficult to commit to using that meme. So overused. So
 This one’s a bit simpler than our `Object` map. Turn the target string into an array, `map()` over it as per usual, and turn it back into a string: 
 
 ```javascript
-    String.prototype.map = function(func) {
-      let stringArray = this.split("");
+String.prototype.map = function(func) {
+  let stringArray = this.split("");
     
-      let newStringArray = stringArray.map((item, index) => {
-        return func.call(window, item, index, this);
-      });
+  let newStringArray = stringArray.map((item, index) => {
+    return func.call(window, item, index, this);
+  });
     
-      return newStringArray.join("");
-    };
+  return newStringArray.join("");
+};
 ```
 
 Then, we can do something like this: 
@@ -216,7 +216,7 @@ Map.prototype.map = function(func) {
 };
 ```
 
-Let’s try itout. If you weren’t aware, the keys or values don’t _have_ to be of a particular type — objects, numbers, functions, etc. So, `map()` with responsibility. 
+Let’s try it out. If you weren’t aware, the keys or values don’t _have_ to be of a particular type — objects, numbers, functions, etc. So, `map()` with responsibility. 
 
 ```javascript
 let myMap = new Map();
@@ -237,4 +237,4 @@ console.log([...newMap]);
 
 ## Code with Caution
 
-Most of this was born out of “wouldn’t it be cool, if” within my brain. So, before shipping anything to production, be very intentional about what you’re manipulating, or deciding if it’s even worth adding these methods to all of these prototypes. All that said, this sure was fun! Thanks for mapping with me.
+Most of this was born out of "wouldn’t it be cool, if" within my brain. So, before shipping anything to production, be very intentional about what you’re manipulating, or deciding if it’s even worth adding these methods to all of these prototypes. All that said, this sure was fun! Thanks for mapping with me.
