@@ -55,7 +55,6 @@
   top: 50%;
   right: 0;
   transform: translateY(-50%);
-  font-size: $small-font-size;
 
   &:focus {
     outline: none;
@@ -80,6 +79,12 @@
 .item {
   display: block;
 
+  &.onlyVisibleOnMobile {
+    @include media($medium-screen) {
+      display: none;
+    } 
+  }
+
   & + & {
     margin: 1.5rem 0 0 0;
 
@@ -92,7 +97,8 @@
     position: relative;
     color: $white;
     display: inline-block;
-    font-size: $base-font-size-large;
+    font-size: $medium-font-size;
+    font-weight: bold;
 
     &:hover {
       color: $white;
@@ -105,6 +111,8 @@
 
     @include media($medium-screen) {
       color: $gray;
+      font-weight: normal;
+      font-size: $base-font-size-large;
 
       &:hover {
         color: $salmon;

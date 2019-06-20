@@ -19,6 +19,10 @@ const Nav = function({ isLandingNav = false }) {
     {
       name: "Contact",
       path: "/contact"
+    },
+    {
+      name: "Home",
+      path: "/"
     }
   ];
 
@@ -57,7 +61,12 @@ const Nav = function({ isLandingNav = false }) {
       >
         {links.map(item => {
           return (
-            <li className={styles.item} key={item.path}>
+            <li
+              className={`${styles.item} ${
+                item.path === "/" ? styles.onlyVisibleOnMobile : ""
+              }`}
+              key={item.path}
+            >
               <Link to={item.path}>{item.name}</Link>
             </li>
           );

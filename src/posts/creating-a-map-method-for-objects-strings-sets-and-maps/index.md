@@ -1,9 +1,10 @@
 ---
 title: 'Creating a .map() Method for Objects, Strings, Sets, and Maps'
 date: 2019-06-19T19:40:52.989Z
-open_graph: /uploads/map.jpg
+open_graph: https://images.pexels.com/photos/1078850/pexels-photo-1078850.jpeg?auto=format%2Ccompress&cs=tinysrgb&dpr=2&h=750&w=1260
 ---
-It’s a well-established truth of the universe that JavaScript's `Array.prototype.map()` is one of the best parts of the language, allowing us to write cleaner, simpler code to manipulate array values than using something like `forEach()`. 
+
+It’s a well-established truth of the universe that JavaScript's `Array.prototype.map()` is one of the best parts of the language, allowing us to write cleaner, simpler code to manipulate array values, instead of using something like `forEach()`. 
 
 For example, let’s say we want to create a copy of an array with values that are tripled.
 
@@ -35,7 +36,7 @@ console.log(someTripledNumz); //-- [6, 9, 15, 12, 15]
 
 ## What if we want to `map()` over the values of an _object_?
 
-As it stands, you can’t. There’s no `.map()` method on the `Object` prototype for us to use out of the box. So, let’s make that a thing. Afterward, we'll be able to do something like this: 
+As it stands, you can’t. There’s no `.map()` method that exists on any object for us to use out of the box. But, thanks to [prototypal inheritance](https://medium.com/@kevincennis/prototypal-inheritance-781bccc97edb), JavaScript provides a way to make that happen. We're gonna try it out, so that afterward, we'll be able to do something like this: 
 
 ```javascript
 let oldObject = {
@@ -99,11 +100,11 @@ Object.prototype.map = function (func) {
 }
 ```
 
-That’s it; we did it. But if you’re like me, you’re hungry for more. So, let’s: 
+We did it! But if you’re like me, you’re hungry for more. So, let’s: 
 
-![Map all the things!](/uploads/map-all-the-things.jpg)
+![Map all the things!](./map-all-the-things.jpg)
 
-Sidebar: It was _really_ difficult to commit to using that meme. So overused. So 2013. But I’m choosing to submit to its applicability for this post. Now, we begin:
+Sidebar: It was _really_ difficult to commit to using that meme. So overused. So 2013. But I’m choosing to submit to its applicability for this post. Now, we continue:
 
 ## Let’s Map() Over a String()
 
