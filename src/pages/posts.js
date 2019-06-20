@@ -6,8 +6,6 @@ import Layout from "../components/Layout";
 import PostList from "../components/PostList";
 
 const PostsPage = ({ data }) => {
-  console.log(data.allMarkdownRemark);
-
   return (
     <Layout>
       <Helmet title={data.site.siteMetadata.title} />

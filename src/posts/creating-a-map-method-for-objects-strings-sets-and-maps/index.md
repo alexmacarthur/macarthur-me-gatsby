@@ -102,7 +102,7 @@ Object.prototype.map = function (func) {
 
 We did it! But if you’re like me, you’re hungry for more. So, let’s: 
 
-![Map all the things!](./map-all-the-things.jpg)
+![Map all the things!](map-all-the-things.jpg)
 
 Sidebar: It was _really_ difficult to commit to using that meme. So overused. So 2013. But I’m choosing to submit to its applicability for this post. Now, we continue:
 
