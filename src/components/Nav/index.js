@@ -60,11 +60,15 @@ const Nav = function({ isLandingNav = false }) {
       `}
       >
         {links.map(item => {
+          let isHomeLink = item.path === "/";
+
+          if (isLandingNav && isHomeLink) {
+            return null;
+          }
+
           return (
             <li
-              className={`${styles.item} ${
-                item.path === "/" ? styles.onlyVisibleOnMobile : ""
-              }`}
+              className={`${styles.item} ${isHomeLink ? styles.isHome : ""}`}
               key={item.path}
             >
               <Link to={item.path}>{item.name}</Link>

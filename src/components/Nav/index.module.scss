@@ -79,7 +79,7 @@
 .item {
   display: block;
 
-  &.onlyVisibleOnMobile {
+  &.isHome {
     @include media($medium-screen) {
       display: none;
     } 
@@ -107,6 +107,7 @@
     .nav__landing & {
       color: $gray;
       font-size: $medium-font-size;
+      font-weight: normal;
     }
 
     @include media($medium-screen) {
