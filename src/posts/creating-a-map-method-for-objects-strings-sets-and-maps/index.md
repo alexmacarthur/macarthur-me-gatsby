@@ -236,6 +236,10 @@ console.log([...newMap]);
 // [ [ 'my first item', 3 ], [ {}, 6 ] ]
 ```
 
+## Try the Package
+
+Since what I wrote here includes a lot of functional, possibly useful code, I wrapped it all up into a package, ready for consumption. You can [check it out here](https://github.com/alexmacarthur/map-everything), and/or dive right in with `npm install map-everything`.
+
 ## Code with Caution
 
 Most of this was born out of "wouldn’t it be cool, if" within my brain. So, before shipping anything to production, be very intentional about what you’re manipulating, or deciding if it’s even worth adding these methods to all of these prototypes. All that said, this sure was fun! Thanks for mapping with me.
