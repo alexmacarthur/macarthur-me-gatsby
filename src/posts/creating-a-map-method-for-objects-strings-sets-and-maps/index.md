@@ -43,9 +43,9 @@ let oldObject = {
   first: 1,
   second: 2, 
   third: 3
-}
+};
 
-let newObject = oldObject.map(funtion(item, index, thing) {
+let newObject = oldObject.map(function(item, index, thing) {
   return item * 2;
 });
 
