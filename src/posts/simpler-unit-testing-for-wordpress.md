@@ -4,24 +4,25 @@ date: "2019-07-24"
 open_graph: "https://images.pexels.com/photos/1366942/pexels-photo-1366942.jpeg?cs=srgb&dl=beaker-biology-chemical-1366942.jpg&fm=jpg"
 ---
 
-When I was getting started in web development, I remember how conceptually overwhelming it was to understand the whys, whats, and hows around things like unit testing. And to make it even more difficult, WordPress was the environment in which I spent most of my time, a platform not well-known for its strong culture of unit testing.
+When I was getting started in web development, I remember how conceptually overwhelming it was to understand the whys, whats, and hows around things like unit testing. And to make it even more difficult, WordPress was the environment in which I spent most of my time &mdash; a platform not well-known for its strong culture of unit testing.
 
-Currently, the most-recommended resource for unit testing in WordPress (that I’ve come across) is the [scaffolding provided by the WP-CLI.](https://make.wordpress.org/cli/handbook/plugin-unit-tests/) Run a command, and it'll do things like download a copy of WordPress, set up a test database, and provide some nice-to-have methods for integrating your tests with the WP infrastructure itself. The problem is that every time I’ve tried to get this set up — for both themes and plugins — I’ve run into unexpected database or file structure issues. I spend a good share of time working through them, and then *maybe* have enough mental motivation to write a test. 
+As far as I can tell, the most-recommended resource for unit testing in WordPress is the [scaffolding provided by the WP-CLI.](https://make.wordpress.org/cli/handbook/plugin-unit-tests/) Run a command, and it'll do things like download a copy of WordPress, set up a test database, and provide some nice-to-have methods for integrating your tests with the WP infrastructure itself. The problem is that every time I’ve tried to get this set up — for both themes and plugins — I’ve run into unexpected database or file structure issues. I spend a good share of time working through them, and then *maybe* have enough mental motivation to write a test. 
 
 ***There’s got to be an easier way to set this stuff up.*** 
 
-I like what the WP-CLI approach has to offer. The helper methods provided by `WP_UnitTestCase` (the class you can extend rather than `PHPUnit\Framework\TestCase`) alone might make it worth working through the setup friction. But sometimes, you just wanna start writing some friggin' tests with as little overhead as possible. In those cases, there's a better way: **Hook it up yourself.** It's not as scary as it sounds.
+I like what the WP-CLI approach has to offer. The helper methods provided by `WP_UnitTestCase` (the class you can extend rather than `PHPUnit\Framework\TestCase`) alone might make it worth working through the setup friction. But sometimes, you just wanna start writing some friggin' tests to build some value for your theme or plugin. In those cases, there's a better way: **hook it up yourself.** It's not as scary as it sounds.
 
-## Setting Up Our Environment
+## Let's Get Set Up
 
 For this run-through, I'll be using my [wp-skateboard](https://github.com/alexmacarthur/wp-skateboard) setup, which runs on Docker, but it really doesn't matter whether you're using this, Vagrant, or anything else. But if you are using Docker, make sure you run any of the following commands inside your running container. To help with that, `wp-skateboard` allows you to run `make bash` to easily enter the container with a bash prompt.
 
 We’ll also be using Composer for package management and autoloading. And because most tutorials I’ve found focus on plugins, we’ll stick there too. 
 
-**Install PHPUnit with Composer.**
-To start, `cd` into your plugin, and go through the prompts of the `composer init` command. If you already have a `composer.json` file in the directory, you can skip this. 
+#### Install PHPUnit with Composer.
 
-After that, add bit of autoloading data that’ll come in handy later. Here, we tell Composer to automatically include certain files within the `tests/` directory (where our tests will live) when they’re namespaced to `PluginTests`. 
+To start, `cd` into your plugin, and go through the prompts of the `composer init` command. If you already have a `composer.json` file in the directory, just move on.
+
+After that, add bit of autoloading data that’ll come in handy later. Here, we tell Composer to automatically include certain files within the `tests/` directory (where our tests will live) when they’re namespaced to `PluginTests`. A little more on that in a bit.
 
 ```json
 "autoload-dev": {
@@ -54,8 +55,9 @@ Code Coverage Options:
     ...
 ```
 
-**Load WordPress via your phpunit.xml file.**
-Since this is a *WordPress* plugin, we’ll likely need access to some level of WP core functionality in order to effectively test our code. To make all of that available, we're going to load WP core during our tests by bootstrapping it in our `phpunit.xml` file. Throw this basic configuration into that file, and take special note of the `bootstrap` attribute:
+#### Load WordPress via our phpunit.xml file.
+
+Since this is a *WordPress* plugin, we’ll likely need access to some level of WP core functionality in order to effectively test our code. To make all of that available, we're going to load WP core during our tests by bootstrapping it in our `phpunit.xml` file. Throw some basic configuration into that file, and take special note of the `bootstrap` attribute:
 
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
@@ -104,8 +106,9 @@ Time: 1.03 seconds, Memory: 22.00MB
 No tests executed!
 ```
 
-**Write a test.** 
-Finally, some fun. Create a `tests` directory in your plugin, and inside that, a `SomeClassTest.php` file. Remember, that file name is important. Now, let’s just verify that we can get a test to run without issue. Throw some meaningless test in there. A method is deemed a test when its name starts with `test`.
+## Testing Time
+
+Create a `tests` directory in your plugin, and inside that, a `SomeClassTest.php` file. Remember, that file name is important. Now, let’s just verify that we can get a test to run without issue. Throw some meaningless test in there. A method is deemed a test when its name starts with `test`.
 
 ```php
 <?php
@@ -130,7 +133,7 @@ Time: 2.59 seconds, Memory: 54.25 MB
 ```
 Noice. 
 
-**Let’s Write Some WordPress-y Tests**
+#### Let's make things more WordPress-y.
 
 From here on out, we can start leveraging the WordPress ecosystem as needed. For a stupid example, let’s say we have a method that’ll retrieve the content of a post in an emotionalized based on the tags attached to the post. Specifically, we’ll format the content differently if the post is tagged `angry`, `excited`, or `obnoxious`. 
 
@@ -252,7 +255,7 @@ Time: 3.44 seconds, Memory: 32.00 MB
 OK (4 tests, 5 assertions)
 ```
 
-Gr8 work. But as your tests grow, it’s likely that you’ll need to interact with posts throughout several different classes. So, let’s abstract a bit of this WordPress-specific stuff out into its own class that extends `\PHPUnit\Framework\``*TestCase*`. 
+Gr8 work. But as your tests grow, it’s likely that you’ll need to interact with posts throughout several different classes. So, let’s abstract a bit of this WordPress-specific stuff out into its own class that extends `\PHPUnit\Framework\TestCase`. 
 
 ```php
 <?php 
@@ -285,9 +288,9 @@ Then, in our test class, we can extend this new helper class:
 +class SomePostTest extends \PluginTests\PostTestCase
 ```
 
-Thanks for to that bit of autoloading configuration we did earlier, we don’t need to include our new helper class — it happens automatically, out of sight. 
+Thanks to that bit of autoloading configuration we did earlier, we don’t need to include our new helper class — it happens automatically, out of sight. And as a result, from here on out, we can easily access `$this->testPostId` and any other resource we choose to make available in `PostTestCase`, rather than handling all of the setup and cleanup within our individual test classes. 
 
-As a result, from here on out, we can easily access `$this->testPostId` and any other resource we choose to make available in `PostTestCase`, rather than handling all of the setup and cleanup within our individual test classes. As the need arises, you can create your own different test cases from which to extend, perhaps based on the type of resource you need. For example, a `\PluginTests\User``*TestCase*` might be good to have in order to easily test code pertaining to WordPress user objects. 
+As the need arises, you can create your own different test cases from which to extend, perhaps based on the type of resource you need. For example, a `\PluginTests\UserTestCase` might be good to have in order to easily test code pertaining to WordPress user objects. 
 
 
 ## Yeah, Trade-Offs Exist
@@ -295,11 +298,11 @@ As a result, from here on out, we can easily access `$this->testPostId` and any 
 The value this entire approach gives is (hopefully) a quicker path to start writing tests in WordPress. That said, there are some trade-offs that come along it. For example: 
 
 
-- If you’re not careful in how you clean up the data you create when running tests, your local DB could get pretty muddy. In many cases, it might be better to manually create a test DB and point your application to that while testing. I’m sure there’s some clever programatic way to do this with the setup I’ve explained, but I haven’t explored those waters much.
-- You miss out on the features included with the WordPress-recommended test suite setup. Yeah, a lot of this would be nice to be able to leverage, but I’ve found that I don’t need much in order to set up valuable tests for my code using this simplified approach here. That could change at any given moment, until that happens, I’m good with this being sacrificed. 
+- **If you’re not careful in how you clean up the data you create when running tests, your local DB could get pretty muddy.** In many cases, it might be better to manually create a test DB and point your application to that while testing. I’m sure there’s some clever programmatic way to do this with the setup I’ve explained, but I haven’t explored those waters much.
+- **You miss out on the features included with the WordPress-recommended test suite setup.** Yeah, a lot of this would be nice to be able to leverage, but I’ve found that I don’t need much in order to set up valuable tests for my code using this simplified approach here. That could change at any given moment, but until that happens, I’m good with this being sacrificed. 
 
 
-## Can You Do It Better?
+## Feedback: Whatcha Got?
 
-If you’ve got some tips to improve this whole setup without losing its relative simplicity, share them! 
+If you’ve got some tips to improve this whole setup without losing its relative simplicity, share them! At any rate, hope this is helpful.
 
