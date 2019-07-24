@@ -25,18 +25,10 @@ class SocialIcons extends React.Component {
     if (this.props.shareURL) {
       let encodedTitle = encodeURIComponent(this.props.shareTitle);
 
-      links.twitter = `https://twitter.com/intent/tweet?text=${encodedTitle} - ${
-        config.siteMetadata.social.twitterHandle
-      } ${this.props.shareURL}`;
-      links.twitter = `https://twitter.com/intent/tweet?text=${encodedTitle} - ${
-        config.siteMetadata.social.twitterHandle
-      } ${this.props.shareURL}`;
-      links.facebook = `https://www.facebook.com/sharer/sharer.php?u=${
-        this.props.shareURL
-      }`;
-      links.linkedin = `https://www.linkedin.com/shareArticle?mini=true&url=${
-        this.props.shareURL
-      }&title=${encodedTitle}&source=${config.siteMetadata.siteUrl}`;
+      links.twitter = `https://twitter.com/intent/tweet?text=${encodedTitle} - ${config.siteMetadata.social.twitterHandle} ${this.props.shareURL}`;
+      links.twitter = `https://twitter.com/intent/tweet?text=${encodedTitle} - ${config.siteMetadata.social.twitterHandle} ${this.props.shareURL}`;
+      links.facebook = `https://www.facebook.com/sharer/sharer.php?u=${this.props.shareURL}`;
+      links.linkedin = `https://www.linkedin.com/shareArticle?mini=true&url=${this.props.shareURL}&title=${encodedTitle}&source=${config.siteMetadata.siteUrl}`;
     }
 
     let label = this.props.shareURL ? "Share on" : "Alex on";
