@@ -210,4 +210,4 @@ With that configured, a simple `git push` sends your code to two separate remote
 
 ## Expect Gotchas
 
-While it might be conceptually straightforward, setting all this up actually requires quite a bit of frustrating configuration, especially if it's the first time you've set up such a process. That said, give yourself a little grace in working through the gotchas that will inevitably come up. Hopefully what you read here will help alleviate the pains of the process even a little bit.
+While it might be conceptually straightforward, working through the details of all this was periodically frustrating for me, especially since it was my first time pulling such a thing off. That said, give yourself a little grace in dealing with the gotchas that will inevitably come up. Hopefully what you read here will help alleviate the pains of the process even just a little bit. If that's true, writing this all out was worth it.
