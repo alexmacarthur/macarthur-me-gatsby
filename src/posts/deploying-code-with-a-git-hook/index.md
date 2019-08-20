@@ -82,7 +82,7 @@ done
 
 After saving that, a couple more steps are required before it's actually usable:
 
-1. Make sure that hook is executable. If you skip this, you'll get a `The 'hooks/post-receive' hook was ignored because it's not set as executable.` error when you try to push to it from your machine.
+1. Make sure that hook is executable. If you skip this, you'll get a `The 'hooks/post-receive' hook was ignored because it's not set as executable` error when you push from your machine.
 
 ```bash
 chmod +x post-receive
