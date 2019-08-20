@@ -206,7 +206,7 @@ origin  git@github.com:alexmacarthur/neat-app.git (push)
 origin  root@YOUR_IP_ADDRESS:/home/neat-app-repo (push)
 ```
 
-With that configured, a simple `git push` sends your code to two separate remotes, saving your seconds per day, perhaps.
+With that configured, a simple `git push` sends your code to two separate remotes, saving you seconds per day, perhaps.
 
 ## Expect Gotchas
 
