@@ -1,10 +1,10 @@
 ---
-title: Deploying Code with a Git Hook on a Digital Ocean Droplet
+title: Deploying Code with a Git Hook on a DigitalOcean Droplet
 date: '2019-08-19'
 open_graph: 'https://images.pexels.com/photos/256229/pexels-photo-256229.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=1200&w=1200'
 ---
 
-I've been working on a project involving long-running, resource-intensive batch jobs in Node. At first, when my needs were simpler, I used Heroku to run these jobs. It was great, but eventually, the price:performance ratio offered became a little too unwieldy, and I chose to make a move from Heroku to Digital Ocean.
+I've been working on a project involving long-running, resource-intensive batch jobs in Node. At first, when my needs were simpler, I used Heroku to run these jobs. It was great, but eventually, the price:performance ratio offered became a little too unwieldy, and I chose to make a move from Heroku to DigitalOcean.
 
 Almost immediately, I was impressed. In just a short while, I was up and running these jobs with little issue. But there was one challenge I had yet to work out: setting up some sort of deployment process to get the code from my Git repository to my droplet. I was spoiled with Heroku. They make that part of the job incredibly hassle-free. But thankfully, when I made the move to DO, my needs were relatively straightforward:
 
@@ -12,7 +12,7 @@ Almost immediately, I was impressed. In just a short while, I was up and running
 - On that same push, I wanted to `npm install` the dependencies in my `package.json`.
 - I wanted the option to control which branches would trigger a deployment to that droplet.
 
-As it turned out, the setup was less complicated than I had been expecting. A single Git hook and a little local configuration meet all the needs noted above. This post is basically me backing up and documenting all I pieced together from experimenting and Googling. Note that I'm not gonna get into the weeds of configuring a droplet (or any other VPS -- it really doesn't matter) itself. For the purposes of what I'm showing off here, just make sure you have a SSH access to your droplet, and that Git's installed on it.
+As it turned out, the setup was less complicated than I had been expecting. A single Git hook and a little local configuration meet all the needs noted above. This post is basically me backing up and documenting all that I pieced together from experimenting and Googling. Note that I'm not gonna get into the weeds of configuring a DigitalOcean or any other VPS. For the purposes of what I'm showing off here, just make sure you have a SSH access to your droplet, and that Git's installed on it.
 
 ## Configure a Remote Repository on Your Droplet
 
@@ -28,7 +28,7 @@ cd neat-app-repo
 git init --bare
 ```
 
-**Create a `post-receive` hook file inside your newly created repository.** If you're unfamiliar with them, [catch up.](https://git-scm.com/book/en/v2/Customizing-Git-Git-Hook) In short, this hook will allows to do _something_ after code has been _received_ by the repository on the droplet (ie. when we do a `git push`). In our case, all we want to happen after our code is received is for it to be moved to a different directory, where it will be run.
+**Create a `post-receive` hook file inside your newly created repository.** If you're unfamiliar with them, [catch up.](https://git-scm.com/book/en/v2/Customizing-Git-Git-Hook) In short, this hook will allows to do _something_ after code has been _received_ by the repository on the droplet (ie. when we do a `git push`). In our case, all we want to happen after our code is received is for it to be moved to a different directory and its dependencies installed.
 
 If you `cd` into your `neat-app-repo/hooks` directory (this is one of the directories created when you initialized the bare repository), you should see a long list of `*.sample` Git hooks. While you're there, create a _new_ `post-receive` hook:
 
@@ -193,7 +193,7 @@ Admittedly, configuring my Git remotes locally was a little weird, but working i
 # Change the `fetch` URL, so we always pull code from GitHub.
 git remote set-url origin git@github.com:alexmacarthur/neat-app.git
 
-# Re-add `push` URLs, so that we push to GitHub AND Digital Ocean.
+# Re-add `push` URLs, so that we push to GitHub AND DigitalOcean.
 git remote set-url --add --push origin root@YOUR_IP_ADDRESS:/home/neat-app-repo
 git remote set-url --add --push origin git@github.com:alexmacarthur/neat-app.git
 ```
@@ -210,4 +210,4 @@ With that configured, a simple `git push` sends your code to two separate remote
 
 ## Expect Gotchas
 
-While it might be conceptually straightforward, working through the details of all this was periodically frustrating for me, especially since it was my first time pulling such a thing off. That said, give yourself a little grace in dealing with the gotchas that will inevitably come up. Hopefully what you read here will help alleviate the pains of the process even just a little bit. If that's true, writing this all out was worth it.
+While it might be conceptually straightforward, working through the details of all this was periodically frustrating for me, especially since it was my first time pulling off such a thing. That said, give yourself a little grace in dealing with the gotchas that will inevitably come up. Hopefully what you read here will help alleviate the pains of the process even just a little bit. If that's true, writing this all out was worth it.
