@@ -12,8 +12,4 @@ function randomBetween (min, max) {
 exports.onRouteUpdate = ({ location }) => {
   let winHeight = window.innerHeight;
   window.slice.style.height = `${randomBetween(winHeight + 300, winHeight + 600)}px`;
-
-  if (typeof window.closeNav !== 'undefined') {
-    window.closeNav();
-  }
 }

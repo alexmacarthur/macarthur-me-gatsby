@@ -1,11 +1,11 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import Link from "gatsby-link";
+import MenuIcon from "../MenuIcon";
 
 import styles from "./index.module.scss";
 
 const Nav = function({ isLandingNav = false }) {
   let [isOpen, setIsOpen] = useState(false);
-  let [menuText, setMenuText] = useState("Open Menu");
 
   const links = [
     {
@@ -26,16 +26,6 @@ const Nav = function({ isLandingNav = false }) {
     }
   ];
 
-  useEffect(() => {
-    setMenuText(isOpen ? "Close Menu" : "Open Menu");
-  }, [isOpen]);
-
-  useEffect(() => {
-    window.closeNav = () => {
-      setIsOpen(false);
-    };
-  }, []);
-
   return (
     <nav
       className={
@@ -54,34 +44,44 @@ const Nav = function({ isLandingNav = false }) {
         </div>
       )}
 
-      <ul
-        className={`
-        ${styles.list}
-      `}
-      >
-        {links.map(item => {
-          let isHomeLink = item.path === "/";
+      <div className={styles.listWrapper}>
+        <div
+          className={`${styles.shade} ${isOpen ? styles.shadeIsOpen : ""}`}
+        ></div>
+        <ul
+          className={`
+          ${styles.list}
+        `}
+        >
+          {links.map(item => {
+            let isHomeLink = item.path === "/";
 
-          if (isLandingNav && isHomeLink) {
-            return null;
-          }
+            if (isLandingNav && isHomeLink) {
+              return null;
+            }
 
-          return (
-            <li
-              className={`${styles.item} ${isHomeLink ? styles.isHome : ""}`}
-              key={item.path}
-            >
-              <Link to={item.path}>{item.name}</Link>
-            </li>
-          );
-        })}
-      </ul>
+            return (
+              <li
+                className={`${styles.item} ${isHomeLink ? styles.isHome : ""}`}
+                key={item.path}
+              >
+                <Link className={styles.link} to={item.path}>
+                  {item.name}
+                </Link>
+              </li>
+            );
+          })}
+        </ul>
+      </div>
 
       {!isLandingNav && (
         <>
-          <button className={styles.toggle} onClick={() => setIsOpen(!isOpen)}>
-            {menuText}
-          </button>
+          <MenuIcon
+            isOpen={isOpen}
+            onClick={() => {
+              setIsOpen(!isOpen);
+            }}
+          />
         </>
       )}
     </nav>

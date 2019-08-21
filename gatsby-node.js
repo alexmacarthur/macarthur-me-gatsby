@@ -17,7 +17,7 @@ exports.onCreateNode = ({ node, actions, getNode }) => {
     createNodeField({
       name: `slug`,
       node,
-      value: `/${slugPrefix}${value.replace(/\/$/, ``)}`
+      value: `/${slugPrefix}${value.replace(/\/$/, ``)}`.replace(/^\/+/, '')
     })
   }
 }
@@ -60,6 +60,7 @@ exports.createPages = ({ graphql, actions }) => {
     const posts = result.data.allMarkdownRemark.edges;
 
     posts.forEach(post => {
+      console.log(post.node);
       createPage({
         path: post.node.fields.slug,
         component: path.resolve('./src/templates/page.js'),
