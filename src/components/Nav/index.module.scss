@@ -1,5 +1,6 @@
 @import '../../../assets/scss/base/variables.scss';
 @import '../../../assets/scss/base/mixins.scss';
+@import './menu.module.scss';
 
 .nav {
   display: flex;
@@ -30,10 +31,6 @@
   opacity: 0;
   background: rgba($gray, .95);
 
-  &.shadeIsOpen {
-    opacity: 1;
-  }
-
   .nav__landing & {
     display: none;
   }
@@ -48,7 +45,6 @@
   justify-content: center;
   z-index: -1;
 
-  .isOpen &, 
   .nav__landing & {
     z-index: 1;
   }
@@ -79,7 +75,6 @@
     padding: 0;
   }
 
-  .isOpen &, 
   .nav__landing & {
     transform: none;
   }
@@ -87,28 +82,6 @@
   .nav__landing & {
     padding: 0;
     justify-content: flex-start;
-  }
-}
-
-.toggle {
-  position: absolute;
-  z-index: 1;
-  cursor: pointer;
-  top: 50%;
-  right: 0;
-  transform: translateY(-50%);
-
-  &:focus {
-    outline: none;
-  }
-
-  @include media($medium-screen) {
-    display: none;
-  }
-
-  .isOpen & {
-    color: $white;
-    border-color: $white;
   }
 }
 

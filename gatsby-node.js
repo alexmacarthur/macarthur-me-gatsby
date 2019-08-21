@@ -1,4 +1,3 @@
-const _ = require('lodash')
 const path = require('path')
 const { createFilePath } = require('gatsby-source-filesystem')
 const redirects = require('./redirects');
@@ -60,7 +59,6 @@ exports.createPages = ({ graphql, actions }) => {
     const posts = result.data.allMarkdownRemark.edges;
 
     posts.forEach(post => {
-      console.log(post.node);
       createPage({
         path: post.node.fields.slug,
         component: path.resolve('./src/templates/page.js'),

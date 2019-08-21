@@ -1,12 +1,9 @@
-import React, { useState } from "react";
+import React from "react";
 import Link from "gatsby-link";
-import MenuIcon from "../MenuIcon";
 
 import styles from "./index.module.scss";
 
 const Nav = function({ isLandingNav = false }) {
-  let [isOpen, setIsOpen] = useState(false);
-
   const links = [
     {
       name: "Posts",
@@ -28,13 +25,7 @@ const Nav = function({ isLandingNav = false }) {
 
   return (
     <nav
-      className={
-        styles.nav +
-        " " +
-        (isLandingNav ? styles.nav__landing : "") +
-        " " +
-        (isOpen ? styles.isOpen : "")
-      }
+      className={styles.nav + " " + (isLandingNav ? styles.nav__landing : "")}
     >
       {!isLandingNav && (
         <div className={styles.logo}>
@@ -44,10 +35,20 @@ const Nav = function({ isLandingNav = false }) {
         </div>
       )}
 
+      {!isLandingNav && (
+        <>
+          <input className={styles.menuCheckbox} type="checkbox" />
+
+          <ul className={styles.menuIcon}>
+            <li className={styles.menuIconBar}></li>
+            <li className={styles.menuIconBar}></li>
+            <li className={styles.menuIconBar}></li>
+          </ul>
+        </>
+      )}
+
       <div className={styles.listWrapper}>
-        <div
-          className={`${styles.shade} ${isOpen ? styles.shadeIsOpen : ""}`}
-        ></div>
+        <div className={styles.shade}></div>
         <ul
           className={`
           ${styles.list}
@@ -73,17 +74,6 @@ const Nav = function({ isLandingNav = false }) {
           })}
         </ul>
       </div>
-
-      {!isLandingNav && (
-        <>
-          <MenuIcon
-            isOpen={isOpen}
-            onClick={() => {
-              setIsOpen(!isOpen);
-            }}
-          />
-        </>
-      )}
     </nav>
   );
 };
