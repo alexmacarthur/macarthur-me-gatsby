@@ -97,4 +97,4 @@ The point is that it probably won't be long before "modern JavaScript" will just
 
 ## I'm Sorry.
 
-If you read this in anticipation of me revealing a surprise, reliable alternative to differential serving... I apologize. At the very least, I hope you've gained some nuggets of insight!
+If you read this in anticipation of me revealing a surprise, reliable alternative approach to differential serving... I apologize. At the very least, I hope you've gained some nuggets of insight!
