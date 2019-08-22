@@ -46,7 +46,7 @@ h2 {
 }
 
 h3, h4, h5, h6 {
-  font-size: $medium-font-size;
+  font-size: $base-font-size-large;
   margin: 2rem 0;
 }
 
@@ -87,6 +87,14 @@ blockquote {
   padding: .75rem 0 2rem;
   border-top: 2px solid $gray--mediumLight;
   border-bottom: 2px solid $gray--mediumLight;
+}
+
+ol {
+  padding-left: 2rem;
+  
+  li {
+    padding-left: .5rem;
+  }
 }
 
 strong {
