@@ -56,4 +56,9 @@
 
 .title {
   margin-bottom: 0;
+  font-size: $base-font-size-large;
+
+  @include media($medium-screen) {
+    font-size: $medium-font-size;
+  }
 }
