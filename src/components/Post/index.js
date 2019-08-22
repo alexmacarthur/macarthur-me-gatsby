@@ -1,9 +1,10 @@
 import React from "react";
 import PropTypes from "prop-types";
 
+import ReactDisqusComments from "react-disqus-comments";
+
 import Bio from "../Bio/index.js";
 import SocialIcons from "../SocialIcons";
-import DisqusThread from "../DisqusThread";
 import HeaderBar from "../HeaderBar";
 
 import "./index.scss";
@@ -49,7 +50,7 @@ class Post extends React.Component {
               />
             </aside>
 
-            <DisqusThread
+            <ReactDisqusComments
               shortname="macarthur-me"
               identifier={this.props.url}
               title={this.props.data.title}
