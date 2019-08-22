@@ -95,6 +95,6 @@ And even if it's a matter of waiting for browsers to more consistently handle th
 
 The point is that it probably won't be long before "modern JavaScript" will just be understood as "JavaScript," and worrying about getting differential serving down will probably amount to a lot of wasted energy.
 
-## I'm Sorry
+## I'm Sorry.
 
 If you read this in anticipation of me revealing a surprise, reliable alternative to differential serving... I apologize. At the very least, I hope you've gained some nuggets of insight!
