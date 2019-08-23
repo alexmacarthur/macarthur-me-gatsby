@@ -8,7 +8,7 @@ module.exports = {
     shortBio:
       "Alex MacArthur is a developer working for Dave Ramsey in Nashville. Soli Deo gloria.",
     description:
-      "I'm a front-end web developer in Nashville, spending most of my time in WordPress and JavaScript. Hire me for your next project!",
+      "I'm a web developer in Nashville, spending most of my time in Node, PHP, and React. Hire me for your next project!",
     openGraphImage: "/open-graph.jpg",
     fbAdmins: "502371334",
     pageDescriptions: {
@@ -78,7 +78,76 @@ module.exports = {
     },
     `gatsby-plugin-react-helmet`,
     `gatsby-plugin-sitemap`,
-    `gatsby-plugin-feed`,
+    {
+      resolve: `gatsby-plugin-feed`, 
+      options: {
+        query: `
+          {
+            site {
+              siteMetadata {
+                title
+                description
+                siteUrl
+                site_url: siteUrl
+              }
+            }
+          } 
+        `, 
+        feeds: [
+          {
+            serialize: ({ query: { site, allMarkdownRemark } }) => {
+              return allMarkdownRemark.edges.map(edge => {
+                const siteUrl = site.siteMetadata.siteUrl;
+                const postUrl = `${site.siteMetadata.siteUrl}/edge.node.fields.slug`;
+                const postText = `
+                  <div style="margin-top=55px; font-style: italic;">
+                    (This is an article published at macarthur.me. <a href="${postUrl}">Read it online here</a>.)
+                  </div>
+                `;
+
+                let html = edge.node.html;
+
+                html = html
+                  .replace(/href="\//g, `href="${siteUrl}/`)
+                  .replace(/src="\//g, `src="${siteUrl}/`)
+                  .replace(/"\/static\//g, `"${siteUrl}/static/`)
+                  .replace(/,\s*\/static\//g, `,${siteUrl}/static/`);
+
+                return Object.assign({}, edge.node.frontmatter, {
+                  description: edge.node.frontmatter.spoiler,
+                  date: edge.node.frontmatter.date,
+                  url: postUrl,
+                  guid: postUrl,
+                  custom_elements: [{ 'content:encoded': html + postText }],
+                });
+              });
+            },
+            query: `
+              {
+                allMarkdownRemark(
+                  sort: { order: DESC, fields: [frontmatter___date] },
+                ) {
+                  edges {
+                    node {
+                      excerpt
+                      html
+                      fields { slug }
+                      frontmatter {
+                        title
+                        date
+                      }
+                    }
+                  }
+                }
+              }
+            `,
+            output: "/rss.xml",
+            title: "Alex MacArthur's RSS Feed",
+            match: "^/posts/",
+          }
+        ]
+      }
+    },
     {
       resolve: 'gatsby-plugin-html-attributes',
       options: {
