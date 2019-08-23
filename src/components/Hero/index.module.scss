@@ -30,7 +30,7 @@
   font-weight: 400;
 
   @include media($medium-screen) {
-    font-size: 6vw;
+    font-size: $giant-font-size;
   }
 
   @include media($large-screen) {
