@@ -99,7 +99,7 @@ module.exports = {
             serialize: ({ query: { site, allMarkdownRemark } }) => {
               return allMarkdownRemark.edges.map(edge => {
                 const siteUrl = site.siteMetadata.siteUrl;
-                const postUrl = `${site.siteMetadata.siteUrl}/edge.node.fields.slug`;
+                const postUrl = `${site.siteMetadata.siteUrl}/${edge.node.fields.slug}`;
                 const postText = `
                   <div style="margin-top=55px; font-style: italic;">
                     (This is an article published at macarthur.me. <a href="${postUrl}">Read it online here</a>.)
