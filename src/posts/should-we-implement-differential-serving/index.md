@@ -57,6 +57,8 @@ By wrapping some modern feature inside a `try/catch` block, we can return a `boo
 
 Points for reliability, but it still doesn't feel right. There's an inherent performance tradeoff in needing go wait for a small piece of JS to parse and execute before you can download a big piece of JS. And after digging into this a little more, the performance losses were more significant than I anticipated.
 
+#### Testing the Client-Side Approach
+
 I ran through some scenarios loading a **~300kb transpiled file** and a **~50kb "modern" file** in three different ways. In my own experimentation, the amount of code I saved by not transipling ranged from 10% - 50%, so I figured I'd test with a more extreme example (> 80% savings) to determine if the load-via-JS approach is even reasonable. All of these examples involved loading the files at the end of the body, with the results being the approximate average of each approach with a simple static site on my local machine. Here they are:
 
 **Standard**: a simple `<script>` tag loading the 300kb file.
@@ -77,17 +79,23 @@ To no surprise, the slimmer file takes less time to download, but when it's load
 
 That's significant. And likely due to a couple of reasons:
 
-1. **It takes time to parse and compile JavaScript.** There's a whole lotta information out there on that, with one of the most well-known voices being Addy Osmani and his [Cost of JavaScript talks](https://v8.dev/blog/cost-of-javascript-2019).
+**First, it takes time to parse and execute JavaScript.** There's a whole lotta information out there on that, with one of the most well-known voices being Addy Osmani and his [Cost of JavaScript talks](https://v8.dev/blog/cost-of-javascript-2019).
 
-2. **You can't take advantage of the browser's speculative parsing** (also referred to as "preload scanning") when the file you want to download isn't actually embedded into the document. [Milica Mihajlija has a great article on this](https://hacks.mozilla.org/2017/09/building-the-dom-faster-speculative-parsing-async-defer-and-preload/) (which was published on my birthday -- huge).
+**Second (and most primarily), you can't take advantage of the browser's speculative parsing** (also referred to as "preload scanning") when the file you want to download isn't actually embedded into the document. [Milica Mihajlija has a great article on this](https://hacks.mozilla.org/2017/09/building-the-dom-faster-speculative-parsing-async-defer-and-preload/) (which was published on my birthday -- huge).
 
-    She explains that when loading the page, today's browsers (meaning those since 2008!) don't strictly fetch & execute scripts in the order they appear in the document. Instead, at the start of the page lifecycle, they "speculatively" discover scripts (and other resources) that will eventually be needed and start loading them in the background. And because speculative parsing doesn't execute any scripts, there's a huge drawback to loading JS via JS -- execution is delayed until the appropriate time as the DOM is being built. In fact, Mihajlija specifically calls out that these assets will probably be the last ones to be fetched.
+She explains that when loading the page, not-ancient browsers (meaning those since 2008) don't strictly fetch scripts in the order they appear in the document. Instead, at the start of the page lifecycle, they "speculatively" discover assets that will eventually be needed and start loading them in the background. So, embedded scripts have a huge leg up vs. those loaded by JS, which first have to wait for their time to come in the DOM-building process before they can even _start_ downloading. And that's why that waterfall looks the way it does. ☝️
 
-For the record, I did experiment with loading the scripts in the `<head>` of the document rather than the `<body>`, and it didn't help much. I saved around 10-15ms due to the file being queued sooner, which doesn't make up for the ~100ms lost in comparison to embedding those files into the document.
+#### Trying to Make the Client-Side Approach More Performant
 
-So, by looks of it, the client-side approach ain't great.
+A couple options did come to mind: 
 
-## What Does This All Mean?
+First, I did try loading the scripts in the `<head>` of the document rather than the `<body>`. It didn't help much. I saved around 10-15ms due to the file being queued sooner, which doesn't make up for the ~100ms lost in comparison to embedding those files into the document.
+
+Second, I experimented with preloading the modern bundle, and queue times were _much_ sooner in the page lifecycle, since speculative parsing can be leveraged. Old browsers won't download the modern script unnecessarily because they don't understand the hint. This sounds good, but it also means that any browsers that [don't support the preload resource hint](https://caniuse.com/#feat=link-rel-preload) will be slave to those gross loading times we explored above. And depending on the industry you're in, that's often still a _lot_ of users. So, I took a pass on this.
+
+After all of that, the client-side approach turned out to be less than impressive. 
+
+## What does all this mean?
 
 The big implication of this stuff should be pretty obvious: as it's been pitched, differential serving isn't ready for mainstream implementation. As far as I've seen, there's just too much hassle and unpredictability for not enough gain.
 
