@@ -15,13 +15,13 @@ To accomplish this, the `module` / `nomodule` trick has been thrown around quite
 
 Old browsers will pass over `type="module"`and download the `nomodule` version. Modern browsers will pass over the `nomodule` attribute and download the `type="module"` version. As a result, browsers get the code they can handle. These days, most of them can understand modern JavaScript anyway, so serving bundles in this way benefits most of sites' visitors.
 
-## Yeah, But Is It Reliable?
+## Yeah, but is it reliable?
 
 From what I've read and witnessed, not very. [John Stewart](https://www.johnstewart.dev/) has some [really interesting results](https://github.com/johnstew/differential-serving#tests) he shared from his own research, revealing (and verified by my own tinkering) that quite a few browser versions end up downloading bundles they shouldn't -- sometimes even multiple times. So, if your user just happens to be using MS Edge 18, for example, you're actually _harming_ performance -- not helping.
 
 And even if the community's generally moving away from the browsers with these issues, their use is still widespread enough to deter me from using the `module` / `nomodule` trick in production. At least for now.
 
-## Is There Another Way?
+## Is there another way?
 
 Yes, a couple of them.
 
@@ -31,7 +31,7 @@ Some have explored [a server-side solution](https://www.johnstewart.dev/differen
 
 ### A Client-Side Alternative
 
-Dare I say it, there _is_ a JavaScript alternative to explore:
+Dare I say it, there _is_ a JavaScript approach to explore:
 
 ```html
 <script>
@@ -83,15 +83,15 @@ That's significant. And likely due to a couple of reasons:
 
 **Second (and most primarily), you can't take advantage of the browser's speculative parsing** (also referred to as "preload scanning") when the file you want to download isn't actually embedded into the document. [Milica Mihajlija has a great article on this](https://hacks.mozilla.org/2017/09/building-the-dom-faster-speculative-parsing-async-defer-and-preload/) (which was published on my birthday -- huge).
 
-She explains that when loading the page, not-ancient browsers (meaning those since 2008) don't strictly fetch scripts in the order they appear in the document. Instead, at the start of the page lifecycle, they "speculatively" discover assets that will eventually be needed and start loading them in the background. So, embedded scripts have a huge leg up vs. those loaded by JS, which first have to wait for their time to come in the DOM-building process before they can even _start_ downloading. And that's why that waterfall looks the way it does. ☝️
+She explains that when loading the page, not-ancient browsers (meaning those since 2008) don't strictly fetch scripts in the order they appear in the document. Instead, at the start of the page lifecycle, they "speculatively" discover assets that will eventually be needed and start loading them in the background. So, embedded scripts have a huge leg up vs. those loaded by JS, which first have to wait for their time to come in the DOM-building process before they can even _start_ downloading. And that's why that waterfall looks the way it does.
 
-#### Trying to Make the Client-Side Approach More Performant
+#### Can we make this more performant?
 
-A couple options did come to mind: 
+A couple of options did come to mind: 
 
-First, I did try loading the scripts in the `<head>` of the document rather than the `<body>`. It didn't help much. I saved around 10-15ms due to the file being queued sooner, which doesn't make up for the ~100ms lost in comparison to embedding those files into the document.
+First, I tried loading the scripts in the `<head>` of the document rather than the `<body>`. It didn't help much. I saved around 10-15ms due to the file being queued sooner, which doesn't make up for the ~100ms lost in comparison to embedding those files into the document.
 
-Second, I experimented with preloading the modern bundle, and queue times were _much_ sooner in the page lifecycle, since speculative parsing can be leveraged. Old browsers won't download the modern script unnecessarily because they don't understand the hint. This sounds good, but it also means that any browsers that [don't support the preload resource hint](https://caniuse.com/#feat=link-rel-preload) will be slave to those gross loading times we explored above. And depending on the industry you're in, that's often still a _lot_ of users. So, I took a pass on this.
+Second, I experimented with preloading the modern bundle, and queue times were _much_ sooner in the page lifecycle, since speculative parsing can be leveraged. Old browsers won't download the modern script unnecessarily because they don't understand the hint. This sounds good, but it also means that any browsers that [don't support the preload resource hint](https://caniuse.com/#feat=link-rel-preload) will be slave to those gross loading times we discovered above. And depending on your industry, that's often still a _lot_ of users.
 
 After all of that, the client-side approach turned out to be less than impressive. 
 
@@ -103,6 +103,6 @@ And even if it's a matter of waiting for browsers to more consistently handle th
 
 The point is that it probably won't be long before "modern JavaScript" will just be understood as "JavaScript," and worrying about getting differential serving down will probably amount to a lot of wasted energy.
 
-## I'm Sorry.
+## Sorry!
 
 If you read this in anticipation of me revealing a surprise, reliable alternative approach to differential serving... I apologize. At the very least, I hope you've gained some nuggets of insight!
