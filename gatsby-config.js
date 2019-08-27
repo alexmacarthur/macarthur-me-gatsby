@@ -43,6 +43,13 @@ module.exports = {
       options: {
         plugins: [
           {
+            resolve: `gatsby-remark-autolink-headers`,
+            options: {
+              offsetY: `50`,
+              removeAccents: true
+            }
+          },
+          {
             resolve: "gatsby-remark-external-links",
             options: {
               target: "_blank",
