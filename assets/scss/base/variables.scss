@@ -3,9 +3,12 @@ $gray: #2f2f2f;
 $gray--medium: lighten($gray, 50%);
 $gray--mediumLight: lighten($gray, 70%);
 $gray--light: lighten($gray, 80%);
+$green: #4ECDC4;
+$green--dark: darken($green, 25%);
+$blue: #3590F3;
+$blue--dark: darken($blue, 25%);
 $salmon: #f76656;
 $salmon--dark: darken($salmon, 25%);
-$green: #4ECDC4;
 
 $container-width: 800px;
 $large-container-width: 1200px;
