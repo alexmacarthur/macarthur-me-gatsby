@@ -34,6 +34,10 @@ h1 {
   text-align: left;
   line-height: 1.15;
   font-weight: 900;
+
+  strong {
+    font-weight: 900;
+  }
   
   @include media($medium-screen) {
     font-size: $giant-font-size;
@@ -56,16 +60,12 @@ h4 {
 }
 
 a {
-  text-decoration: none;
-  color: inherit;
-
-  &:hover {
-    color: $salmon;
-  }
+  @include link;
 }
 
 p {
   a {
+    @include underline;
     @include link;
   }
 }
@@ -99,12 +99,6 @@ ol {
 
 strong {
   font-weight: 700;
-}
-
-h1 {
-  strong {
-    font-weight: 900;
-  }
 }
 
 small {
