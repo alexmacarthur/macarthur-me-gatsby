@@ -59,7 +59,7 @@ Points for reliability, but it still doesn't feel right. There's an inherent per
 
 #### Testing the Client-Side Approach
 
-I ran through some scenarios loading a **~300kb transpiled file** and a **~50kb "modern" file** in three different ways. In my own experimentation, the amount of code I saved by not transipling ranged from 10% - 50%, so I figured I'd test with a more extreme example (> 80% savings) to determine if the load-via-JS approach is even reasonable. All of these examples involved loading the files at the end of the body, with the results being the approximate average of each approach with a simple static site on my local machine. Here they are:
+I ran through some scenarios loading a **~300kb transpiled file** and a **~50kb "modern" file** in three different ways. In my own experimentation, the amount of code I saved by not transpiling ranged from 10% - 50%, so I figured I'd test with a more extreme example (> 80% savings) to determine if the load-via-JS approach is even reasonable. All of these examples involved loading the files at the end of the body, with the results being the approximate average of each approach with a simple static site on my local machine. Here they are:
 
 **Standard**: a simple `<script>` tag loading the 300kb file.
 
@@ -91,15 +91,15 @@ A couple of options did come to mind:
 
 First, I tried loading the scripts in the `<head>` of the document rather than the `<body>`. It didn't help much. I saved around 10-15ms due to the file being queued sooner, which doesn't make up for the ~100ms lost in comparison to embedding those files into the document.
 
-Second, I experimented with preloading the modern bundle, and queue times were _much_ sooner in the page lifecycle, since speculative parsing can be leveraged. Old browsers won't download the modern script unnecessarily because they don't understand the hint. This sounds good, but it also means that any browsers that [don't support the preload resource hint](https://caniuse.com/#feat=link-rel-preload) will be slave to those gross loading times we discovered above. And depending on your industry, that's often still a _lot_ of users.
+Second, I experimented with preloading the modern bundle in the `<head>` of the page. Queue times were _much_ sooner in the page lifecycle, since speculative parsing can be leveraged, and since older browsers [don't support the preload resource hint](https://caniuse.com/#feat=link-rel-preload), they won't unnecessarily download assets they shouldn't. This sounds good, but it also means that those same browsers will be slave to the gross loading times we discovered above. Depending on your industry, that's often still a _lot_ of users.
 
-After all of that, the client-side approach turned out to be less than impressive. 
+So, after all of that, the client-side approach turned out to be less than impressive. 
 
 ## What does all this mean?
 
 The big implication of this stuff should be pretty obvious: as it's been pitched, differential serving isn't ready for mainstream implementation. As far as I've seen, there's just too much hassle and unpredictability for not enough gain.
 
-And even if it's a matter of waiting for browsers to more consistently handle the `module` / `nomodule` trick, by the time they do, it might not be worth creating two different bundles at all. [Support for ES2015 is getting _really_ good](https://caniuse.com/#feat=es6), with **~91%** of users being on browsers with full support, and **~96%** having at least partial support. And on top of that, the release cadence for most browsers is pretty quick nowadays -- around every couple of months or so, based on [Chromium's](https://www.chromium.org/developers/calendar) and [Firefox's](https://wiki.mozilla.org/Release_Management/Calendar) release calendars. 
+And even if it's a matter of waiting for browsers to more consistently handle the `module` / `nomodule` trick, by the time they do, it might not be worth creating two different bundles at all. [Support for ES2015 is getting _really_ good](https://caniuse.com/#feat=es6), with **~91%** of users being on browsers with full support, and **~96%** having at least partial support. And on top of that, the release rhythm for most browsers is pretty quick nowadays -- around every couple of months or so, based on [Chromium's](https://www.chromium.org/developers/calendar) and [Firefox's](https://wiki.mozilla.org/Release_Management/Calendar) release calendars. 
 
 The point is that it probably won't be long before "modern JavaScript" will just be understood as "JavaScript," and worrying about getting differential serving down will probably amount to a lot of wasted energy.
 
