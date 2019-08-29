@@ -1,9 +1,11 @@
 import React from "react";
 import Card from "./Card";
+import Pagination from "./Pagination";
 import HeaderBar from "./HeaderBar";
 
 const PostList = props => {
   const posts = props.edges;
+  const pageContext = props.pageContext;
 
   return (
     <>
@@ -28,6 +30,8 @@ const PostList = props => {
             />
           );
         })}
+
+      <Pagination pageContext={pageContext} />
     </>
   );
 };

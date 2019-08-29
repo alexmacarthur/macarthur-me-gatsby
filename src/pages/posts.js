@@ -5,13 +5,14 @@ import Helmet from "react-helmet";
 import Layout from "../components/Layout";
 import PostList from "../components/PostList";
 
-const PostsPage = ({ data }) => {
+const PostsPage = props => {
   return (
     <Layout>
-      <Helmet title={data.site.siteMetadata.title} />
+      <Helmet title={props.data.site.siteMetadata.title} />
       <PostList
-        edges={data.allMarkdownRemark.edges}
-        description={data.site.siteMetadata.pageDescriptions.posts}
+        pageContext={props.pageContext}
+        edges={props.pageContext.edges}
+        description={props.data.site.siteMetadata.pageDescriptions.posts}
         title="Posts"
       />
     </Layout>
