@@ -118,20 +118,39 @@ function clc {
 
 Because it tripped me up, take extra notice that I'm not using a simple `git stash` command to stash my changes. Instead I'm using `git stash push -u`. This is because I want to stash away _all_ my current changes, including files I might have just created but not yet committed. The more verbose `git stash push` followed by the `-u` (which stands for `--include-untracked`) flag will do just that.
 
+## Iteration #4 :: Tear Down & Basically Everything
+
+At this point, I was feeling pretty good about myself. I had worked through all the weird shell issues I had hit along the way, and actually published this very blog post on the whole process.
+
+And then, a couple of Reddit users (thanks, [nunull](https://www.reddit.com/user/nunull/) and [austin-schaffer](https://www.reddit.com/user/austin-schaffer/)!) pointed out that I don't actually _need_ to perform a checkout just to get at a commit SHA. This should have been obvious since was already using `git rev-parse HEAD` to pull the SHA. Swapping out `HEAD` for whatever branch I need would have done the trick, completely removing the need for any of that complicated checkout and stash logic 🤦. 
+
+With that revelation, the function goes from all of those lines of code down to just a few:
+
+```bash
+function clc {
+    [[ -z $1 ]] && BRANCH=$(git rev-parse --abbrev-ref HEAD) || BRANCH=$1
+    LAST_COMMIT_SHA=$(git rev-parse $BRANCH | tail -n 1)
+    echo "$LAST_COMMIT_SHA" | tr -d '\n' | pbcopy
+    echo "Copied ${LAST_COMMIT_SHA}."
+}
+```
+
+See, Reddit ain't so bad! Thanks again to the two who called this out!
+
 ## See the Touched Up Final Product
 
-I've added some pretty terminal colors in the version that lives in [this Gist](https://gist.github.com/alexmacarthur/933a50c3e072baaf7b6ed18b94e0e873).
+I've added a couple of pretty terminal colors in the version that lives in [this Gist](https://gist.github.com/alexmacarthur/933a50c3e072baaf7b6ed18b94e0e873).
 
 ## Using the Function
 
-To use this in your local shell, you could throw it in your `~/.bashrc` or `~/.zshrc` file, but it's a fairly meaty, so it's better to store it somewhere else on your system. I can't speak for `bash` users, but if you're using `zsh`, that's just a matter of putting the file in your `$ZSH/custom` directory and sourcing it.
+To use this in your local shell, you could throw it in your `~/.bashrc` or `~/.zshrc` file, but it's probably better to store it somewhere else on your system. I can't speak for `bash` users, but if you're using `zsh`, that's just a matter of putting the file in your `$ZSH/custom` directory and sourcing it.
 
 ### Install as Custom ZSH Function
 
 To make it super easy, run the following command, which will retrieve the function from my GitHub Gist and put it into the appropriate location:
 
 ```bash
-curl https://gist.githubusercontent.com/alexmacarthur/933a50c3e072baaf7b6ed18b94e0e873/raw/505f1ffaf3e2124eac6ab29cdb589b5cb5782267/copy-last-commit.zsh -o $ZSH/custom/clc.zsh
+curl https://gist.githubusercontent.com/alexmacarthur/933a50c3e072baaf7b6ed18b94e0e873/raw/59f22ae740d83f39a88b70f4aebb0c27b2f9805f/copy-last-commit.zsh -o $ZSH/custom/clc.zsh
 ```
 
 ### Running the Command
@@ -144,22 +163,10 @@ Running `clc` will return something like this:
 Copied 3ccbd742f916659c50cbff6c2f63e2ba28a168b5 from master.
 ```
 
-Running `clc new-branch` in a clean working directory will return something like this:
+Running `clc new-branch` will return something like this:
 
 ```
-Switched to branch 'new-branch'
 Copied 3ccbd742f916659c50cbff6c2f63e2ba28a168b5 from new-branch.
-Switched to branch 'master'
-```
-
-And running `clc new-branch` with unstaged changes will return something like this: 
-
-```
-Stashed unstaged stages.
-Switched to branch 'new-branch'
-Copied 3ccbd742f916659c50cbff6c2f63e2ba28a168b5 from new-branch.
-Switched to branch 'master'
-Restored unstaged changes.
 ```
 
 ## Did I Miss Something? 
