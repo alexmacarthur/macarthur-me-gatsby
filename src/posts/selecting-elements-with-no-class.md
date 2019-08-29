@@ -8,8 +8,6 @@ If you've been a developer for more than 7 minutes, you've probably felt uncomfo
 
 When I meet scenarios like this, by default, I instantly architecting the most terrible, complicated solution that's tied to my unique context. 
 
-_I'll just super-nest ![superman](https://cdn.emojidex.com/emoji/mdpi/superman.png?1493051383 "superman") until those little boogers obey my styles!_ 
-
 ```css
 .page-whatever-wordpress-plugin .this-class + .that-class > h3:nth-child(3) ~ span {
      font-weight: bold;

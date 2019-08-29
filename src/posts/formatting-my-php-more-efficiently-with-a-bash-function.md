@@ -3,6 +3,7 @@ title: Formatting My PHP More Efficiently with a Bash Function
 date: 2019-04-16T22:30:55.869Z
 open_graph: /uploads/shell.jpg
 ---
+
 For quite some time now, I’ve been working with a PHP application that, up until recently, had no clearly-defined coding standards in place. At some point, the decision was made to enforce PSR-2, and to do so at an incremental level. When a file is touched, format to PSR-2. 
 
 To do this in the command line, I’ve been using [PHP-CS-Fixer](https://github.com/FriendsOfPHP/PHP-CS-Fixer). It’s pretty straightforward in how it works. Call the command, pass a file, specify a standard:
