@@ -36,7 +36,7 @@ exports.createPages = ({ graphql, actions }) => {
         allMarkdownRemark(
           sort: { fields: [frontmatter___date], order: DESC }, 
           limit: 1000,
-          filter: {fileAbsolutePath: {regex: "/(\/pages\/posts)/(.*).md$/"}}
+          filter: {fileAbsolutePath: {regex: "/(posts)/(.*).md$/"}}
         ) {
           edges {
             node {
@@ -55,7 +55,7 @@ exports.createPages = ({ graphql, actions }) => {
         }
       }
     `),
-    perPage: 5,
+    perPage: 10,
     listPath: 'posts', 
     createPage
   });
@@ -71,10 +71,6 @@ exports.createPages = ({ graphql, actions }) => {
             node {
               fields {
                 slug
-              }
-              frontmatter {
-                title,
-                external
               }
             }
           }

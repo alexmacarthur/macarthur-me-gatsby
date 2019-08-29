@@ -11,7 +11,6 @@ const PostsPage = props => {
       <Helmet title={props.data.site.siteMetadata.title} />
       <PostList
         pageContext={props.pageContext}
-        edges={props.pageContext.edges}
         description={props.data.site.siteMetadata.pageDescriptions.posts}
         title="Posts"
       />
@@ -28,25 +27,6 @@ export const postsQuery = graphql`
         title
         pageDescriptions {
           posts
-        }
-      }
-    }
-    allMarkdownRemark(
-      sort: { fields: [frontmatter___date], order: DESC }
-      limit: 1000
-      filter: { fileAbsolutePath: { regex: "/(posts)/(.*).md$/" } }
-    ) {
-      edges {
-        node {
-          excerpt(pruneLength: 250)
-          fields {
-            slug
-          }
-          frontmatter {
-            date(formatString: "MMMM DD, YYYY")
-            title
-            external
-          }
         }
       }
     }

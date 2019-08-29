@@ -24,7 +24,7 @@ module.exports = ({
 
             createPage({
                 path: pageNumber > 1 ? `${listPath}/${pageNumber}` : listPath,
-                component: path.resolve(`./src/pages/${listPath}/index.js`),
+                component: path.resolve(`./src/templates/${listPath}.js`),
                 context: {
                     edges: chunk,
                     skip: perPage * (pageNumber - 1),

@@ -4,7 +4,7 @@ import Pagination from "./Pagination";
 import HeaderBar from "./HeaderBar";
 
 const PostList = props => {
-  const posts = props.edges;
+  const posts = props.pageContext.edges;
   const pageContext = props.pageContext;
 
   return (
