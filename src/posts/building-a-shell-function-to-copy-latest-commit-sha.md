@@ -126,13 +126,41 @@ I've added some pretty terminal colors in the version that lives in [this Gist](
 
 To use this in your local shell, you could throw it in your `~/.bashrc` or `~/.zshrc` file, but it's a fairly meaty, so it's better to store it somewhere else on your system. I can't speak for `bash` users, but if you're using `zsh`, that's just a matter of putting the file in your `$ZSH/custom` directory and sourcing it.
 
+### Install as Custom ZSH Function
+
 To make it super easy, run the following command, which will retrieve the function from my GitHub Gist and put it into the appropriate location:
 
 ```bash
 curl https://gist.githubusercontent.com/alexmacarthur/933a50c3e072baaf7b6ed18b94e0e873/raw/505f1ffaf3e2124eac6ab29cdb589b5cb5782267/copy-last-commit.zsh -o $ZSH/custom/clc.zsh
 ```
 
-After doing that, source it up with `source ~/.zshrc`. The `clc [optional-branch-name]` command should now work!
+### Running the Command
+
+After doing that, source it up with `source ~/.zshrc`, and you should be able to run the command. 
+
+Running `clc` will return something like this: 
+
+```
+Copied 3ccbd742f916659c50cbff6c2f63e2ba28a168b5 from master.
+```
+
+Running `clc new-branch` in a clean working directory will return something like this:
+
+```
+Switched to branch 'new-branch'
+Copied 3ccbd742f916659c50cbff6c2f63e2ba28a168b5 from new-branch.
+Switched to branch 'master'
+```
+
+And running `clc new-branch` with unstaged changes will return something like this: 
+
+```
+Stashed unstaged stages.
+Switched to branch 'new-branch'
+Copied 3ccbd742f916659c50cbff6c2f63e2ba28a168b5 from new-branch.
+Switched to branch 'master'
+Restored unstaged changes.
+```
 
 ## Did I Miss Something? 
 
