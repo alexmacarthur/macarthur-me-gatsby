@@ -118,7 +118,7 @@ function clc {
 
 Because it tripped me up, take extra notice that I'm not using a simple `git stash` command to stash my changes. Instead I'm using `git stash push -u`. This is because I want to stash away _all_ my current changes, including files I might have just created but not yet committed. The more verbose `git stash push` followed by the `-u` (which stands for `--include-untracked`) flag will do just that.
 
-## Iteration #4 :: Tear Down & Basically Rebuild Everything 🤦
+## Iteration #4 :: Tear Down & Rebuild Everything 🤦
 
 At this point, I was feeling pretty good about myself. I had worked through all the weird shell issues I had hit along the way, and actually published this very blog post on the whole process.
 
