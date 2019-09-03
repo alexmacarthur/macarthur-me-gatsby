@@ -59,6 +59,10 @@ Use the following values to connect to the running container.
 
 **Port:** 3306
 
+## Looking to Set Up Other DBs w/ Docker Compose?
+
+I've put this Compose setup and a few others [into a repository](https://github.com/alexmacarthur/local-docker-db) for easy access. At the time I'm writing this, it includes MySQL, Postgres, and Mongo. Feel free to use it as needed, as well as contrbute any other configurations you've found useful.
+
 ## The End.
 
-Boom. With a single command, you have a running, persistent, self-contained MySQL instance ready for your development needs. Have a hot, helpful tip related to anything here? Share it!
+Boom. With a single command, you have a running, persistent, self-contained MySQL instance ready for your development needs. Have a helpful tip related to anything here? Share it!
