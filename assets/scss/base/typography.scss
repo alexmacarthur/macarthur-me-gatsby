@@ -60,13 +60,17 @@ h4 {
 }
 
 a {
-  @include link;
+  text-decoration: none;
+  color: inherit;
+
+  &:hover {
+    color: inherit;
+  }
 }
 
 p {
   a {
     @include underline;
-    @include link;
   }
 }
 

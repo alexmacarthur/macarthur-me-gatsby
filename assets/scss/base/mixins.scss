@@ -6,36 +6,15 @@
 
 $lineColor: $salmon;
 
-@mixin link() {
-  text-decoration: none;
+@mixin underline {
+  transition: all .12s ease-in-out;
   color: inherit;
+  text-decoration: none;
+  box-shadow: 0px -.75rem 0px 0px rgba($lineColor, .25) inset;
+  padding-bottom: .1rem;
 
   &:hover {
-    color: inherit;
-
-    &:after {
-      background: rgba($lineColor, .5);
-    }
-  }
-}
-
-@mixin underline {
-  transition: all .15s ease-in-out;
-  position: relative;
-  display: inline-block;
-
-  &:after {
-    transition: all .15s ease-in-out;
-    content: '';
-    display: block;
-    width: 100%;
-    height: 2rem;
-    height: .55em;
-    background: rgba($lineColor, .25);
-    position: absolute;
-    bottom: 0;
-    left: 50%;
-    transform: translateX(-50%) skew(5deg, 0deg);
-    z-index: -1;
+    padding-bottom: .35rem;
+    box-shadow: 0px -4px 0px 0px rgba($lineColor, .5) inset;
   }
 }
