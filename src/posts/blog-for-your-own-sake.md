@@ -6,9 +6,9 @@ open_graph: https://images.pexels.com/photos/34601/pexels-photo.jpg?auto=compres
 
 The front-end space is exhausing. It moves too fast, its scope is too wide, and it won’t wait around for you to keep up. It’s hard. One thing that makes it eaiser is writing about it all — the problem solving, the tinkering with new technologies, the rubber duck attempts to wrap your head around a concept. All of it. I’ve been trying to be more diligent about this, and I’ve been seeing clear benefits as a result. Here are a few reasons you should too:
 
-**You’ll get why your solutions solve your problems.**
+**You’ll understand why your solutions solve your problems.**
 
-It’s easy to stumble through an implementation that solves a problem and move on. It’s hard to get why that implementation works in the first place. If there’s anything that distinguishes a developer from an engineer, it’s this. Slow down, break it down, and write it down. You’ll find satisfaction in understanding why your code works, and soon enough, you’ll be solving problems before they happen, rather than patching them up after they’ve struck.
+It’s easy to stumble through an implementation that solves a problem and move on. It’s hard to get why that implementation works in the first place, and why it's best for your problem over some other solution. If there’s anything that distinguishes a developer from an engineer, it’s this. so, slow down, break it down, and write it down. You’ll find satisfaction in understanding why your code works, and soon enough, you’ll be solving problems more efficiently before they happen, rather than patching them up after they’ve struck.
 
 **You’ll become your own resource.**
 
