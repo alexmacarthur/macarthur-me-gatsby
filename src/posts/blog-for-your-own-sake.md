@@ -22,4 +22,8 @@ That said, you’ll be surprised who might benefit from what you publish. Your p
 
 ## Skip Draft Mode, Punch “Publish”
 
-Quit fretting about your word count, outline, humor, or lack of experience. Stop caring about your readers so much that you’re too paralyzed to make a move. Jot down your jumbled, incoherent thoughts, _ship_ them, and clean them up later if you need. There’s a thing I heard Chris Coyier say when encouraging people to blog: “write the post you’d Google to find.” I like that. Write for your _own_ stake. You’ll be better off for it, and others will too. 
+Quit fretting about your word count, outline, humor, or lack of experience. Stop caring about your readers so much that you’re too paralyzed to make a move. Jot down your jumbled, incoherent thoughts, _ship_ them, and clean them up later if you need. There’s a thing I saw Chris Coyier tweet out once: 
+
+<blockquote class="twitter-tweet"><p lang="en" dir="ltr">Write the article you wish you found when you googled something.</p>&mdash; Chris Coyier (@chriscoyier) <a href="https://twitter.com/chriscoyier/status/925081793576837120?ref_src=twsrc%5Etfw">October 30, 2017</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+I like that. Write for your _own_ stake. You’ll be better off for it, and others will too. 
