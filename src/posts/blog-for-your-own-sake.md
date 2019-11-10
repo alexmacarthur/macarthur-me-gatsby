@@ -8,17 +8,17 @@ The front-end space is exhausing. It moves too fast, its scope is too wide, and 
 
 **You’ll understand why your solutions solve your problems.**
 
-It’s easy to stumble through an implementation that solves a problem and move on. It’s hard to get why that implementation works in the first place, and why it's best for your problem over some other solution. If there’s anything that distinguishes a developer from an engineer, it’s this. so, slow down, break it down, and write it down. You’ll find satisfaction in understanding why your code works, and soon enough, you’ll be solving problems more efficiently before they happen, rather than patching them up after they’ve struck.
+It’s easy to stumble through an implementation that solves a problem and move on. It’s hard to get why that implementation works in the first place, and why it's best for your problem over some other solution. If there’s anything that distinguishes a developer from an engineer, it’s this. So, slow down, break it down, and write it down. You’ll find satisfaction in understanding why your code works, and soon enough, you’ll be solving problems more efficiently before they happen, rather than patching them up after they’ve struck.
 
 **You’ll become your own resource.**
 
-It’s startling how often I find myself facing a problem, only to remember that I’ve already solved & written about something like it in the past, with even just a thread of overlap. When you write, you become a resource to your future self. It’ll save you time, you’ll get all the credit, and it’ll make that writing feel even more worthwhile.
+It’s startling how often I find myself facing a problem, only to remember that I’ve already solved & written about something like it in the past, with even just a thread of overlap. When you write, you become a resource to your future self. It’ll save you time, you’ll get all the credit (instead of some Stack Overflow post), and it’ll make that writing feel even more worthwhile.
 
 **You’ll look alive.**
 
-When developers don’t consistently show up and contribute in some way (blogging, open-sourcing, teaching, tweeting, _anything else_), they look dead -- professionally dead, in an always-growing-and-contributing-in-your-craft sort of way. When you write, you get points for showing up, and that’s not a bad thing. Showing up means you care enough to contribute, even if what you contribute is small or useless to anyone else. It also means people will start to notice and trust you. It's easier to trust someone who makes small, regular, even unimpressive contributions over an ultra-genius who keeps their insight to themselves.
+When developers don’t consistently show up and contribute in some way (blogging, open-sourcing, teaching, tweeting, _anything else_), they look dead -- professionally dead, in a not-growing-in-your-craft sort of way. When you write, you get points for showing up, and that’s not a bad thing. Showing up means you care enough to contribute, even if what you contribute is small or useless to anyone else. It also means people will start to notice, and in turn, trust you. This process is almost organic, and will happen a lot more quickly and easily for who makes small, regular, albeit unimpressive contributions vs. a clever ultra-genius who keeps their insight to themselves.
 
-That said, you’ll be surprised who might benefit from what you publish. Your problems aren’t unique, and that small, crappy post might help someone else cut some corners, avoiding the lengthy process you had to endure to get to a solution or understand something.  
+That said, you’ll be surprised who might benefit from what you publish. Your problems aren’t unique, and that small, crappy post might help someone else cut some corners, avoiding the lengthy process you had to endure to get to a solution or come to understand something.  
 
 ## Skip Draft Mode, Punch “Publish”
 
