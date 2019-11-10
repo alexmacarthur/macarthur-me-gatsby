@@ -16,9 +16,9 @@ It’s startling how often I find myself facing a problem, only to remember that
 
 **You’ll look alive.**
 
-When developers don’t consistently show up in some way (blogging, open-sourcing, teaching, tweeting, _anything else_), they look dead. I don’t mean literally. I mean professionally, in a always-growing-in-your-craft sort of way. When you write, you get points for showing up, and that’s not a bad thing. Showing up means you care enough to contribute, even if what you contribute is small, crappy, or useless to anyone else. 
+When developers don’t consistently show up and contribute in some way (blogging, open-sourcing, teaching, tweeting, _anything else_), they look dead -- professionally dead, in an always-growing-and-contributing-in-your-craft sort of way. When you write, you get points for showing up, and that’s not a bad thing. Showing up means you care enough to contribute, even if what you contribute is small or useless to anyone else. It also means people will start to notice and trust you. It's easier to trust someone who makes small, regular, even unimpressive contributions over an ultra-genius who keeps their insight to themselves.
 
-That said, you’ll be surprised who might benefit from what you publish. Your problems aren’t unique, and neither are your processes for tackling them. That small, crappy post might help someone else cut some corners, and that’s a nice thing to do. 
+That said, you’ll be surprised who might benefit from what you publish. Your problems aren’t unique, and that small, crappy post might help someone else cut some corners, avoiding the lengthy process you had to endure to get to a solution or understand something.  
 
 ## Skip Draft Mode, Punch “Publish”
 
