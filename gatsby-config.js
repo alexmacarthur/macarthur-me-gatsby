@@ -1,6 +1,6 @@
 module.exports = {
   siteMetadata: {
-    pathPrefix: "",
+    pathPrefix: "/",
     siteUrl: "https://macarthur.me",
     title: "Alex MacArthur / Nashville Web Developer",
     altTitle: "Alex MacArthur",
