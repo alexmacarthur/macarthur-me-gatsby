@@ -16,7 +16,7 @@ It’s startling how often I find myself facing a problem, only to remember that
 
 ### You’ll look alive.
 
-The old adage is true: _Out of (web)site, out of mind._ When developers don’t consistently show up and contribute in some way (blogging, open-sourcing, teaching, tweeting, _anything else_), it's impossible to be noticed and to be build any level of stature in the community. When you write, you get points for showing up, and that’s not a bad thing. Showing up means you care enough to contribute, even if what you contribute is small or useless to almost everyone else. Over time, all that showing up will oddly grow into credibility. This is more than what can be said for the clever genius who keeps their insight to themselves.
+The old adage is true: _Out of (web)site, out of mind._ When developers don’t consistently show up and contribute in some way (blogging, open-sourcing, teaching, tweeting, _anything else_), it's impossible to be noticed and to build any level of stature in the community. When you write, you get points for showing up, and that’s not a bad thing. Showing up means you care enough to contribute, even if what you contribute is small or useless to almost everyone else. Over time, all that showing up will oddly grow into credibility. This is more than what can be said for the clever genius who keeps their insight to themselves.
 
 ## Don't Fret It, Ship It
 
