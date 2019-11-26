@@ -8,6 +8,12 @@
 
 .Post-content {
 
+  p, li {
+    a {
+      @include underline;
+    }
+  }
+
   .anchor {
     border: 0;
     display: block;
