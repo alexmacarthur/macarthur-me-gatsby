@@ -21,6 +21,7 @@ class PageTemplate extends React.Component {
         />
         <Post
           data={post.frontmatter}
+          publishDate={post.fields.publishDate}
           content={post.html}
           isPage={type !== "posts"}
           shortBio={this.props.data.site.siteMetadata.shortBio}
@@ -51,10 +52,10 @@ export const pageQuery = graphql`
       excerpt
       fields {
         slug
+        publishDate(formatString: "MMMM DD, YYYY")
       }
       frontmatter {
         title
-        date(formatString: "MMMM DD, YYYY")
         last_updated(formatString: "MMMM DD, YYYY")
         open_graph
       }

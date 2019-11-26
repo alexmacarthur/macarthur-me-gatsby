@@ -19,7 +19,7 @@ class Post extends React.Component {
           <h1>{this.props.data.title}</h1>
 
           <ul>
-            {this.props.data.date && <li>{this.props.data.date}</li>}
+            {this.props.publishDate && <li>{this.props.publishDate}</li>}
             {this.props.data.last_updated && (
               <li>Last Updated {this.props.data.last_updated}</li>
             )}

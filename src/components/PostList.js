@@ -24,7 +24,7 @@ const PostList = props => {
               key={link}
               title={node.frontmatter.title}
               path={link}
-              date={node.frontmatter.date}
+              date={node.fields.publishDate}
               postExcerpt={node.excerpt}
               external={node.frontmatter.external}
             />

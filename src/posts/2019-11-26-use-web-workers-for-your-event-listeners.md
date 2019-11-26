@@ -1,6 +1,5 @@
 ---
 title: For the Sake of Your Event Listeners, Use Web Workers
-date: '2019-11-26'
 open_graph: >-
   https://images.unsplash.com/photo-1542044801-30d3e45ae49a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1200&q=100
 ---

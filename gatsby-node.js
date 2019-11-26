@@ -7,18 +7,32 @@ exports.onCreateNode = ({ node, actions, getNode }) => {
   const { createNodeField } = actions
 
   if (node.internal.type === `MarkdownRemark`) {
-    const value = createFilePath({ node, getNode });
-
+    const nodePath = createFilePath({ node, getNode });
+    
     // If this node was source from the "posts" directory, slap a prefix onto the slug, 
     // so that the resulting path is formatted correctly.
     let fileNode = getNode(node.parent);
-    let slugPrefix = fileNode.dir.match(/src\/posts/) ? "posts" : "";
+    let slugPrefix = fileNode.dir.match(/src\/posts/) ? "/posts" : "/";
+
+    // Put the date string itself in a matching group.
+    let publishDateMatch = nodePath.match(/^\/(\d{4}-\d{2}-\d{2})/);
+    let publishDate = publishDateMatch ? publishDateMatch[1] : "";
+
+    let cleanPath = nodePath
+      .replace(/\/$/, '') // Remove trailing slashes.
+      .replace(/(^\/)(\d{4}-\d{2}-\d{2}-)/, '$1'); // Remove date string.
+
+    createNodeField({
+      name: `publishDate`,
+      node,
+      value: publishDate
+    });
 
     createNodeField({
       name: `slug`,
       node,
-      value: `/${slugPrefix}${value.replace(/\/$/, ``)}`.replace(/^\/+/, '')
-    })
+      value: `${slugPrefix}${cleanPath}`
+    });
   }
 }
 
@@ -34,7 +48,7 @@ exports.createPages = ({ graphql, actions }) => {
     queryPromise: graphql(`
       {
         allMarkdownRemark(
-          sort: { fields: [frontmatter___date], order: DESC }, 
+          sort: { fields: [fields___publishDate], order: DESC }, 
           limit: 1000,
           filter: {fileAbsolutePath: {regex: "/(posts)/(.*).md$/"}}
         ) {
@@ -43,9 +57,9 @@ exports.createPages = ({ graphql, actions }) => {
               excerpt(pruneLength: 250)
               fields {
                 slug
+                publishDate(formatString: "MMMM DD, YYYY")
               }
               frontmatter {
-                date(formatString: "MMMM DD, YYYY")
                 last_updated(formatString: "MMMM DD, YYYY")
                 title
                 external
@@ -66,11 +80,13 @@ exports.createPages = ({ graphql, actions }) => {
   const allMarkdownPromise = graphql(
     `
       {
-        allMarkdownRemark(sort: { fields: [frontmatter___date], order: DESC }, limit: 1000) {
+        allMarkdownRemark(sort: { fields: [fields___publishDate], order: DESC }, limit: 1000) {
           edges {
             node {
+              fileAbsolutePath
               fields {
                 slug
+                publishDate(formatString: "MMMM DD, YYYY")
               }
             }
           }
@@ -86,11 +102,13 @@ exports.createPages = ({ graphql, actions }) => {
     const posts = result.data.allMarkdownRemark.edges;
 
     posts.forEach(post => {
+
       createPage({
         path: post.node.fields.slug,
         component: path.resolve('./src/templates/page.js'),
         context: {
-          slug: post.node.fields.slug
+          slug: post.node.fields.slug,
+          publishDate: post.node.fields.publishDate
         },
       });
     });

@@ -1,6 +1,5 @@
 ---
 title: Let's Stop Making it Cool to Hate jQuery
-date: "2018-03-19"
 open_graph: "https://images.pexels.com/photos/249798/pexels-photo-249798.png?w=1260&h=750&dpr=2&auto=compress&cs=tinysrgb"
 ---
 

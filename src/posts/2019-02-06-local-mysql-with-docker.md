@@ -1,6 +1,5 @@
 ---
 title: Quickly Spin Up MySQL w/ Docker Compose
-date: '2019-02-06'
 open_graph: https://images.pexels.com/photos/15798/night-computer-hdd-hard-drive.jpg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260
 ---
 

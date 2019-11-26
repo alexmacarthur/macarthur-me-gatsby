@@ -1,6 +1,5 @@
 ---
 title: A Simpler Unit Testing Setup for WordPress
-date: "2019-07-24"
 open_graph: "https://images.pexels.com/photos/1366942/pexels-photo-1366942.jpeg?cs=srgb&dl=beaker-biology-chemical-1366942.jpg&fm=jpg"
 ---
 

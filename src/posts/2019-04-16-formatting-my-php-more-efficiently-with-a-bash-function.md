@@ -1,6 +1,5 @@
 ---
 title: Formatting My PHP More Efficiently with a Bash Function
-date: 2019-04-16T22:30:55.869Z
 open_graph: /uploads/shell.jpg
 ---
 

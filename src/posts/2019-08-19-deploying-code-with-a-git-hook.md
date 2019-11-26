@@ -1,6 +1,5 @@
 ---
 title: Deploying Code with a Git Hook on a DigitalOcean Droplet
-date: '2019-08-19'
 open_graph: 'https://images.pexels.com/photos/256229/pexels-photo-256229.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=1200&w=1200'
 ---
 

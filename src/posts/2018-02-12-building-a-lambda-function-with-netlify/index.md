@@ -1,6 +1,5 @@
 ---
 title: Building a Lambda Function with Netlify
-date: "2018-02-12"
 last_updated: "2019-06-05"
 open_graph: "https://images.pexels.com/photos/238118/pexels-photo-238118.jpeg?w=1260&h=750&dpr=2&auto=compress&cs=tinysrgb"
 ---

@@ -1,6 +1,5 @@
 ---
 title: Preloading JavaScript Assets in WordPress
-date: "2018-04-05"
 open_graph: "https://images.pexels.com/photos/8775/traffic-car-vehicle-black.jpg"
 ---
 

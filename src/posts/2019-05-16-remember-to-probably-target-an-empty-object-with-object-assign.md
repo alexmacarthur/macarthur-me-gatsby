@@ -1,6 +1,5 @@
 ---
 title: Remember to Probably Target an Empty Object with Object.assign()
-date: 2019-05-16T20:31:53.979Z
 open_graph: /uploads/merge.jpg
 ---
 Hearken back, for a moment, to what it was like merging objects in 2014. There was no support for the feature in JavaScript runtimes themselves, and it was quite common to find a solution to the problem by wading through StackOverflow to find something like this: 

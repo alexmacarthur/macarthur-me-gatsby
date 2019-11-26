@@ -1,6 +1,5 @@
 ---
 title: Writing a Regular Expression to Target Images Without a Class
-date: '2019-01-17'
 open_graph: 'https://images.unsplash.com/photo-1497796742626-fe30f204ec54?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1200&q=100'
 ---
 

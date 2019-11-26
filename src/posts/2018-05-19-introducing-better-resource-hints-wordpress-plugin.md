@@ -1,6 +1,5 @@
 ---
 title: Introducing Better Resource Hints, a Performance-Enhancing Plugin for WordPress
-date: "2018-05-19"
 open_graph: "https://images.pexels.com/photos/8775/traffic-car-vehicle-black.jpg"
 ---
 

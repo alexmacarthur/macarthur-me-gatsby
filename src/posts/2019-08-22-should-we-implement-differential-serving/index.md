@@ -1,6 +1,5 @@
 ---
 title: Should We All Start Implementing Differential Serving?
-date: "2019-08-22"
 open_graph: https://images.pexels.com/photos/262978/pexels-photo-262978.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=1200&w=1200
 ---
 

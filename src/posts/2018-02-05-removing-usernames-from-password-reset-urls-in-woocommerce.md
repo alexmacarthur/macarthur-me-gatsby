@@ -1,6 +1,5 @@
 ---
 title: Removing Usernames from Password Reset URLs in WooCommerce
-date: "2018-02-05"
 open_graph: ""
 ---
 

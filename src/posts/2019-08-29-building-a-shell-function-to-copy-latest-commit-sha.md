@@ -1,6 +1,5 @@
 ---
 title: Building a Shell Function to Copy the Latest Git Commit SHA
-date: "2019-08-29"
 open_graph: https://images.pexels.com/photos/134059/pexels-photo-134059.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=1200&w=1200
 ---
 

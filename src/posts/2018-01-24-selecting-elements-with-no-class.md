@@ -1,6 +1,5 @@
 ---
 title: Using the Negation Pseudo-Class to Select Elements with No Class
-date: "2018-01-24"
 open_graph: ""
 ---
 

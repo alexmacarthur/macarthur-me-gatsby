@@ -1,6 +1,5 @@
 ---
 title: Build Your Own Simple Lazy Loading Functionality in WordPress
-date: "2018-02-23"
 open_graph: "https://images.pexels.com/photos/196655/pexels-photo-196655.jpeg"
 ---
 

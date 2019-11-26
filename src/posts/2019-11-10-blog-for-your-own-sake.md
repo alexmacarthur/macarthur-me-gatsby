@@ -1,6 +1,5 @@
 ---
 title: Blog for Your Own Sake
-date: "2019-11-10"
 open_graph: https://images.pexels.com/photos/34601/pexels-photo.jpg?auto=compress&cs=tinysrgb&dpr=3&h=1200&w=1260
 --- 
 

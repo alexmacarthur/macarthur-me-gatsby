@@ -1,6 +1,5 @@
 ---
 title: 'Creating a .map() Method for Objects, Strings, Sets, and Maps'
-date: 2019-06-19T19:40:52.989Z
 open_graph: https://images.pexels.com/photos/1078850/pexels-photo-1078850.jpeg?auto=format%2Ccompress&cs=tinysrgb&dpr=2&h=750&w=1260
 ---
 
