@@ -77,7 +77,7 @@ Pay little attention to the specific numbers. The point is that the numbers are 
 
 With all that in mind, let's upgrade the example from before. Same idea, but this time, that long-running operation has been moved into its own thread. Performing the same clicks again, you'll see that clicking "Freeze" still delays the click count from being updated for 3 seconds, but it _doesn't block any other event listeners on the page_. Instead, other buttons still click and boxes still resize, which is exactly what we want.
 
-<iframe height="265" style="width: 100%;" scrolling="no" title="Event Blocking - Worker" src="https://codepen.io/alexmacarthur/embed/abbvLdJ?height=265&amp;theme-id=default&amp;default-tab=js,result" frameborder="no" allowtransparency="true" allowfullscreen="true">
+<iframe height="500" style="width: 100%;" scrolling="no" title="Event Blocking - Worker" src="https://codepen.io/alexmacarthur/embed/abbvLdJ?height=265&amp;theme-id=default&amp;default-tab=js,result" frameborder="no" allowtransparency="true" allowfullscreen="true">
   See the Pen <a href='https://codepen.io/alexmacarthur/pen/abbvLdJ'>Event Blocking - Worker</a> by Alex MacArthur
   (<a href='https://codepen.io/alexmacarthur'>@alexmacarthur</a>) on <a href='https://codepen.io'>CodePen</a>.
 </iframe>
