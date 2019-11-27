@@ -63,13 +63,13 @@ Array
 
 I ran it on an arbitrary page within each of the following applications to get a quick count of the active listeners.
 
-Application   | Number of Listeners
+Application | Number of Listeners
 ------ | -----------------------------------
 Dropbox | 556
 Google Messages | 576
-Reddit  | 621
-Netflix    | 548
-StackOverflow | 338
+Reddit | 621
+Netflix | 548
+YouTube | 5161 (!!!)
 
 Pay little attention to the specific numbers. The point is that the numbers are big, and if even a _single_ long-running process in your application goes awry, _all_ of these listeners will be unresponsive. That's a lot of opportunity to frustrate your users.
 
