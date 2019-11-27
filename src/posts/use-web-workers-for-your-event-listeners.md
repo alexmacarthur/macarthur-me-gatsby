@@ -51,7 +51,7 @@ Any normal user would be annoyed to have to deal with an experience like this --
 
 ```javascript
 Array
-  .from(document.querySelectorAll('*'))
+  .from([document, ...document.querySelectorAll('*')])
   .reduce((accumulator, node) => {
     let listeners = getEventListeners(node);
     for (let property in listeners) {
@@ -65,11 +65,10 @@ I ran it on an arbitrary page within each of the following applications to get a
 
 Application | Number of Listeners
 ------ | -----------------------------------
-Dropbox | 556
-Google Messages | 576
-Reddit | 621
-Netflix | 548
-YouTube | 5161 (!!!)
+Dropbox | 602
+Google Messages | 581
+Reddit | 692
+YouTube | 6054 (!!!)
 
 Pay little attention to the specific numbers. The point is that the numbers are big, and if even a _single_ long-running process in your application goes awry, _all_ of these listeners will be unresponsive. That's a lot of opportunity to frustrate your users.
 
