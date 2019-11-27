@@ -5,11 +5,11 @@ open_graph: >-
   https://images.unsplash.com/photo-1542044801-30d3e45ae49a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1200&q=100
 ---
 
-I've been tinkering with the [Web Worker API](https://developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API/Using_web_workers) lately, and in doing so, I'm quickly feeling the guilt of not looking into this well-supported tool a lot sooner. Modern web applications are seriously upping demands on the browser's main thread, impacting performance and the ability to deliver smooth user experiences. This tool is just one way to address the challenge.
+I've been tinkering with the [Web Worker API](https://developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API/Using_web_workers) lately, and as a result, I'm really feeling the guilt of not looking into this well-supported tool a lot sooner. Modern web applications are seriously upping demands on the browser's main thread, impacting performance and the ability to deliver smooth user experiences. This tool is just one way to address the challenge.
 
 ## Where Things `on('click')`ed for Me
 
-The advantages of Web Workers are many, but things really clicked for me when it came to the several DOM event listeners in any given application (form submissions, window resizes, button clicks, etc.) These all necessarily live on the browser's main thread, and if that thread is congested by a long-running process, the responsiveness of those listeners begins to suffer, stalling the application until the event loop is free to continue firing.
+The advantages of Web Workers are many, but things really clicked for me when it came to the several DOM event listeners in any given application (form submissions, window resizes, button clicks, etc.) These all necessarily live on the browser's main thread, and if that thread is congested by a long-running process, the responsiveness of those listeners begins to suffer, stalling the entire application until the event loop is free to continue firing.
 
 Admittedly, the reason listeners stick out to me so much is due to my initial misunderstanding about Workers themselves. At first, I thought it was mainly about the _speed_ of my code execution, start to finish. "If I can do more on separate threads in parallel, my code will execute so much more quickly!" But! It's pretty common to _need_ to wait for one thing to happen before another can start, like when you don't want to update the DOM until some sort of calculation has taken place. "If I'm gonna have to wait anyway, I don't see the point of moving something into a separate thread," naive me thought.
 
@@ -71,7 +71,7 @@ Reddit  | 621
 Netflix    | 548
 StackOverflow | 338
 
-Pay little attention to the specific numbers. The point is that the numbers are big, making for plenty of opportunity to frustrate your users when the thread is blocked for even fraction of a second.
+Pay little attention to the specific numbers. The point is that the numbers are big, and if even a _single_ long-running process in your application goes awry, _all_ of these listeners will be unresponsive. That's a lot of opportunity to frustrate your users.
 
 ## Same Illustration, but Less Jank (thx, Web Workers!)
 
@@ -88,6 +88,6 @@ If you dig into that code a bit, you'll notice that while the Web Worker API cou
 - [greenlet](https://github.com/developit/greenlet) -- run an arbitrary piece of async code inside a worker
 - [comlink](https://github.com/GoogleChromeLabs/comlink) -- a friendly layer of abstraction over the Web Worker API
 
-## Start Threadin'
+## Start Threadin' (Where It Makes Sense)
 
-If your application is typical, it probably has a lot of listenin' going on. Do those listeners and your users a favor by removing stuff from the main thread that it probably shouldn't be juggling anyway. With their solid browser support and the growing performance demands of modern applications, we're running out of reasons to not invest in tools like this. Happy threadin'!
+If your application is typical, it probably has a lot of listenin' going on. And it also probably does a lot of computing that just doesn't need to do on the main thread. So, do these listeners and your users a favor by considering where it makes sense to employ Web Workers. To be clear, going all-in and throwing literally _all_ non-UI work into worker threads is probably the wrong approach. You might just be introducing a lot of refactoring & complexity to your app for little gain. Instead, maybe start by identifying notably intense processes and spin up a small Web Worker for them. Over time, it could make sense to stick your feet in a little deeper and rethink your UI/Worker architecture more at a wider scale. Whatever the case, dig into it. With their solid browser support and the growing performance demands of modern applications, we're running out of reasons to not invest in tools like this. Happy threadin'!
