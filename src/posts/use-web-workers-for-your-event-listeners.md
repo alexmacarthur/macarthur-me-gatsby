@@ -73,7 +73,7 @@ StackOverflow | 338
 
 Pay little attention to the specific numbers. The point is that the numbers are big, and if even a _single_ long-running process in your application goes awry, _all_ of these listeners will be unresponsive. That's a lot of opportunity to frustrate your users.
 
-## Same Illustration, but Less Jank (thx, Web Workers!)
+## Same Illustration, but Less Jank (Thx, Web Workers!)
 
 With all that in mind, let's upgrade the example from before. Same idea, but this time, that long-running operation has been moved into its own thread. Performing the same clicks again, you'll see that clicking "Freeze" still delays the click count from being updated for 3 seconds, but it _doesn't block any other event listeners on the page_. Instead, other buttons still click and boxes still resize, which is exactly what we want.
 
