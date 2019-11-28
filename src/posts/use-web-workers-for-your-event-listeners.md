@@ -45,7 +45,7 @@ In the example below, clicking "Freeze" will kick off a synchronous pause for th
 
 Frozen, because that long, synchronous pause is blocking the thread. And the impact goes beyond that. Do it again, but this time, immediately try to resize the blue-bordered box after clicking "Freeze." Since the main thread is also where all layout changes and repainting occur, you're yet again stuck until the timer is complete.
 
-## There's Listening More Than You Might Think
+## They're Listening More Than You Think
 
 Any normal user would be annoyed to have to deal with an experience like this -- and we were only dealing with a couple of event listeners. In the real world, though, there's a lot more going on. Using Chrome's `getEventListeners` method, I used the following script to take a tally of all event listeners attached to every DOM element on a page. Drop it into the inspector, and it'll spit back a total.
 
