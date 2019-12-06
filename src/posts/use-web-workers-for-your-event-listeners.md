@@ -93,6 +93,8 @@ If you dig into that code a bit, you'll notice that while the Web Worker API cou
 
 If your application is typical, it probably has a lot of listenin' going on. And it also probably does a lot of computing that just doesn't need to happen on the main thread. So, do these listeners and your users a favor by considering where it makes sense to employ Web Workers. 
 
-To be clear, going all-in and throwing literally _all_ non-UI work into worker threads is probably the wrong approach. You might just be introducing a lot of refactoring & complexity to your app for little gain. Instead, maybe start by identifying notably intense processes and spin up a small Web Worker for them. Over time, it could make sense to stick your feet in a little deeper and rethink your UI/Worker architecture more at a wider scale. Whatever the case, dig into it. With their solid browser support and the growing performance demands of modern applications, we're running out of reasons to not invest in tools like this. 
+To be clear, going all-in and throwing literally _all_ non-UI work into worker threads is probably the wrong approach. You might just be introducing a lot of refactoring & complexity to your app for little gain. Instead, maybe start by identifying notably intense processes and spin up a small Web Worker for them. Over time, it could make sense to stick your feet in a little deeper and rethink your UI/Worker architecture more at a wider scale. 
+
+Whatever the case, dig into it. With their solid browser support and the growing performance demands of modern applications, we're running out of reasons to not invest in tools like this. 
 
 Happy threadin'!
