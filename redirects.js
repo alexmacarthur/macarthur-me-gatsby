@@ -18,5 +18,10 @@ module.exports = [
         fromPath: "/notes/*",
         toPath: "/posts/:splat",
         statusCode: 301,
+    }, 
+    {
+        fromPath: "/posts/test",
+        toPath: "/posts/use-web-workers-for-your-event-listeners, 
+        statusCode: 302
     }
 ];
