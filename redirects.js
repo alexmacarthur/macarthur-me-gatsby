@@ -21,7 +21,7 @@ module.exports = [
     }, 
     {
         fromPath: "/posts/test",
-        toPath: "/posts/use-web-workers-for-your-event-listeners, 
+        toPath: "/posts/use-web-workers-for-your-event-listeners",
         statusCode: 302
     }
 ];
