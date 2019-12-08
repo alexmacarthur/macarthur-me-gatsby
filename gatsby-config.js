@@ -22,6 +22,7 @@ module.exports = {
     }
   },
   plugins: [
+    `gatsby-plugin-netlify`,
     `gatsby-plugin-sass`,
     `gatsby-transformer-json`,
     {
