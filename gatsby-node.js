@@ -12,7 +12,7 @@ exports.onCreateNode = ({ node, actions, getNode }) => {
     // If this node was source from the "posts" directory, slap a prefix onto the slug, 
     // so that the resulting path is formatted correctly.
     let fileNode = getNode(node.parent);
-    let slugPrefix = fileNode.dir.match(/src\/posts/) ? "/posts" : "/";
+    let slugPrefix = fileNode.dir.match(/src\/posts/) ? "/posts" : "";
 
     // Put the date string itself in a matching group.
     let publishDateMatch = nodePath.match(/^\/(\d{4}-\d{2}-\d{2})/);

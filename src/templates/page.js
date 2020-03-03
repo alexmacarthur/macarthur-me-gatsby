@@ -11,6 +11,10 @@ class PageTemplate extends React.Component {
     const post = get(this.props, "data.markdownRemark");
     let postTypeMatch = post.fields.slug.match(/(\/)?(.*?)(\/)/);
     const type = !postTypeMatch ? "" : postTypeMatch[0].replace(/\//g, "");
+    const publishDate =
+      post.fields.publishDate === "Invalid date"
+        ? null
+        : post.fields.publishDate;
 
     return (
       <Layout>
@@ -21,7 +25,7 @@ class PageTemplate extends React.Component {
         />
         <Post
           data={post.frontmatter}
-          publishDate={post.fields.publishDate}
+          publishDate={publishDate}
           content={post.html}
           isPage={type !== "posts"}
           shortBio={this.props.data.site.siteMetadata.shortBio}

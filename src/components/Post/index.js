@@ -18,12 +18,14 @@ class Post extends React.Component {
         <HeaderBar isStacked={true}>
           <h1>{this.props.data.title}</h1>
 
-          <ul>
-            {this.props.publishDate && <li>{this.props.publishDate}</li>}
-            {this.props.data.last_updated && (
-              <li>Last Updated {this.props.data.last_updated}</li>
-            )}
-          </ul>
+          {(this.props.publishDate || this.props.data.last_updated) && (
+            <ul>
+              {this.props.publishDate && <li>{this.props.publishDate}</li>}
+              {this.props.data.last_updated && (
+                <li>Last Updated {this.props.data.last_updated}</li>
+              )}
+            </ul>
+          )}
         </HeaderBar>
 
         <div
