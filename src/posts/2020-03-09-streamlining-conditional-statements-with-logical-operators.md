@@ -24,7 +24,7 @@ Then, I started to shift toward preferring the early return:
 
 ```javascript
 if(!snack) {
-    return;
+  return;
 }
 
 cat(snack);
@@ -42,7 +42,7 @@ This becomes clearer with a more complex example. Something like this is totally
 let greeting;
 
 if(isFamily(person)) {
-  greeting = "hug":
+  greeting = "hug";
 } else if (isBuddy(person)){
   greeting = "high five";
 } else {
@@ -68,13 +68,13 @@ if (isBuddy(person)){
 return "handshake";
 ```
 
-What's interesting here is that while it's easier to read _as code_, it's not at all how people _speak_. As the semantics become more second nature, the oral flow of the code seems to become less of a concern.
+What's interesting here is that while it's easier to read _as code_, it's not at all _how people speak_. As the semantics become more second nature, the oral flow of the code seems to become less of a concern.
 
 ## Along Came Short-Circuiting
 
 Soon enough, my go-to conditional pattern changed again. This time, toward leveraging [logical operators](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Logical_Operators) for simple expressions.
 
-After executing one side of the `&&` or `||` operators, JavaScript will _short-circuit_ if it's logically unnecessary to run the remaining expression(s), returning the value of the last expression that was evaluated. You've probably seen short-circuiting used with the `||` operator when setting fallback values for variables. As soon as a _truthy_ value is found, that value is returned and any remaining expressions are abandoned.
+After executing one side of the `&&` or `||` operators, JavaScript will _short-circuit_ if it's logically unnecessary to run the remaining expression(s), returning the value of the last expression that was evaluated. You've probably seen short-circuiting used with the `||` operator when setting fallback values for variables. 
 
 ```javascript
 const myVar = "left side" || "right side"
@@ -103,7 +103,7 @@ let myVar = otherVal ? otherVal : "fallback";
 let myVar = otherVal || "fallback";
 ```
 
-Similarly, the `&&` operator continues to evaluate as long as the previous value is truthy, returning the last evaluated expression.
+Similarly, the `&&` operator continues to evaluate as long as the previous value is `truthy`, returning the last evaluated expression.
 
 ```javascript
 const myVar = "left side" && "right side"
