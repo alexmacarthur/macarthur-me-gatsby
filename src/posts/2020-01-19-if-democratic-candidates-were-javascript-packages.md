@@ -20,6 +20,4 @@ open_graph: >-
 
 **MikeBloomberg.js** - a financial charting library embracing many of the exciting new features available in Netscape Navigator.
 
-
-
-
+Got one I missed? [Make a pull request](https://github.com/alexmacarthur/macarthur-me/blob/master/src/posts/2020-01-19-if-democratic-candidates-were-javascript-packages.md) with your addition followed by "(contributed by Your Name)", and I might include it.
