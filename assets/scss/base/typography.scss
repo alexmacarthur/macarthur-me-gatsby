@@ -49,13 +49,13 @@ h2 {
   font-weight: 900;
 }
 
-h3, h4, h5, h6 {
+h3 {
   font-size: $base-font-size-large;
   margin: 2rem 0;
 }
 
-h4 {
-  font-size: $base-font-size-large;
+h4, h4, h5, h6 {
+  font-size: $base-font-size-medium;
   line-height: 1.5;
 }
 
