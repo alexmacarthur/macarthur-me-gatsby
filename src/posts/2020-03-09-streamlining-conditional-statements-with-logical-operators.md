@@ -36,7 +36,7 @@ My hunch is that once fluency with the semantics of the language became stronger
 
 This becomes clearer with a more complex example. Something like this is totally fine:
 
-### Option #1: 'If/Else' Block
+### Option #1: `If/Else` Block
 
 ```javascript
 let greeting;
@@ -167,15 +167,15 @@ let firstTruthyReturnValue = possibilities.find(val => {
 firstTruthyReturnValue = firstTruthyReturnValue === undefined ? "default" : firstTruthyReturnValue;
 ```
 
-But by using logical operators, all that mess can be pulled together more elegantly, while preserving the ability set a default value.
+But by using a logical operator, all that mess can be pulled together more elegantly, while preserving the ability set a default value.
 
 #### Options #3: Logical Operators
 
 ```javascript
 let firstTruthyReturnValue = 
-  tryIt(var1) && 
-  tryIt(var2) && 
-  tryIt(var3) && 
+  tryIt(var1) || 
+  tryIt(var2) || 
+  tryIt(var3) || 
   "default value";
 ```
 
