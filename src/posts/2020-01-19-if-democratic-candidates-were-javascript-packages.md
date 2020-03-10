@@ -8,7 +8,7 @@ open_graph: >-
 
 **ElizabethWarren.js** - a probability and statistics library widely used in reservation casinos.
 
-**AmyKlobuchar.js** - a highly opinionated alternative to @eslint , providing harsher, more demanding errors (no warnings).
+**AmyKlobuchar.js** - a highly opinionated alternative to ESLint, providing harsher, more demanding errors (no warnings).
 
 **JoeBiden.js** - a battle-tested framework for building RPG games for the browser, featuring an API just as approachable to junior devs [as white devs.](https://t.co/ReXr7Njg53?amp=1)
 
