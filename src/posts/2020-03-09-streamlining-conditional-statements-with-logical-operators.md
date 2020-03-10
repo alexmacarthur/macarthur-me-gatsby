@@ -7,8 +7,8 @@ open_graph: >-
 I've been seeing my preference change in how I write simple conditional statements in JavaScript. Consider the following:
 
 ```javascript
-if(snack) {
-    eat(snack);
+if (snack) {
+  eat(snack);
 }
 ```
 
@@ -18,12 +18,12 @@ Back in the day, that's how just about every "if I have this, then do this" stat
 If I have a snack, then eat it.
 ```
 
-## The Early Return Gets the Worm
+## Early Return Gets the Worm
 
 Then, I started to shift toward preferring the early return:
 
 ```javascript
-if(!snack) {
+if (!snack) {
   return;
 }
 
@@ -36,12 +36,12 @@ My hunch is that once fluency with the semantics of the language became stronger
 
 This becomes clearer with a more complex example. Something like this is totally fine:
 
-### Option #1: `If/Else` Block
+##### Before Early Returns
 
 ```javascript
 let greeting;
 
-if(isFamily(person)) {
+if (isFamily(person)) {
   greeting = "hug";
 } else if (isBuddy(person)){
   greeting = "high five";
@@ -52,12 +52,12 @@ if(isFamily(person)) {
 return greeting;
 ```
 
-But it feels stringy and a little more difficult to read than using early returns:
+But it feels stringy and a little more difficult to read than something like this:
 
-### Option #2: Early Returns
+##### After Early Returns
 
 ```javascript
-if(isFamily(person)) {
+if (isFamily(person)) {
   return "hug":
 } 
 
@@ -72,7 +72,7 @@ What's interesting here is that while it's easier to read _as code_, it's not at
 
 ## Along Came Short-Circuiting
 
-Soon enough, my go-to conditional pattern changed again. This time, toward leveraging [logical operators](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Logical_Operators) for simple expressions.
+Soon enough, my preference changed again. This time, toward leveraging [logical operators](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Logical_Operators) for simple expressions.
 
 After executing one side of the `&&` or `||` operators, JavaScript will _short-circuit_ if it's logically unnecessary to run the remaining expression(s), returning the value of the last expression that was evaluated. You've probably seen short-circuiting used with the `||` operator when setting fallback values for variables. 
 
@@ -86,20 +86,24 @@ const myOtherVar = null || "not null at all";
 
 This tactic is cleaner than using a ternary, and far more elegant than an `if/else` block.
 
+##### Good: `If/Then` Block
 ```javascript
-// OPTION #1: if/else block
 let myVar; 
 
-if(otherVal) {
+if (otherVal) {
   myVar = otherVal;
 } else {
   myVar = "fallback";
 }
+```
 
-// OPTION #2: ternary
+##### Better: Ternary
+```javascript
 let myVar = otherVal ? otherVal : "fallback";
+```
 
-// OPTION #3: logical operator
+##### Best: Logical Operator
+```javascript
 let myVar = otherVal || "fallback";
 ```
 
@@ -116,33 +120,34 @@ const myVar = "" && func()
 
 ### A Simple Short-Circuited Conditional
 
-And that makes for some succinct statements, allowing you to abandon the `if/else` block altogether. As long as the first expression is `truthy`, the next will be evaluated as well.
+And that makes for some succinct conditional statements, allowing you to abandon the `if/else` block altogether. As long as the first expression is `truthy`, the next will be evaluated as well.
 
+##### Before: `If/Then` Block
 ```javascript
-// Option #1: `If/Else` Block
-if(snack) {
+if (snack) {
   eat(snack);
 }
-
-// Option #2: Logical Operator
-snack && eat(snack);
 ```
 
+##### After: Logical Operator
+```javascript
+snack && eat(snack);
+```
 
 ### A Slightly More Intense Example
 
 For something a little more involved, let's say you wanted to attempt a chain of actions only until one is successful, storing that value in a variable. And if none is successful, fall back to a default value. It's possible to pull this off using the same sort of `if/else` block, dealing with the stringy nature of the flow.
 
-#### Option #1: `If/Else` Block
+##### Option #1: `If/Else` Block
 
 ```javascript
 let firstTruthyReturnValue;
 
-if(tryIt(var1)) {
+if (tryIt(var1)) {
   firstTruthyReturnValue = tryIt(var1);
-} else if(tryIt(var2)) {
+} else if (tryIt(var2)) {
   firstTruthyReturnValue = tryIt(var2);
-} else if(tryIt(var3)) {
+} else if (tryIt(var3)) {
   firstTruthyReturnValue = tryIt(var3);
 } else {
   firstTruthyReturnValue = "default value";
@@ -151,7 +156,7 @@ if(tryIt(var1)) {
 
 Or, for a more modern approach, you could use `Array.prototype.find()` to _find_ that value. It's a bit more elegant, but requires that you also handle the default value a bit more explicitly than you might have hoped.
 
-#### Option #2: `Array.prototype.find()`
+##### Option #2: `Array.prototype.find()`
 
 ```javascript 
 const possibilities = [
@@ -169,7 +174,7 @@ firstTruthyReturnValue = firstTruthyReturnValue === undefined ? "default" : firs
 
 But by using a logical operator, all that mess can be pulled together more elegantly, while preserving the ability set a default value.
 
-#### Options #3: Logical Operators
+##### Option #3: Logical Operators
 
 ```javascript
 let firstTruthyReturnValue = 

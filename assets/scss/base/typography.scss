@@ -59,6 +59,18 @@ h4, h4, h5, h6 {
   line-height: 1.5;
 }
 
+h5 {
+  & + .gatsby-highlight {
+    margin-top: 0;
+  }
+}
+
+div.gatsby-highlight {
+  & + h5 {
+    margin-top: 0;
+  }
+}
+
 a {
   text-decoration: none;
   color: inherit;
