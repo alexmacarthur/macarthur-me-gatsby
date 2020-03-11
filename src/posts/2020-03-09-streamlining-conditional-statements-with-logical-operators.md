@@ -58,7 +58,7 @@ But it feels stringy and a little more difficult to read than something like thi
 
 ```javascript
 if (isFamily(person)) {
-  return "hug":
+  return "hug";
 } 
 
 if (isBuddy(person)){
