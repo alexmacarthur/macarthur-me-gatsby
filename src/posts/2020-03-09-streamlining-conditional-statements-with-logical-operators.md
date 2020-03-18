@@ -77,7 +77,7 @@ Soon enough, my preference changed again. This time, toward leveraging [logical 
 After executing one side of the `&&` or `||` operators, JavaScript will _short-circuit_ if it's logically unnecessary to run the remaining expression(s), returning the value of the last expression that was evaluated. You've probably seen short-circuiting used with the `||` operator when setting fallback values for variables. 
 
 ```javascript
-const myVar = "left side" || "right side"
+const myVar = "left side" || "right side";
 // evaluates to "left side"
 
 const myOtherVar = null || "not null at all";
