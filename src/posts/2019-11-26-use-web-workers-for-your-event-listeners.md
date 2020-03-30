@@ -51,8 +51,7 @@ Frozen, because that long, synchronous pause is blocking the thread. And the imp
 Any normal user would be annoyed to have to deal with an experience like this -- and we were only dealing with a couple of event listeners. In the real world, though, there's a lot more going on. Using Chrome's `getEventListeners` method, I used the following script to take a tally of all event listeners attached to every DOM element on a page. Drop it into the inspector, and it'll spit back a total.
 
 ```javascript
-Array
-  .from([document, ...document.querySelectorAll('*')])
+[document, ...document.querySelectorAll('*')]
   .reduce((accumulator, node) => {
     let listeners = getEventListeners(node);
     for (let property in listeners) {
