@@ -20,8 +20,8 @@ module.exports = [
         statusCode: 301,
     }, 
     {
-        fromPath: "/posts/test",
-        toPath: "/posts/use-web-workers-for-your-event-listeners",
-        statusCode: 302
+        fromPath: "/posts/cleaning-up-redux-store-listeners-when-component-state-updates",
+        toPath: "/posts/clean-up-your-redux-store-listeners-when-component-state-updates",
+        statusCode: 301
     }
 ];

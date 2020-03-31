@@ -39,7 +39,6 @@ exports.onCreateNode = ({ node, actions, getNode }) => {
 exports.createPages = ({ graphql, actions }) => {
   const { createPage, createRedirect } = actions
 
-  // Create redirects.
   redirects.forEach(redirect => {
     createRedirect(redirect);
   });

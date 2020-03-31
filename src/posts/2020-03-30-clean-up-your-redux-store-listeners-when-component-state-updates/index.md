@@ -1,5 +1,5 @@
 ---
-title: Cleaning Up Redux Store Listeners When Component State Updates
+title: Clean Up Your Redux Store Listeners When Component State Updates
 open_graph: >-
   https://images.unsplash.com/photo-1529700215145-58542a1f36b6?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1200&q=100
 ---
