@@ -16,7 +16,7 @@ class Bio extends React.Component {
 }
 
 Bio.propTypes = {
-  route: PropTypes.object
+  route: PropTypes.object,
 };
 
 export default Bio;

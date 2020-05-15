@@ -18,7 +18,7 @@ export default ({ data }) => {
 
       <div
         style={{
-          margin: "5rem 0 0"
+          margin: "5rem 0 0",
         }}
       >
         <ContactForm />

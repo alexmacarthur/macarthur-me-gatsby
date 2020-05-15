@@ -3,24 +3,24 @@ import Link from "gatsby-link";
 
 import styles from "./index.module.scss";
 
-const Nav = function({ isLandingNav = false }) {
+const Nav = function ({ isLandingNav = false }) {
   const links = [
     {
       name: "Posts",
-      path: "/posts"
+      path: "/posts",
     },
     {
       name: "About",
-      path: "/about"
+      path: "/about",
     },
     {
       name: "Contact",
-      path: "/contact"
+      path: "/contact",
     },
     {
       name: "Home",
-      path: "/"
-    }
+      path: "/",
+    },
   ];
 
   return (
@@ -54,7 +54,7 @@ const Nav = function({ isLandingNav = false }) {
           ${styles.list}
         `}
         >
-          {links.map(item => {
+          {links.map((item) => {
             let isHomeLink = item.path === "/";
 
             if (isLandingNav && isHomeLink) {

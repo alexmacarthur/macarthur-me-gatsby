@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import Helmet from "react-helmet";
+import { Helmet } from "react-helmet";
 import config from "../../gatsby-config";
 
 class SEO extends Component {
@@ -39,8 +39,8 @@ class SEO extends Component {
         name: title,
         alternateName: config.siteMetadata.altTitle
           ? config.siteMetadata.altTitle
-          : ""
-      }
+          : "",
+      },
     ];
     if (postSEO) {
       schemaOrgJSONLD.push([
@@ -54,10 +54,10 @@ class SEO extends Component {
               item: {
                 "@id": postURL,
                 name: title,
-                image
-              }
-            }
-          ]
+                image,
+              },
+            },
+          ],
         },
         {
           "@context": "http://schema.org",
@@ -70,10 +70,10 @@ class SEO extends Component {
           headline: title,
           image: {
             "@type": "ImageObject",
-            url: image
+            url: image,
           },
-          description
-        }
+          description,
+        },
       ]);
     }
     return (

@@ -17,7 +17,7 @@ class BlogIndex extends React.Component {
 }
 
 BlogIndex.propTypes = {
-  route: PropTypes.object
+  route: PropTypes.object,
 };
 
 export default BlogIndex;

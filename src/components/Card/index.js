@@ -55,7 +55,7 @@ class Card extends React.Component {
 
         <p
           dangerouslySetInnerHTML={{
-            __html: this.props.postExcerpt
+            __html: this.props.postExcerpt,
           }}
         />
       </article>

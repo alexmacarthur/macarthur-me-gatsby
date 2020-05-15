@@ -27,7 +27,7 @@ class Layout extends React.Component {
 }
 
 Layout.propTypes = {
-  route: PropTypes.object
+  route: PropTypes.object,
 };
 
 export default Layout;

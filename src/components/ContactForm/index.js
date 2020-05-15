@@ -8,21 +8,23 @@ export default class ContactForm extends React.Component {
     super(props);
     this.state = {
       validationMessage: "",
-      validationClass: ""
+      validationClass: "",
     };
   }
 
-  encode = data => {
+  encode = (data) => {
     return Object.keys(data)
-      .map(key => encodeURIComponent(key) + "=" + encodeURIComponent(data[key]))
+      .map(
+        (key) => encodeURIComponent(key) + "=" + encodeURIComponent(data[key])
+      )
       .join("&");
   };
 
-  handleChange = e => {
+  handleChange = (e) => {
     this.setState({ [e.target.name]: e.target.value });
   };
 
-  handleSubmit = e => {
+  handleSubmit = (e) => {
     e.preventDefault();
 
     let state = this.state;
@@ -32,23 +34,23 @@ export default class ContactForm extends React.Component {
     fetch("/", {
       method: "POST",
       headers: { "Content-Type": "application/x-www-form-urlencoded" },
-      body: this.encode({ "form-name": "contact", ...this.state })
+      body: this.encode({ "form-name": "contact", ...this.state }),
     })
       .then(() => {
-        document.querySelectorAll("input, textarea").forEach(item => {
+        document.querySelectorAll("input, textarea").forEach((item) => {
           item.value = "";
         });
 
         this.setState({
           validationMessage: "Thanks! Your message was submitted successfully.",
-          validationClass: ""
+          validationClass: "",
         });
       })
-      .catch(error => {
+      .catch((error) => {
         this.setState({
           validationMessage:
             "Sorry, something went wrong. If you want, you can email me at <strong>alex@macarthur.me</strong> directly.",
-          validationClass: "is-error"
+          validationClass: "is-error",
         });
       });
   };
@@ -63,7 +65,7 @@ export default class ContactForm extends React.Component {
         data-netlify-honeypot="bot-field"
         onSubmit={this.handleSubmit}
         style={{
-          flex: "1"
+          flex: "1",
         }}
       >
         <p hidden>

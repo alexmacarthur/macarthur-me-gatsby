@@ -3,7 +3,7 @@ import { Link } from "gatsby";
 
 import "./index.scss";
 
-const Pagination = props => (
+const Pagination = (props) => (
   <div className={"Pagination" + (props.slim ? " Pagination--slim" : "")}>
     <span className="Pagination-state">
       {props.slim && <>Page </>}

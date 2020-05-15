@@ -2,7 +2,7 @@ import React from "react";
 
 import styles from "./index.module.scss";
 
-const HeaderBar = props => {
+const HeaderBar = (props) => {
   return (
     <>
       <div className={`${styles.bar} ${props.isStacked ? styles.stacked : ""}`}>
@@ -19,7 +19,7 @@ const HeaderBar = props => {
 };
 
 HeaderBar.defaultProps = {
-  isStacked: false
+  isStacked: false,
 };
 
 export default HeaderBar;

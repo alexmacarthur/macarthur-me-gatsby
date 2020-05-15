@@ -18,7 +18,7 @@ class SocialIcons extends React.Component {
       github: config.siteMetadata.social.github,
       twitter: config.siteMetadata.social.twitter,
       facebook: config.siteMetadata.social.facebook,
-      linkedin: config.siteMetadata.social.linkedin
+      linkedin: config.siteMetadata.social.linkedin,
     };
 
     //-- If props provide a share URL, modify link values.
@@ -95,7 +95,7 @@ SocialIcons.defaultProps = {
   twitter: true,
   github: true,
   linkedin: true,
-  facebook: false
+  facebook: false,
 };
 
 export default SocialIcons;

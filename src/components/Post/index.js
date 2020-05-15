@@ -58,7 +58,7 @@ class Post extends React.Component {
               title={this.props.data.title}
               url={this.props.url}
               style={{
-                margin: "4rem 0 0"
+                margin: "4rem 0 0",
               }}
             />
           </div>
@@ -69,7 +69,7 @@ class Post extends React.Component {
 }
 
 Post.propTypes = {
-  route: PropTypes.object
+  route: PropTypes.object,
 };
 
 export default Post;

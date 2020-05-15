@@ -1,11 +1,11 @@
 import React from "react";
 import { graphql } from "gatsby";
-import Helmet from "react-helmet";
+import { Helmet } from "react-helmet";
 
 import Layout from "../components/Layout";
 import PostList from "../components/PostList";
 
-const PostsPage = props => {
+const PostsPage = (props) => {
   return (
     <Layout>
       <Helmet title={props.data.site.siteMetadata.title} />
