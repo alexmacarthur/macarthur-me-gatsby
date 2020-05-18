@@ -1,13 +1,14 @@
 ---
 title: Preloading JavaScript Assets in WordPress
+last_updated: "2020-05-18"
 open_graph: "https://images.pexels.com/photos/8775/traffic-car-vehicle-black.jpg"
 ---
 
 Squeezing every last drop of performance out of your website on any platform is an always-changing, never-ending, often addictive battle.
 
-Among the several tactics you can employ in this fight, optimizing your site's [resource hints](https://www.w3.org/TR/resource-hints) is a modern approach that can yield some significant ROI. And specifically, asset preloading is a particularly impactful place to start. [It's a topic worth learning about in more depth yourself](https://www.smashingmagazine.com/2016/02/preload-what-is-it-good-for/), but in short, preloading involves a web page starting to load a particular asset as soon as possible in the background, so it's ready to be used when the page calls for it. Because it's all done asyncronously, it won't block anything else from coming in the view during load. This is different from using an attribute like `async` on your `script` tags, because preloaded JavaScript won't automatically execute after it's loaded -- it's effectively inert until it's needed on your page. So, while the _amount_ of data being loaded by your page won't change, the start-to-end process of it all will go much quicker. This all translates into a better experience for your users, and more of da dolla billz for you.
+Among the several tactics you can employ in this fight, leveraging [resource hints](https://www.w3.org/TR/resource-hints) is a modern approach that can yield some significant ROI -- with preloading is a particularly impactful place to start. [It's a topic worth learning about in more depth yourself](https://www.smashingmagazine.com/2016/02/preload-what-is-it-good-for/), but in short, preloading directs a browser to asynchronously load an asset as soon as possible in the background, so it's ready to be used when the page calls for it. While the _amount_ of data being loaded by your page won't change, the start-to-end process of it all will go more quickly, impacting metrics like [TTI](https://web.dev/interactive/).
 
-You can preload just about anything, but often, the easiest way to see quick wins is to start with your JavaScript files, which are often loaded toward the bottom of the page (to prevent render blocking), but nevertheless essential for your page or application to function. It looks something like this: 
+Preloading is most useful for fetching resources that are discovered late within the page life cycle -- things like fonts or images that are referenced from within a stylesheet, or other assets that are requested via JavaScript. But it's also been used to prioritize top-level assets on a page, like your main JavaScript files: 
 
 ```html
 <html>
@@ -21,54 +22,70 @@ You can preload just about anything, but often, the easiest way to see quick win
 </html>
 ```
 
-When this page is loaded, the browser first hits `<link rel="preload" ... />`, which indicates that "this resource is really important -- I'm gonna start loading that in the background now so it's ready sooner by the time I need it." And by the time `<script src="" ... />` is discovered, the browser _won't_ have to start that download from scratch. As a result, metrics like time to interactive and overall page load time improve.
+When a page like this loads, the browser is told to download the referenced asset at high priority, beating out the priority placed on other resources that might have been requested.
+
+## What This Doesn't Mean
+
+To be fair, a setup like this won't _guarantee_ you great gains in raw performance, and that's because the browser's already _really_ good at this sort of thing. For the past several years, browsers have implement a practice called "speculative scanning," or "preload scanning." Per this process, as the browser is building the DOM for the page, it will parse the HTML document for resources it'll eventually need (JavaScript, CSS, etc.), and [begin downloading those in the background](https://hacks.mozilla.org/2017/09/building-the-dom-faster-speculative-parsing-async-defer-and-preload/). You get this for free, right out of the box. 
+
+But what this process _won't_ do for you is tell the browser which assets it finds are _most_ important (it'll default to its own logic for that -- usually by placement on the page). In the WordPress space especially, this is where the `preload` hint is especially handy. Depending on the site, a WordPress application often enqueues several different JavaScript, CSS, and image resources all at once, with a lot of those having low priority on certain pages, and higher priority on others. Indiciating which ones are most crucial can give the browser a leg up when your site loads.
 
 ## Automate JavaScript Preloading in WordPress
 
-In WordPress, it's easy enough to manually spit out a `link ref="preload"` tag for each file you'd like to preload, but it's kind of a pain to set up if you're managing a site with a lot of different scripts being enqueued by several different plugins, some of which are in the `head`, and others toward the bottom of your page. You want this automated, and you want that automation to be smart about which scripts are chosen to be preloaded. 
+In WordPress, it's easy enough to manually spit out a `link ref="preload"` tag for each file you'd like to preload, but it's kind of a pain to set up if you're managing a site with a lot of different scripts being loaded throughout the frame of the page. You want this automated, and you want that automation to be smart about which scripts are chosen to be preloaded. 
 
-So, a solution! **Loop over our footer-enqueued scripts and preload them in the header.** This can be achieved by simply running the following few lines of code in your application. You _could_ drop them in your theme's functions.php file, but don't. Instead, just [make a really simple plugin](https://macarthur.me/posts/creating-the-simplest-wordpress-plugin). It's almost always a better option.
-
-<aside>
-  <p>
-    If you want an easy way to implement asset preloading and leverage other performance-enhancing resource hints, try out my new <strong>FREE</strong> plugin <a href="https://wordpress.org/plugins/better-resource-hints">Better Resource Hints.</a> Install it and measure your performance gains!
-  </p>
-</aside>
+The most straightforward solution to this is to **loop over your registered scripts preload them in the header.** This can be achieved by simply running the following few lines of code in your application. You _could_ drop them in your theme's `functions.php` file, but don't. Instead, just [make a really simple plugin](https://macarthur.me/posts/creating-the-simplest-wordpress-plugin). It's almost always a better option.
 
 ```php
 add_action('wp_head', function () {
+  global $wp_scripts;
 
-    global $wp_scripts;
+  foreach ($wp_scripts->queue as $handle) {
+    $script = $wp_scripts->registered[$handle];
+    
+    //-- If version is set, append to end of source.
+    $source = $script->src . ($script->ver ? "?ver={$script->ver}" : "");
 
-    foreach($wp_scripts->queue as $handle) {
-        $script = $wp_scripts->registered[$handle];
-
-        //-- Weird way to check if script is being enqueued in the footer.
-        if($script->extra['group'] === 1) {
-
-            //-- If version is set, append to end of source.
-            $source = $script->src . ($script->ver ? "?ver={$script->ver}" : "");
-
-            //-- Spit out the tag.
-            echo "<link rel='preload' href='{$source}' as='script'/>\n";
-        }
-    }
+    //-- Spit out the tag.
+    echo "<link rel='preload' href='{$source}' as='script'/>\n";
+  }
 }, 1);
-
 ```
-Here's what's going on: On the `wp_head` hook (which fires after our scripts have been enqueued), we're looping through our registered scripts and printing out a `link` tag in our `head` for each resource that's enqueued in the footer of our page. In the end, every JavaScript file that's loaded toward the bottom of your page will have a `<head>` start (LOL) as the page loads for the user.
 
-Three notes about this setup: 
+Here's what's going on: On the `wp_head` hook (which fires after our scripts have been enqueued), we're looping through our registered scripts and printing out a `link` tag in our `head` for each resource. In the end, we've given our registered JavaScript resources priority over every other asset that the browser has otherwise discovered for download.
 
-**1. We're hooking into `wp_head` with an early priority to spit out our `link` tags.** We're choosing this hook because it fires after our scripts have been enqueued, and it allows us to get as close to the top of the page as possible, meaning our stuff can start loading ASAP. The priority of `1` means it'll fire early on -- before most other stuff gets printed in the head. The `wp_print_scripts` or `wp_print_styles` hooks would also work just fine -- it'd just mean we preload things a little farther down on the page. 
+Two notes about this setup: 
 
-**2. We're not preloading scripts enqueued in the header.** This is for two reasons. 
+**1. We're hooking into `wp_head` with an early priority to spit out our `link` tags.** We're choosing this hook because it fires after our scripts have been enqueued, and it allows us to get as close to the top of the page as possible. The priority of `1` means it'll fire early on -- before most other stuff gets printed in the head. The `wp_print_scripts` or `wp_print_styles` hooks would also work just fine -- it'd just mean that our hints are generated a little farther down on the page.
 
-* First, there's little benefit in preloading any files already being loaded in the header. Remember, preloading is great for resources that are important but loaded late in the page. We can start downloading these files while the rest of the page renders and have a head start for when they're explicitly loaded by a `script` tag. You're not getting much of a head start if you preload a file, only to have that file loaded anyway two lines down.
+**2. We're making sure the URLs of these assets match _exactly_, including the version.** You'll notice that if a version isn't set on an asset we're looping over, not even the `?` is attached to our source URL. That's because if the `href` in your `link` tag doesn't match the `src` attribute of your `script` tag, the browser will think these are two different resources, and you'll have gained nothing. 
 
-* Second, it's just probably not good practice to preload everything. Depending on network conditions, the number assets your page loads, and other variables, preloading everything and anything could potentially clog a user's bandwidth and negate the benefit we'd get by only preloading the essential, late-discovered assets on our page. This is isn't a hard and fast rule, but [it's what people like Addy Osmani suggest](https://medium.com/reloading/preload-prefetch-and-priorities-in-chrome-776165961bbf), so I'm on board with it. 
+**3. We're preloading even the scripts that are enqueued in the `<head>`.** It might seem counterintuitive, since the browser should give them relatively high priority due to where they're located. But it's possible that other scripts may compete with these, and we want to deliberately give _ours_ the highest priority, regardless of where the actual `<script>` tags are placed.
 
-**3. We're making sure the URLs of these assets match _exactly_, including the version.** You'll notice that if a version isn't set on an asset we're looping over, not even the `?` is attached to our source URL, because if the `href` in your `link` tag doesn't match the `src` attribute of your `script` tag, the browser will think these are two different resources, and you'll have gained nothing. 
+## Think About Scoping
+
+With this setup, we're preloading every enqueued script out of the box, and as a result, it's possible that we're setting priority to scripts of less concern to us. So, for your specific use case, consider introducing some logic that would make this a little more intentional. For example, if you want to explicitly prioiritze your theme's scripts, you might only generate the hint when the script's path is found within your theme's directory.
+
+```php
+
+add_action('wp_head', function () {
+  global $wp_scripts;
+
+  foreach ($wp_scripts->queue as $handle) {
+    $script = $wp_scripts->registered[$handle];
+
+    // This script's doesn't belong in my theme; don't preload.
+    if (strpos($script->src, "/themes/mytheme/") === false) {
+      continue;
+    }
+
+    if (isset($script->extra['group']) && $script->extra['group'] === 1) {
+      $source = $script->src . ($script->ver ? "?ver={$script->ver}" : "");
+      echo "<link rel='preload' href='{$source}' as='script'/>\n";
+    }
+  }
+}, 1);
+```
 
 ## Verify It's Working 
 
