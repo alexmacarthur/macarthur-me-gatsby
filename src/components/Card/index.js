@@ -50,7 +50,7 @@ class Card extends React.Component {
         <small>{this.props.date}</small>
 
         {this.props.external && !this.props.disableExternalIcon && (
-          <small> / {url.parse(this.props.path).host}</small>
+          <small> / guest post on {url.parse(this.props.path).host}</small>
         )}
 
         <p
