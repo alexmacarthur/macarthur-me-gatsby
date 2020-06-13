@@ -23,5 +23,10 @@ module.exports = [
         fromPath: "/posts/cleaning-up-redux-store-listeners-when-component-state-updates",
         toPath: "/posts/clean-up-your-redux-store-listeners-when-component-state-updates",
         statusCode: 301
+    }, 
+    {
+        fromPath: "/posts/blog-for-your-own-sake",
+        toPath: "https://www.ramseyinhouse.com/blog/as-an-engineer-write",
+        statusCode: 301
     }
 ];
