@@ -5,3 +5,8 @@
 [build.environment]
   NODE_VERSION = "10.15.3"
   NPM_VERSION = "6.9.0"
+
+[[redirects]]
+  from = "/posts/blog-for-your-own-sake"
+  to = "https://www.ramseyinhouse.com/blog/as-an-engineer-write"
+  status = 301
