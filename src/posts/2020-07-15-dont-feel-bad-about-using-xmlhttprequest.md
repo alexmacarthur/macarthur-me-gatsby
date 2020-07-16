@@ -74,7 +74,7 @@ Given all that aforementioned context, a few notable perks surfaced as a result 
 
 ### 1. Less code shipped.
 
-Being so old-school in terms of making HTTP requests, [browser support](https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest#Browser_compatibility) isn't even remotely a concern. By using it, teams can avoid loading those any polyfills still required to use `fetch` in IE, saving about ~4kb of bundled code (assuming teams would've used these two pretty good polyfills I came across):
+Being so old-school in terms of making HTTP requests, [browser support](https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest#Browser_compatibility) isn't even remotely a concern. By using it, teams can avoid loading those polyfills still required to use `fetch` in IE, saving about ~4kb of bundled code (assuming teams would've used these two pretty good polyfills I came across):
 
 |Polyfill|Size (minified)|Size (minified + gzipped)|
 |---|---|---|
