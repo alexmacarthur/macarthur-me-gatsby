@@ -3,22 +3,22 @@ title: Don't Feel Bad About Using XMLHttpRequest
 open_graph: "https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1200&q=100"
 ---
 
-A while back, I was working with a small JavaScript library responsible for sending a POST request with some data to an endpoint. At the time, it used [axios](https://github.com/axios/axios) to make that request, and I wanted to simplify things by shedding a dependency. The _obvious_ alternative was [`fetch`](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API) -- modern, native, and ergonomic.
+A while back, I began contributing to a small JavaScript library responsible for sending a POST request with some data to an endpoint. At the time, it used [axios](https://github.com/axios/axios) to make that request, and I wanted to simplify things by shedding a dependency. The obvious alternative was `fetch` -- modern, native, and ergonomic.
 
-But in this case, the following bits of context made me wonder if the obvious choice was the _best_ choice:
+But in this very particular case, the following bits of context made me wonder if this obvious choice was the _best_ choice. The package...
 
-* The package would be distributed amongst several teams.
-* The package had a simple, single responsibility.
-* The package needed to work for users on IE11.
+1. would be distributed amongst several teams
+2. had a simple, single responsibility, with little need to do anything after that responsibility had been fulfilled (so, a Promised-based API wasn't a must-have)
+3. would need to work for users on IE11 (for _most_ teams -- some had dropped that requirement)
 
 ## Where Fetch Held Me Up
 
-The `fetch` API is a welcomed upgrade to making HTTP requests in JavaScript, but in order to leverage it here, I'd need to rely on two different polyfills: the [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) object, and the `fetch` API itself. And that would mean putting more of a burden on the teams who implement it, as well as the users who interact with it:
+The `fetch` API is a welcomed upgrade to making HTTP requests in JavaScript, but in order to leverage it here, teams would need to rely on two different polyfills: the [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) object, and the `fetch` API itself. And that would mean putting at least a little more burden on the teams who implement it, as well as the users who interact with it:
 
-* It'd require teams to set up additional dependencies, which would involve vetting which polyfills to use (there are several for any given API), ensuring none are already being loaded by the application, and potentially working through unforseen issues.
+* It'd require teams supporting IE to set up additional dependencies, which would involve vetting which polyfills to use (there are several for any given API), ensuring none are already being loaded by the application, and potentially working through unforseen issues.
 * Unless some sort of [differential serving](https://macarthur.me/posts/should-we-implement-differential-serving) is set up, it'd require most users to download polyfills they don't actually need ([~94%+ are on browsers](https://caniuse.com/#feat=fetch) that support `fetch`).
 
-For my simple needs, this just felt like too much.
+For my simple needs, this just felt like too much, especially considering the strong culture of performance that exists throughout the organization as a whole.
 
 ## Making Prehistoric HTTP Requests
 
@@ -70,11 +70,11 @@ That's a very similar amount of code for virtually the same functionality. **And
 
 ## Why XMLHttpRequest Made Sense
 
-Given all that aforementioned context, a few key perks surfaced as a result of switching to `XMLHttpRequest`.
+Given all that aforementioned context, a few notable perks surfaced as a result of switching to `XMLHttpRequest`.
 
 ### 1. Less code shipped.
 
-Being so old-school in terms of making HTTP requests, [browser support](https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest#Browser_compatibility) isn't even remotely a concern. By using it, I can avoid loading those any polyfills still required to use `fetch` in IE, saving me about ~4kb of bundled code (assuming I would've used these two pretty good polyfills I came across):
+Being so old-school in terms of making HTTP requests, [browser support](https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest#Browser_compatibility) isn't even remotely a concern. By using it, teams can avoid loading those any polyfills still required to use `fetch` in IE, saving about ~4kb of bundled code (assuming teams would've used these two pretty good polyfills I came across):
 
 |Polyfill|Size (minified)|Size (minified + gzipped)|
 |---|---|---|
@@ -89,7 +89,7 @@ Being polyfill-free, I don't need to worry about asking other teams to deal with
 
 ### 3. Less risky implementation.
 
-When pulling in the package, teams don't need to deal with the array of potential issues that come up from introducing global dependencies, such as double-loading polyfills that are already being loaded, or subtle differences in how a polyfill behaves relative to the actual specification. Any risk in implementing the library is limited to the package code itself. In general, the JavaScript polyfill landscape is the [wild west](https://twitter.com/BenLesh/status/1283491594327515140), with no guarantees that packages will meet the full specification of an API (in fact, many don't intend to). Being able to sidestep the unavoidable risks in dealing with them is huge. 
+When pulling in the package, teams don't need to deal with the array of potential issues that come up from introducing global dependencies, such as double-loading polyfills that are already being pulled in, or subtle differences in how a polyfill behaves relative to the actual specification. Any risk in implementing the library is limited to the package code itself. In general, the JavaScript polyfill landscape is the [wild west](https://twitter.com/BenLesh/status/1283491594327515140), with no guarantees that packages will meet the full specification of an API (in fact, many don't intend to). Being able to sidestep the unavoidable risks in dealing with them is huge. 
 
 ## Some Common Objections
 
@@ -97,7 +97,7 @@ Despite these good things, there are a few objections I've seen come up a few ti
 
 ### 1. We should lean into writing modern JavaScript!
 
-Agreed, but not if that means doing so _for the sake of_ writing modern JavaScript. If "modern" code introduces complexity and costs that could've otherwise been avoided, and if the alternative isn't _that_ much work, there's no shame in going old-school. There's a balance that needs to be found with every project, and more often than not, the "new" might have the best case. But more classic solutions shouldn't be immediately dismissed _exclusively_ because there's a flashier (or just easier) option out there. 
+Agreed, but not if that means doing so _for the sake of_ writing modern JavaScript. If "modern" code introduces complexity and costs that could be avoided without a significant amount of effort, there's no shame in going old-school. There's a balance that needs to be found with every project, and more often than not, the "new" might have the best case (in fact, most of the time, I'd just go with `fetch`). But more classic solutions shouldn't be immediately dismissed _exclusively_ because there's a flashier option out there. "It's 2020, use `fetch` already!" is a weak argument to me.
 
 ### 2. Isn't XMLHttpRequest deprecated?
 
@@ -148,6 +148,6 @@ const fire = () => {
 })();
 ```
 
-## Sometimes, New Might Not Be Best
+## Sometimes, New _Might_ Not Be Best
 
-It's easy to get excited about advancements to web APIs like `fetch`. But if we're not careful, it's just as easy to become dogmatic about using newer technologies exclusively because they're new. As you wade these waters, try to keep the full scope of your circumstances in mind -- the users, the needs, the environment, everything. You may find out that the best tool for the job is the one that's been around since your grandma was making HTTP requests.
+It's easy to get excited about advancements to web APIs like `fetch`, and they're very often the best tool for the job. But if we're not careful, it's just as easy to become dogmatic about using newer technologies exclusively because they're new. As you wade these waters, try to keep the full scope of your circumstances in mind -- the users, the needs, the environment, everything. You may find out that the best tool for the job is the one that's been around since your grandma was making HTTP requests.
