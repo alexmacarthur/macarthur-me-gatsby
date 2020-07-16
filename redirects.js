@@ -25,7 +25,7 @@ module.exports = [
         statusCode: 301
     }, 
     {
-        fromPath: "/posts/blog-for-your-own-sake/",
+        fromPath: "/posts/blog-for-your-own-sake",
         toPath: "https://www.ramseyinhouse.com/blog/as-an-engineer-write",
         statusCode: 301
     }

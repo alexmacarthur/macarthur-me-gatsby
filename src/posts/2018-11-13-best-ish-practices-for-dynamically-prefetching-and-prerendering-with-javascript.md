@@ -101,17 +101,7 @@ Here’s what I had in the head of my HTML:
 <link rel="prerender" href="https://www.typeitjs.com/docs"/>
 ```
 
-When I loaded the page, only the *first* hint was respected, and nothing was done with the second. It was seemingly just ignored. 
-
-!["Active Prerender"](https://d2mxuefqeaa7sj.cloudfront.net/s_86E490487AB28BDE8348427E1A325AD17E133E23ED436D4676C93BA3733A0D42_1540836925727_load-1.png)
-
-Interestingly, though, after I refreshed that same page, the *second* URL was actively prerendered, with the first hint being designated as a “duplicate.” Apparently, the browser holds onto previously prerendered pages, at least for a little while. 
-
-!["Active Prerender"](https://d2mxuefqeaa7sj.cloudfront.net/s_86E490487AB28BDE8348427E1A325AD17E133E23ED436D4676C93BA3733A0D42_1540836932646_load-2.png)
-
-And when I refreshed again, neither was prerendered. 
-
-!["Active Prerender"](https://d2mxuefqeaa7sj.cloudfront.net/s_86E490487AB28BDE8348427E1A325AD17E133E23ED436D4676C93BA3733A0D42_1540836936908_load-3.png)
+When I loaded the page, only the *first* hint was respected, and nothing was done with the second. It was seemingly just ignored. Interestingly, though, after I refreshed that same page, the *second* URL was actively prerendered, with the first hint being designated as a “duplicate.” Apparently, the browser holds onto previously prerendered pages, at least for a little while. And when I refreshed again, neither was prerendered. 
 
 The lesson learned here is that the browser will prerender the first hint it finds that's not already cached (if we can call it that). Once a prerender process has started, any of the following `prerender` hints are useless. 
 
