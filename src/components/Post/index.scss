@@ -7,7 +7,6 @@
 }
 
 .Post-content {
-
   p, li {
     a {
       @include underline;
@@ -96,6 +95,12 @@
     background: none;
     box-shadow: none;
   }
+}
+
+.Post-subtitle {
+  font-size: $base-font-size; 
+  font-weight: normal;
+  margin-top: 1rem;
 }
 
 .Post-header {

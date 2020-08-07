@@ -18,6 +18,10 @@ class Post extends React.Component {
         <HeaderBar isStacked={true}>
           <h1>{this.props.data.title}</h1>
 
+          {this.props.data.subtitle && (
+            <h2 className="Post-subtitle">{this.props.data.subtitle}</h2>
+          )}
+
           {(this.props.publishDate || this.props.data.last_updated) && (
             <ul>
               {this.props.publishDate && <li>{this.props.publishDate}</li>}

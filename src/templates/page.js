@@ -60,6 +60,7 @@ export const pageQuery = graphql`
       }
       frontmatter {
         title
+        subtitle
         last_updated(formatString: "MMMM DD, YYYY")
         open_graph
       }
