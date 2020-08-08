@@ -12,7 +12,7 @@ At the same time, I'm seeing a lot of people ask what all the hype is about, oft
 
 **1. I can prototype _much_ more quickly.**
 
-Previous styling approaches I've used require me to jump between multiple different files just to stand up a page with some basic asthetics. At minimum, that'd mean an HTML file and a stylesheet. And whenever I was in a highly-componentized BEM project (like I most often was), that could mean a _lot_ of files open at once -- the file containing the HTML and then one SCSS file for each UI component I was writing.
+Other styling approaches I've used require me to jump between multiple different files just to stand up a page with some basic asthetics. At minimum, that'd mean an HTML file and a stylesheet. And whenever I was in a highly-componentized BEM project (like I most often was), that could mean a _lot_ of files open at once -- the file containing the HTML and then one SCSS file for each UI component I was writing.
 
 With Tailwind, however, all I really need to pay attention to is the HTML. Fewer VS Code tabs for my brain to manage means I can prototype more easily and quickly.
 
@@ -20,15 +20,23 @@ With Tailwind, however, all I really need to pay attention to is the HTML. Fewer
 
 When working with other utility-based CSS frameworks, it's a pain to ensure you don't ship any of the CSS you don't actually use. Depending on the framework, your options are to manually import the things you actually use, give up altogether, or try your hand at configuring a tool like [PurgeCSS](https://purgecss.com/) to remove unused classes on compilation. As of v1.4, [Tailwind has PurgeCSS built in](https://tailwindcss.com/docs/release-notes/#tailwind-css-v1-4), with a lot of the hassle abstracted away, so I can focus on styling without worrying so much about CSS bloat.
 
-**3. It's easy to throw away HTML without orphaning accompanying CSS.** 
+**3. I can throw away HTML without orphaning accompanying CSS.** 
 
 Especially when I'm prototyping something, it's common for me to spontaneously throw out HTML I thought I'd need but don't. When my styles and makeup are maintained separately, a second step is required to remove that unnecessary CSS. I often forget to do that, forever leaving it orphaned. The markup-driven styling provided by Tailwind means all I have to throw away is the HTML itself. Nothing else (unless I have some custom components I've composed somewhere, but that's rare).
 
-**4. It's easy to incrementally adopt in a project.** 
+**4. I don't need to name so many things.**
+
+It takes time, it's hard, and I suck at it. When using Tailwind, the only time I need to dream up a class name is when I'm composing my own components, which isn't often at all. For the most part, I can spend my time bringing my UI to life, rather than wasting it second-guessing what I chose to name something.
+
+**5. Consistent design token values (font sizes, colors, spacing, etc.) are set up for me.**
+
+When starting with more of a bare-bones, roll-my-own styling approach, it's a chore to determine what my base font sizes, colors, spacing values, and everything else should be. Tailwind offers consistent sets of these values out-of-the-box, while also enabling me to [customize them](https://tailwindcss.com/docs/margin/#customizing) as needed.
+
+**6. It's easy to incrementally adopt in a project.** 
 
 If you want to leverage just _some_ of the utilities provided by Tailwind, or want to migrate to it more slowly, it's relatively easy to do so without overcommitting yourself or putting the entire project through a refactor. After setting it up (the most common way to do so is probably [as a PostCSS plugin](https://tailwindcss.com/docs/installation#using-tailwind-with-postcss)), you can either [manually configure Tailwind](https://tailwindcss.com/docs/configuration/) to include only what you need, or rely on the aforementioned PurgeCSS integration to remove the styles you don't use. I appreciate that flexibility.
 
-**5. The documentation is incredible.** 
+**7. The documentation is incredible.** 
 
 In particular, the search functionality in the Tailwind documentation is nearly psychic (and the "press '/' to focus" feature is a huge nice-to-have). If I'm looking for some utility, my first search attempt nearly always returns what I need without requiring me to try again with different terms. It's just good. Moreover, it's fast, thorough, and filled with helpful examples.
 
