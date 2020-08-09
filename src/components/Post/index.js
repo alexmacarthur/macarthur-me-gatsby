@@ -1,79 +1,60 @@
 import React from "react";
-import PropTypes from "prop-types";
-
-import ReactDisqusComments from "react-disqus-comments";
-
 import Bio from "../Bio/index.js";
 import SocialIcons from "../SocialIcons";
 import HeaderBar from "../HeaderBar";
+import JamComments from "gatsby-plugin-jam-comments";
 
 import "./index.scss";
 
 import "prismjs/themes/prism-okaidia.css";
 
-class Post extends React.Component {
-  render() {
-    return (
-      <article className="Post">
-        <HeaderBar isStacked={true}>
-          <h1>{this.props.data.title}</h1>
+const Post = (props) => {
+  const { data } = props;
 
-          {this.props.data.subtitle && (
-            <h2 className="Post-subtitle">{this.props.data.subtitle}</h2>
-          )}
+  return (
+    <article className="Post">
+      <HeaderBar isStacked={true}>
+        <h1>{data.title}</h1>
 
-          {(this.props.publishDate || this.props.data.last_updated) && (
-            <ul>
-              {this.props.publishDate && <li>{this.props.publishDate}</li>}
-              {this.props.data.last_updated && (
-                <li>Last Updated {this.props.data.last_updated}</li>
-              )}
-            </ul>
-          )}
-        </HeaderBar>
+        {data.subtitle && <h2 className="Post-subtitle">{data.subtitle}</h2>}
 
-        <div
-          className="Post-content"
-          dangerouslySetInnerHTML={{ __html: this.props.content }}
-        />
-
-        {!this.props.isPage && (
-          <div>
-            <Bio content={this.props.shortBio} />
-
-            <aside className="Post-footer">
-              <span>
-                If this was helpful, interesting, or caused some other positive
-                emotion, share!
-              </span>
-
-              <SocialIcons
-                shareURL={this.props.url}
-                shareTitle={this.props.data.title}
-                newTab={true}
-                facebook={true}
-                github={false}
-              />
-            </aside>
-
-            <ReactDisqusComments
-              shortname="macarthur-me"
-              identifier={this.props.url}
-              title={this.props.data.title}
-              url={this.props.url}
-              style={{
-                margin: "4rem 0 0",
-              }}
-            />
-          </div>
+        {(props.publishDate || data.last_updated) && (
+          <ul>
+            {props.publishDate && <li>{props.publishDate}</li>}
+            {data.last_updated && <li>Last Updated {data.last_updated}</li>}
+          </ul>
         )}
-      </article>
-    );
-  }
-}
+      </HeaderBar>
 
-Post.propTypes = {
-  route: PropTypes.object,
+      <div
+        className="Post-content"
+        dangerouslySetInnerHTML={{ __html: props.content }}
+      />
+
+      {!props.isPage && (
+        <div>
+          <Bio content={props.shortBio} />
+
+          <aside className="Post-footer">
+            <span>
+              If this was helpful, interesting, or caused some other positive
+              emotion, share!
+            </span>
+
+            <SocialIcons
+              shareURL={props.url}
+              shareTitle={data.title}
+              newTab={true}
+              facebook={true}
+              github={false}
+            />
+          </aside>
+
+          <JamComments path={props.path} pageContext={props.pageContext} />
+        </div>
+      )}
+    </article>
+  );
 };
 
 export default Post;

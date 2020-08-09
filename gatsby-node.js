@@ -101,7 +101,6 @@ exports.createPages = ({ graphql, actions }) => {
     const posts = result.data.allMarkdownRemark.edges;
 
     posts.forEach(post => {
-
       createPage({
         path: post.node.fields.slug,
         component: path.resolve('./src/templates/page.js'),
@@ -114,4 +113,12 @@ exports.createPages = ({ graphql, actions }) => {
   });
 
   return Promise.all([postsPaginationPromise, allMarkdownPromise]);
+}
+
+exports.onCreateWebpackConfig = ({ actions }) => {
+  actions.setWebpackConfig({
+    node: {
+      fs: 'empty'
+    }
+  })
 }

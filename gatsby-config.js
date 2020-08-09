@@ -1,3 +1,7 @@
+require('dotenv').config({
+  path: `.env.${process.env.NODE_ENV}`,
+});
+
 module.exports = {
   siteMetadata: {
     pathPrefix: "/",
@@ -89,6 +93,13 @@ module.exports = {
     `gatsby-plugin-catch-links`,
     `gatsby-plugin-twitter`,
     `gatsby-plugin-preact`,
+    {
+      resolve: 'gatsby-plugin-jam-comments',
+      options: {
+        api_key: process.env.JAM_COMMENTS_API_KEY,
+        domain: process.env.JAM_COMMENTS_DOMAIN
+      }
+    },
     {
       resolve: `gatsby-plugin-feed`, 
       options: {
