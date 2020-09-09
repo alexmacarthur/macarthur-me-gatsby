@@ -1,5 +1,6 @@
 ---
 title: Build Your Own Simple Lazy Loading Functionality in WordPress
+last_updated: "2020-09-08"
 open_graph: "https://images.pexels.com/photos/196655/pexels-photo-196655.jpeg"
 ---
 
@@ -69,8 +70,11 @@ For any images on custom pages outside of the WordPress database, it's pretty ea
 
 ```php
 add_filter('the_content', function ($content) {
-	//-- Change src/srcset to data attributes.
-	$content = preg_replace("/<img(.*?)(src=|srcset=)(.*?)>/i", '<img$1data-$2$3>', $content);
+	//-- Change src to data attributes.
+	$content = preg_replace("/<img(.*?)(src=)(.*?)>/i", '<img$1data-$2$3>', $content);
+
+    	//-- Change srcset to data attributes.
+    	$content = preg_replace("/<img(.*?)(srcset=)(.*?)>/i", '<img$1data-$2$3>', $content);
 
 	//-- Add .lazy-load class to each image that already has a class.
 	$content = preg_replace('/<img(.*?)class=\"(.*?)\"(.*?)>/i', '<img$1class="$2 lazy-load"$3>', $content);
@@ -132,18 +136,10 @@ And add some CSS that'll hide the images until they're fully loaded, and then al
 }
 ```
 
-Boom. Now, every image will now have an `opacity` of `0`, until they're loaded in, when `is-loaded` will fade them in. 
-
-### Getting Guten-Ready
-
-In version 5.0 of WordPress, we'll see the much anticipated block editor roll out ([Gutenberg](https://github.com/WordPress/gutenberg)). Will this lazy loading setup work with Gutenberg? 
-
-**Answer: yes.** 
-
-The new editor will still rely on `the_content` to return database content, which means everything we've done here will still be in tact. However, Gutenberg will slightly change which classes are added to images. For example, an image block will wrap an image with `<figure>` tags that have alignment classes attached, instead of on the images themselves. So, if you're not targeting images by class like shown here, and instead using nested selectors or something else, just be aware of how that might impact you. Not a huge deal. 
+Neat! Now, every image will now have an `opacity` of `0`, until they're loaded in, when `is-loaded` will fade them in. 
 
 ### Soon, This May All Be Meaningless
 
-Lazy loading is a good, responsible thing to implement, but, all this might come out-of-the-box and fully managed by browsers themselves in a couple of years. [Google Chrome is already headed this way](https://www.bleepingcomputer.com/news/google/google-chrome-to-feature-built-in-image-lazy-loading/). So, pay attention. In a short while, all of what I've just showed you might be pointless, and I will need to put a sad disclaimer at the top of this post that you might just be wasting your time by reading this. 
+Lazy loading is a good, responsible thing to implement, but, all of this will likely be possible by default in browsers. In fact, [Chromium-based browsers and Firefox already do have a native API for it](https://web.dev/native-lazy-loading/). So, pay attention. In a short while, all of what I've just showed you might be pointless, and I will need to put a sad disclaimer at the top of this post that you might just be wasting your time by reading this. 
 
 Hope this helps!
