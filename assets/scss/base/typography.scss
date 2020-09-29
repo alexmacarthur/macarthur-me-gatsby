@@ -38,7 +38,7 @@ h1 {
   strong {
     font-weight: 900;
   }
-  
+
   @include media($medium-screen) {
     font-size: $giant-font-size;
   }
@@ -87,7 +87,7 @@ span,
 small,
 code,
 date,
-li, 
+li,
 blockquote {
   font-size: $base-font-size;
   line-height: $base-line-height;
@@ -103,7 +103,7 @@ blockquote {
 
 ol {
   padding-left: 2rem;
-  
+
   li {
     padding-left: .5rem;
   }
@@ -113,7 +113,7 @@ strong {
   font-weight: 700;
 }
 
-small {
+small, figcaption {
   word-break: break-word;
   line-height: normal;
   margin-top: .5rem;
@@ -125,6 +125,12 @@ small {
   & + small {
     margin-left: .5rem;
   }
+}
+
+figcaption {
+  display: block;
+  text-align: center;
+  margin: 0 auto 2rem;
 }
 
 button {
