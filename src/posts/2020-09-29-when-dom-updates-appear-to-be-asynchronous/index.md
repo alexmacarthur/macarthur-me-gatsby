@@ -19,7 +19,7 @@ Imagine we have some JavaScript on a page that updates an element's contents and
 
 After loading the page, you'd correctly expect that "updated text" will be displayed on the screen. And when it's exposed via that `console.log()`, you'll see the same value there too.
 
-The fact that `console.log()` yields this result isn't surprising because a DOM update is a *synchronous* event. When the properties of the DOM object are modified, that change is thrown onto the call stack, and no proceeding event can execute until the stack is empty again. This is how JavaScript's event loop does it's thing — first in, first out — even though many of those events simply kick off asynchronous work handled by browser APIs (like `setTimeout`, for example).
+The fact that `console.log()` yields this result isn't surprising because a DOM update is a *synchronous* event. When the properties of the DOM object are modified, that change is thrown onto the call stack, and no proceeding event can execute until the stack is empty again. This is how JavaScript's event loop does it's thing — first in, first out — even though many of those events simply kick off asynchronous work handled by browser APIs (like `setTimeout()`, for example).
 
 ## Same Thread; Different Pace
 
@@ -36,13 +36,13 @@ The **smaller vertical bars** represent the execution of JavaScript's event loop
 
 The **thicker vertical bars** represent how frequently the browser repaints the screen. That rate usually [sits at around 60 frames/second](https://developers.google.com/web/fundamentals/performance/rendering), or about once every ~16. 66ms. Every time it occurs, it'll take all the DOM changes made between the current paint and the previous paint and make them visible to the user.
 
-Most of the time, the relationship between the event loop and the repaint cycle is inconsequential to our work and virtually irrelevant to any user experience. But sometimes, circumstances arise when when this whole DOM-to-screen process can make us wonder if modifying the DOM really is a synchronous job at all.
+Most of the time, the relationship between the event loop and the repaint cycle is inconsequential to our work and virtually irrelevant to the user's experience. But sometimes, circumstances arise when this whole DOM-to-screen process can make us wonder if modifying the DOM really is a synchronous job at all.
 
 ## Make a DOM Update Look Asynchronous w/ `alert()`
 
-Let's explore one of these circumstances. To do so, I'm using a simple local Node server with a bit of HTML. You're welcome to follow along with the changes we'll be making by [cloning the repo for yourself](https://github.com/alexmacarthur/dom-updates-and-browser-repaints) and uncommenting each example as needed. (I considered using something like [CodeSandbox](https://codesandbox.io/) for these examples, but needed an environment as pure & predictable as possible -- platforms that serve a site through an embedded iframe couldn't quite provide that.)
+Let's explore one of these circumstances. To do so, I'm using a simple local Node server with a bit of HTML. You're welcome to follow along with the changes we'll be making by [cloning the repo for yourself](https://github.com/alexmacarthur/dom-updates-and-browser-repaints) and uncommenting each example as needed. (I considered using something like [CodeSandbox](https://codesandbox.io/) for these examples, but I needed an environment as pure & predictable as possible. Platforms that serve a site through an embedded iframe couldn't quite provide that.)
 
-This time around, instead of logging out the modified DOM value, let's expose it with an `alert()`. When that action is thrown onto the call stack, it'll freeze the main thread -- including any outstanding repaints scheduled to occur.
+This time around, instead of logging out the modified DOM value, let's expose it with an `alert()`. When that action is thrown onto the call stack, it'll freeze the main thread, including any outstanding repaints.
 
 ``` js
 const element = document.getElementById('element');
@@ -54,7 +54,7 @@ After refreshing the page this time, you'll see the "updated text" correctly rev
 
 ![DOM and browser out of sync](out-of-sync.png)
 
-The modification to the DOM object is complete, **but the respective *repaint* has not yet been able to occur** (remember — the event loop is turning over much faster than the browser's refresh rate). The instant that `alert()` is dismissed, repaints are allowed to proceed, and our text is updated.
+The modification to the DOM object is complete, **but the respective *repaint* has not yet been able to occur** (remember — the event loop is turning over much faster than the browser's refresh rate). The instant that the `alert()` is dismissed, repaints are allowed to proceed, and our text is updated.
 
 ## Making Things Unfold More Predictably
 
@@ -73,7 +73,7 @@ setTimeout(() => {
 }, 20); // <-- arbitrary number greater than refresh rate
 ```
 
-This "works," but isn't the most elegant solution, mainly because we're making an educated guess as to when the repaint cycle will have turned over, while trying not to cause an unnecessary delay for the `alert()`. But if we cut it close and the timeout fires sooner than that delay, we're not guaranteed to see the correct text on the screen when it's frozen, because the browser didn't have a chance to paint outstanding DOM changes.
+This "works," but it isn't the most elegant solution, mainly because we're making an educated guess as to when the repaint cycle will have turned over. We don't want to wait too long, causing an unnecessary delay for the `alert()`. But if we cut it close and the timeout fires sooner than that delay, we're not guaranteed to see the correct text on the screen when it's frozen, because the browser didn't have a chance to paint outstanding DOM changes.
 
 We can illustrate this by setting the timeout's delay to something less than the refresh rate and reload the page a few times. Much of the time, the text will still correctly render. But sooner or later, the rendered text will *not* have updated like we want.
 
@@ -101,7 +101,7 @@ requestAnimationFrame(() => {
 });
 ```
 
-**But that won't work.** Firing *before* the next repaint is pointless — instead, we want it to happen *after*, since this is when the DOM update will have been painted to the screen. To accomplish this, we just need to stack things a bit:
+**But that won't work.** Firing *before* the next repaint is pointless. Instead, we want it to happen *after*, since this is when the DOM update will have been painted to the screen. To accomplish this, we just need to nest things a bit:
 
 ``` jsx
 const element = document.getElementById('element');
@@ -119,7 +119,7 @@ requestAnimationFrame(() => {
 });
 ```
 
-With that, we're good to go! The `alert()` will only after outstanding DOM changes have been painted to the screen. As a result, what we see in the `alert()` and rendered on the page will consistently be the same:
+With that, we're good to go! The `alert()` will only after outstanding DOM changes have been painted to the screen. As a result, what we see in the `alert()` and what's rendered on the page will consistently be the same:
 
 ![DOM and browser in sync](in-sync.png)
 
