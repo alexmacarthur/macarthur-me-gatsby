@@ -15,9 +15,8 @@ class SEO extends Component {
     if (postSEO) {
       const postMeta = postNode.frontmatter;
       title = postMeta.title;
-      description = postMeta.description
-        ? postMeta.description
-        : postNode.excerpt;
+      description =
+        postMeta.subtitle || postMeta.description || postNode.excerpt;
       postURL =
         config.siteMetadata.siteUrl + config.siteMetadata.pathPrefix + postPath;
       image = postMeta.open_graph ? postMeta.open_graph : image;
