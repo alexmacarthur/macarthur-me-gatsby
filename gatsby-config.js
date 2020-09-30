@@ -101,7 +101,7 @@ module.exports = {
       }
     },
     {
-      resolve: `gatsby-plugin-feed`, 
+      resolve: `gatsby-plugin-feed`,
       options: {
         query: `
           {
@@ -113,8 +113,8 @@ module.exports = {
                 site_url: siteUrl
               }
             }
-          } 
-        `, 
+          }
+        `,
         feeds: [
           {
             serialize: ({ query: { site, allMarkdownRemark } }) => {
