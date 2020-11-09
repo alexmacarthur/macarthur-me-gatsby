@@ -133,7 +133,7 @@ figcaption {
   margin: 0 auto 2rem;
 }
 
-button {
+button, .button {
   font-size: $base-font-size;
   cursor: pointer;
   border: 1px solid $gray;
@@ -145,6 +145,11 @@ button {
     color: $salmon;
     border-color: $salmon;
   }
+}
+
+.small-button {
+  font-size: $small-font-size;
+  padding: .25rem 1rem;
 }
 
 pre {

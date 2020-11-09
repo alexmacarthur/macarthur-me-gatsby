@@ -1,33 +1,23 @@
 import React from "react";
-import PropTypes from "prop-types";
-
 import Nav from "../components/Nav";
 import Footer from "../components/Footer";
 import SEO from "../components/SEO";
 import Header from "../components/Header";
 
-class Layout extends React.Component {
-  render() {
-    const { children } = this.props;
+const Layout = ({ children }) => {
+  return (
+    <div>
+      <SEO />
 
-    return (
-      <div>
-        <SEO />
+      <Header>
+        <Nav />
+      </Header>
 
-        <Header>
-          <Nav />
-        </Header>
+      <main>{children}</main>
 
-        <main>{children}</main>
-
-        <Footer />
-      </div>
-    );
-  }
-}
-
-Layout.propTypes = {
-  route: PropTypes.object,
+      <Footer />
+    </div>
+  );
 };
 
 export default Layout;

@@ -34,7 +34,7 @@ main {
   flex: 1;
   max-width: $container-width;
   margin: 0 auto;
-  
+
   @include media($medium-screen) {
     padding-top: 3rem;
   }

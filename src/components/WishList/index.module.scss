@@ -1,0 +1,25 @@
+@import '../../../assets/scss/base/variables.scss';
+@import '../../../assets/scss/base/mixins.scss';
+
+.item {
+  display: flex;
+
+  &:before {
+    content: '';
+    display: block;
+    width: 6px;
+    height: 6px;
+    background: $gray;
+    margin-right: 1.5rem;
+    flex: none;
+    margin-top: .55em;
+  }
+
+  & + .item {
+    margin-top: 2rem;
+  }
+}
+
+.link {
+  @include underline;
+}
