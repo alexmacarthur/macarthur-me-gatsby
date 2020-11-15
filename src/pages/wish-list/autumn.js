@@ -2,7 +2,7 @@ import { graphql } from "gatsby";
 import React from "react";
 import Layout from "../../components/Layout";
 import HeaderBar from "../../components/HeaderBar";
-import WishList from "../../components/WishList";
+import List from "../../components/List";
 
 const WishListPage = ({ data }) => {
   return (
@@ -11,7 +11,7 @@ const WishListPage = ({ data }) => {
         <h1>Autumn's Wish List</h1>
       </HeaderBar>
 
-      <WishList listJson={data.allAutumnWishListJson} />
+      <List listJson={data.allAutumnWishListJson} />
     </Layout>
   );
 };

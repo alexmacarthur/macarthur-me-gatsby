@@ -1,7 +1,7 @@
 import React from "react";
 import styles from "./index.module.scss";
 
-const WishList = ({ listJson }) => {
+const List = ({ listJson }) => {
   const listItems = listJson.edges.map((item) => {
     return item.node;
   });
@@ -43,4 +43,4 @@ const WishList = ({ listJson }) => {
   );
 };
 
-export default WishList;
+export default List;
