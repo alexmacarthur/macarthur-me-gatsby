@@ -11,7 +11,7 @@ const List = ({ listJson }) => {
       <ul className={styles.list}>
         {listItems.map((item) => {
           return (
-            <li classList={styles.item}>
+            <li className={styles.item} key={item.name}>
               <div>
                 <span dangerouslySetInnerHTML={{ __html: item.name }}></span>
 

@@ -1,7 +1,6 @@
 import React from "react";
 import Nav from "../Nav";
 import SocialIcons from "../SocialIcons";
-
 import styles from "./index.module.scss";
 
 class Hero extends React.Component {
