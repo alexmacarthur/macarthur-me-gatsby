@@ -4,6 +4,9 @@
   "version": "1.0.0",
   "author": "Alex MacArthur <alex@macarthur.me>",
   "private": true,
+  "workspaces": [
+    "gatsby-plugin-jam-comments"
+  ],
   "bugs": {
     "url": "https://github.com/alexmacarthur/macarthur.me/issues"
   },
