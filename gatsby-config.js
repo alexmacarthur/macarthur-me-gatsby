@@ -99,7 +99,7 @@ module.exports = {
     `gatsby-plugin-catch-links`,
     `gatsby-plugin-twitter`,
     {
-      resolve: 'gatsby-plugin-jam-comments',
+      resolve: '@jam-comments/gatsby',
       options: {
         api_key: process.env.JAM_COMMENTS_API_KEY,
         domain: process.env.JAM_COMMENTS_DOMAIN

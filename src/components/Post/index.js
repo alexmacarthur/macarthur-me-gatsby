@@ -2,7 +2,7 @@ import React from "react";
 import Bio from "../Bio/index.js";
 import SocialIcons from "../SocialIcons";
 import HeaderBar from "../HeaderBar";
-import JamComments from "gatsby-plugin-jam-comments";
+import JamComments from "@jam-comments/gatsby";
 
 import "./index.scss";
 
@@ -50,7 +50,12 @@ const Post = (props) => {
             />
           </aside>
 
-          <JamComments path={props.path} pageContext={props.pageContext} />
+          <JamComments
+            path={props.path}
+            pageContext={props.pageContext}
+            domain={process.env.GATSBY_JAM_COMMENTS_DOMAIN}
+            apiKey={process.env.GATSBY_JAM_COMMENTS_API_KEY}
+          />
         </div>
       )}
     </article>
